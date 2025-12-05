@@ -1,0 +1,409 @@
+/* --- VARIABEL WARNA --- */
+:root {
+    --primary: #4b85e7;       /* Biru Utama */
+    --primary-dark: #3a6bb5;  /* Biru lebih gelap untuk hover */
+    --bg-cream: #fdfbf7;      /* Krem Background */
+    --accent-cream: #FFF8E1;  /* Krem untuk highlight */
+    --text-dark: #1a2b4b;     /* Biru Gelap (Hampir hitam) untuk teks */
+    --text-light: #ffffff;
+    --success: #4CAF50;
+    --warning: #FFC107;
+    --danger: #FF5252;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- NAVIGASI --- */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: transparent; /* Bersih tanpa background block */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(5px); /* Efek kaca buram sedikit */
+}
+
+.nav-subjects {
+    display: flex;
+    gap: 15px;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(75, 133, 231, 0.15);
+}
+
+.nav-pill {
+    background-color: var(--bg-cream);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    padding: 8px 24px;
+    border-radius: 50px; /* Rounded Rectangle */
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.nav-pill:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.home-icon {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.home-icon:hover {
+    background-color: var(--primary-dark);
+    transform: rotate(-10deg) scale(1.1);
+}
+
+/* --- MAIN CONTENT & VIEWS --- */
+main {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 80vh;
+}
+
+.view {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.view.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- HOME VIEW --- */
+.hero-content {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.brand-lite { font-weight: 300; }
+.brand-edu { font-weight: 700; }
+
+.welcome-text {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+    color: #555;
+}
+
+.hero-img {
+    width: 200px;
+    opacity: 0.8;
+}
+
+/* --- GLOBAL SIMULATION STYLES --- */
+.simulation-container {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-top: 1rem;
+    position: relative;
+    border: 1px solid #eee;
+}
+
+.header-section {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.header-section h2 { color: var(--primary); }
+
+.info-panel {
+    background-color: var(--accent-cream);
+    border-left: 5px solid var(--primary);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* --- 🧪 KIMIA (pH Drag & Drop) --- */
+.lab-bench {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    position: relative;
+    height: 300px;
+}
+
+.beakers-container {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-end;
+}
+
+.beaker {
+    width: 100px;
+    height: 120px;
+    border: 3px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.liquid {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 70%;
+    border-radius: 0 0 7px 7px;
+    opacity: 0.6;
+}
+
+.liquid-lemon { background-color: #f7d54e; }
+.liquid-water { background-color: #a4dff5; }
+.liquid-bleach { background-color: #e0e0e0; }
+
+.beaker-label {
+    position: absolute;
+    bottom: -30px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Draggable Tool */
+.draggable-tool {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: grab;
+    z-index: 10;
+    text-align: center;
+    transition: transform 0.1s;
+}
+
+.draggable-tool:active { cursor: grabbing; }
+
+.probe-screen {
+    width: 60px;
+    height: 40px;
+    background: #333;
+    color: #0f0; /* Hijau digital */
+    font-family: monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+}
+
+.probe-stick {
+    width: 10px;
+    height: 80px;
+    background: #555;
+    margin: 0 auto;
+    border-radius: 0 0 5px 5px;
+}
+
+.tool-label { font-size: 0.8rem; color: #777; }
+
+/* --- 🍎 FISIKA (Newton) --- */
+.controls-panel {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.btn-mass {
+    padding: 8px 15px;
+    background: #eee;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-mass.active {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-action {
+    background: var(--warning);
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #d4a006;
+}
+.btn-action:active { transform: translateY(4px); box-shadow: none; }
+
+.track-container {
+    width: 100%;
+    height: 150px;
+    background: #f0f0f0;
+    border-bottom: 5px solid #999;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.box {
+    width: 80px;
+    height: 80px;
+    background: var(--primary);
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    transition: transform 0.1s linear; /* Gerakan halus */
+}
+
+#acceleration-display {
+    text-align: center;
+    margin-top: 1rem;
+    font-family: monospace;
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+/* --- 📐 MATEMATIKA (Trigonometri) --- */
+.math-layout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    align-items: center;
+}
+
+.circle-wrapper {
+    width: 300px;
+    height: 300px;
+    position: relative;
+}
+
+.unit-circle {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    position: relative;
+    background: radial-gradient(circle, white 0%, #f9f9f9 100%);
+}
+
+.axis {
+    position: absolute;
+    background: #ddd;
+}
+.x-axis { width: 100%; height: 1px; top: 50%; }
+.y-axis { height: 100%; width: 1px; left: 50%; }
+
+.dot-point {
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%; /* Start center */
+    left: 100%; /* Start right edge */
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 5;
+    box-shadow: 0 0 0 4px rgba(75, 133, 231, 0.3);
+}
+
+.line-sin {
+    position: absolute;
+    width: 2px;
+    background: var(--danger); /* Merah untuk Sin */
+    transform-origin: top center;
+}
+.line-cos {
+    position: absolute;
+    height: 2px;
+    background: var(--success); /* Hijau untuk Cos */
+    transform-origin: left center;
+}
+.line-radius {
+    position: absolute;
+    height: 2px;
+    background: #333;
+    transform-origin: left center;
+}
+
+.value-card {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    min-width: 250px;
+}
+.color-sin h4 { color: var(--danger); }
+.color-cos h4 { color: var(--success); }
+
+.small-desc { font-size: 0.8rem; color: #888; margin-top: 5px; }
+
+/* Responsive */
+@media (max-width: 600px) {
+    .nav-subjects {
+        padding: 5px 10px;
+    }
+    .nav-pill {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+    .math-layout {
+        flex-direction: column;
+    }
+}
