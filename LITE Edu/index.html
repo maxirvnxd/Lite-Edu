@@ -245,26 +245,30 @@
                             </div>
                         </div>
                     </div>
-                    <div id="fisika-sim" class="content-container hidden">
+       <div id="fisika-sim" class="content-container hidden">
                         <button class="btn-back" onclick="closeContent('fisika-sim', 'fisika-sim-menu')">⬅ Kembali</button>
-                        <div class="sim-wrapper">
-                            <div class="info-bubble">
+                        <div class="sim-wrapper scroll-content"> <div class="info-bubble">
                                 <h3>F = m &times; a</h3>
-                                <p id="newton-info">Atur massa, lalu dorong!</p>
+                                <p id="newton-info">Pilih massa benda, lalu tekan tombol Dorong.</p>
                             </div>
+                            
                             <div class="controls">
                                 <button class="btn-opt active" onclick="setMass(10)">10kg</button>
                                 <button class="btn-opt" onclick="setMass(50)">50kg</button>
                                 <button class="btn-opt" onclick="setMass(100)">100kg</button>
-                                <button id="btn-push" class="btn-action">DORONG</button>
+                                <button id="btn-push" class="btn-action">DORONG (500N)</button>
                             </div>
+                            
                             <div class="track">
                                 <div id="physics-box" class="box">10kg</div>
                             </div>
+                            
                             <div id="acc-display">a: 0 m/s²</div>
+
+                            <div id="newton-explanation" class="modern-box info hidden" style="margin-top: 20px; text-align: left;">
+                                </div>
                         </div>
                     </div>
-                </div>
             </div>
         </section>
 
@@ -501,5 +505,6 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
