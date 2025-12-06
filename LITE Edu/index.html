@@ -3,23 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LITE Edu - Belajar Sains Seru</title>
+    <title>LITE Edu - Modern Learning</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <nav class="top-bar">
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+    <nav class="glass-nav">
         <div class="nav-left">
-            <div class="nav-subjects">
+            <div class="nav-pills-container">
                 <button class="nav-pill" onclick="showView('kimia-view')">Kimia</button>
                 <button class="nav-pill" onclick="showView('fisika-view')">Fisika</button>
                 <button class="nav-pill" onclick="showView('matematika-view')">Matematika</button>
                 <button class="nav-pill" onclick="showView('biologi-view')">Biologi</button>
             </div>
             
-            <button class="home-icon" onclick="showView('home-view')" title="Kembali ke Beranda">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <button class="home-btn" onclick="showView('home-view')" title="Beranda">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                     <polyline points="9 22 9 12 15 12 15 22"></polyline>
                 </svg>
@@ -27,51 +30,46 @@
         </div>
 
         <div class="nav-right">
-            <img src="images/LogoLite.png" alt="LITE Edu Logo" class="brand-logo">
+            <img src="images/LogoLite.png" alt="LITE Edu" class="brand-logo">
         </div>
     </nav>
 
     <main id="main-content">
 
         <section id="home-view" class="view active">
-            <div class="hero-content">
-                <h1>Selamat Datang di <span class="brand-lite">LITE</span> <span class="brand-edu">Edu</span></h1>
-                <p class="welcome-text">
-                    Platform belajar interaktif yang dirancang untuk membantumu memahami sains dengan cara yang seru. Pilih mata pelajaran di atas untuk memulai!
-                </p>
-                <div class="hero-illustration">
-                    <div class="circle-deco"></div>
-                    <img src="https://cdn-icons-png.flaticon.com/512/2920/2920329.png" alt="Science Fun" class="hero-img">
-                </div>
+            <div class="hero-card glass-panel">
+                <h1>Selamat Datang di <span class="text-gradient">LITE Edu</span></h1>
+                <p>Platform interaktif untuk eksplorasi sains. Pilih mapel di atas untuk memulai petualanganmu!</p>
+                <img src="https://cdn-icons-png.flaticon.com/512/2920/2920329.png" alt="Science" class="hero-icon floating">
             </div>
         </section>
 
         <section id="kimia-view" class="view hidden">
             <div class="split-layout">
-                <div class="notes-col">
-                    <div class="col-header">📝 Daftar Materi</div>
+                <div class="panel-left glass-panel">
+                    <div class="panel-header">📝 Materi Kimia</div>
                     
-                    <div id="kimia-menu-notes" class="menu-list">
-                        <button class="topic-btn" onclick="openSubContent('kimia-note-1', 'kimia-menu-notes')">
-                            📂 Tata Nama Senyawa Organik
-                        </button>
+                    <div id="kimia-menu" class="menu-container">
+                        <div class="menu-card" onclick="openContent('kimia-materi', 'kimia-menu')">
+                            <div class="icon-box">⚗️</div>
+                            <div class="menu-text">
+                                <h4>Tata Nama Senyawa Organik</h4>
+                                <p>Pelajari aturan IUPAC dan gugus fungsi.</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div id="kimia-note-1" class="sub-content hidden">
-                        <button class="btn-back" onclick="closeSubContent('kimia-note-1', 'kimia-menu-notes')">⬅ Kembali ke Menu</button>
+                    <div id="kimia-materi" class="content-container hidden">
+                        <button class="btn-back" onclick="closeContent('kimia-materi', 'kimia-menu')">⬅ Kembali</button>
                         <h3>Tata Nama Senyawa Organik</h3>
-                        <p>Tata nama senyawa organik secara umum mengikuti aturan yang ditetapkan oleh IUPAC.</p>
-                        
-                        <h4>🏷️ Prinsip Dasar Penamaan</h4>
-                        <ul>
-                            <li><b>Gugus Fungsi Menentukan Rantai Induk:</b> Gugus fungsi prioritas tertinggi masuk rantai utama.</li>
-                            <li><b>Prioritas Rendah:</b> Bertindak sebagai cabang.</li>
-                        </ul>
-                        <div class="formula-box">Posisi Cabang - Nama Cabang - Nama Rantai Utama</div>
-
-                        <h4>🥇 Prioritas Gugus Fungsi</h4>
-                        <div class="table-responsive">
-                            <table class="data-table">
+                        <div class="scroll-content">
+                            <p>Penamaan senyawa organik mengikuti aturan <b>IUPAC</b>.</p>
+                            <div class="modern-box">
+                                <h5>Prinsip Dasar</h5>
+                                <p>Posisi Cabang - Nama Cabang - Nama Rantai Utama</p>
+                            </div>
+                            <h4>Prioritas Gugus Fungsi</h4>
+                            <table class="modern-table">
                                 <thead><tr><th>Prioritas</th><th>Golongan</th><th>Akhiran</th></tr></thead>
                                 <tbody>
                                     <tr><td>1</td><td>Asam Karboksilat</td><td>-oat</td></tr>
@@ -85,35 +83,35 @@
                     </div>
                 </div>
 
-                <div class="sim-col">
-                    <div class="col-header">⚗️ Daftar Simulasi</div>
+                <div class="panel-right glass-panel">
+                    <div class="panel-header">🧪 Simulasi</div>
                     
-                    <div id="kimia-menu-sim" class="menu-list">
-                        <button class="topic-btn sim-btn" onclick="openSubContent('kimia-sim-1', 'kimia-menu-sim')">
-                            🧪 Praktikum: Pengukuran pH
-                        </button>
+                    <div id="kimia-sim-menu" class="menu-container">
+                        <div class="menu-card sim-card" onclick="openContent('kimia-sim', 'kimia-sim-menu')">
+                            <div class="icon-box">💧</div>
+                            <div class="menu-text">
+                                <h4>Praktikum pH</h4>
+                                <p>Ukur tingkat keasaman berbagai larutan.</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div id="kimia-sim-1" class="sub-content hidden">
-                        <button class="btn-back" onclick="closeSubContent('kimia-sim-1', 'kimia-menu-sim')">⬅ Kembali ke Menu</button>
-                        <h3>Laboratorium Kimia Mini</h3>
-                        <p>Tarik pH meter ke dalam gelas kimia untuk mengukur kadarnya.</p>
-                        
-                        <div class="simulation-container">
-                            <div class="info-panel">
-                                <h3 id="ph-info-title">Siap Mengukur?</h3>
-                                <p id="ph-info-desc">Silakan lakukan percobaan.</p>
+                    <div id="kimia-sim" class="content-container hidden">
+                        <button class="btn-back" onclick="closeContent('kimia-sim', 'kimia-sim-menu')">⬅ Kembali</button>
+                        <div class="sim-wrapper">
+                            <div class="info-bubble">
+                                <h4 id="ph-info-title">Siap Mengukur?</h4>
+                                <p id="ph-info-desc">Tarik alat ke dalam gelas.</p>
                             </div>
                             <div class="lab-bench">
                                 <div id="ph-probe" class="draggable-tool">
-                                    <div class="probe-screen" id="probe-screen">--</div>
-                                    <div class="probe-stick"></div>
-                                    <span class="tool-label">pH Meter</span>
+                                    <div class="screen" id="probe-screen">--</div>
+                                    <div class="stick"></div>
                                 </div>
-                                <div class="beakers-container">
-                                    <div class="beaker" data-ph="2" data-name="Lemon" data-desc="Asam Kuat!"><div class="liquid liquid-lemon"></div></div>
-                                    <div class="beaker" data-ph="7" data-name="Air" data-desc="Netral."><div class="liquid liquid-water"></div></div>
-                                    <div class="beaker" data-ph="13" data-name="Pemutih" data-desc="Basa Kuat!"><div class="liquid liquid-bleach"></div></div>
+                                <div class="beaker-group">
+                                    <div class="beaker" data-ph="2" data-name="Lemon" data-desc="Asam Kuat!"><div class="liquid l-lemon"></div></div>
+                                    <div class="beaker" data-ph="7" data-name="Air" data-desc="Netral"><div class="liquid l-water"></div></div>
+                                    <div class="beaker" data-ph="13" data-name="Pemutih" data-desc="Basa Kuat!"><div class="liquid l-bleach"></div></div>
                                 </div>
                             </div>
                         </div>
@@ -124,60 +122,62 @@
 
         <section id="fisika-view" class="view hidden">
             <div class="split-layout">
-                <div class="notes-col">
-                    <div class="col-header">📝 Daftar Materi</div>
-                    <div id="fisika-menu-notes" class="menu-list">
-                        <button class="topic-btn" onclick="openSubContent('fisika-note-1', 'fisika-menu-notes')">
-                            📂 Peluruhan Radioaktif
-                        </button>
+                <div class="panel-left glass-panel">
+                    <div class="panel-header">📝 Materi Fisika</div>
+                    <div id="fisika-menu" class="menu-container">
+                        <div class="menu-card" onclick="openContent('fisika-materi', 'fisika-menu')">
+                            <div class="icon-box">⚛️</div>
+                            <div class="menu-text">
+                                <h4>Peluruhan Radioaktif</h4>
+                                <p>Alfa, Beta, Gamma dan Waktu Paruh.</p>
+                            </div>
+                        </div>
                     </div>
-
-                    <div id="fisika-note-1" class="sub-content hidden">
-                        <button class="btn-back" onclick="closeSubContent('fisika-note-1', 'fisika-menu-notes')">⬅ Kembali</button>
-                        <h3>⚛️ Peluruhan Radioaktif</h3>
-                        <p>Proses isotop tidak stabil mencapai kestabilan dengan melepaskan radiasi.</p>
-                        <h4>Jenis Partikel Radiasi</h4>
-                        <table class="data-table">
-                            <thead><tr><th>Partikel</th><th>Simbol</th><th>Daya Tembus</th></tr></thead>
-                            <tbody>
-                                <tr><td>Alfa</td><td>&alpha;</td><td>Lemah (Kertas)</td></tr>
-                                <tr><td>Beta</td><td>&beta;</td><td>Sedang (Aluminium)</td></tr>
-                                <tr><td>Gamma</td><td>&gamma;</td><td>Kuat (Beton)</td></tr>
-                            </tbody>
-                        </table>
-                        <h4>Rumus Waktu Paruh</h4>
-                        <div class="formula-box">N(t) = N<sub>0</sub> &cdot; (1/2)<sup>(t / t<sub>1/2</sub>)</sup></div>
+                    <div id="fisika-materi" class="content-container hidden">
+                        <button class="btn-back" onclick="closeContent('fisika-materi', 'fisika-menu')">⬅ Kembali</button>
+                        <h3>Peluruhan Radioaktif</h3>
+                        <div class="scroll-content">
+                            <p>Proses inti atom tidak stabil melepaskan energi.</p>
+                            <div class="modern-box info">
+                                <h5>Partikel & Daya Tembus</h5>
+                                <ul>
+                                    <li><b>Alfa (&alpha;):</b> Lemah (Kertas)</li>
+                                    <li><b>Beta (&beta;):</b> Sedang (Logam tipis)</li>
+                                    <li><b>Gamma (&gamma;):</b> Kuat (Beton/Timbal)</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="sim-col">
-                    <div class="col-header">⚗️ Daftar Simulasi</div>
-                    <div id="fisika-menu-sim" class="menu-list">
-                        <button class="topic-btn sim-btn" onclick="openSubContent('fisika-sim-1', 'fisika-menu-sim')">
-                            🍎 Mekanika: Hukum Newton II
-                        </button>
+                <div class="panel-right glass-panel">
+                    <div class="panel-header">🍎 Simulasi</div>
+                    <div id="fisika-sim-menu" class="menu-container">
+                        <div class="menu-card sim-card" onclick="openContent('fisika-sim', 'fisika-sim-menu')">
+                            <div class="icon-box">🏎️</div>
+                            <div class="menu-text">
+                                <h4>Hukum Newton II</h4>
+                                <p>Hubungan Gaya, Massa, dan Percepatan.</p>
+                            </div>
+                        </div>
                     </div>
-
-                    <div id="fisika-sim-1" class="sub-content hidden">
-                        <button class="btn-back" onclick="closeSubContent('fisika-sim-1', 'fisika-menu-sim')">⬅ Kembali</button>
-                        <h3>Laboratorium Fisika</h3>
-                        <div class="simulation-container">
-                            <div class="info-panel">
-                                <h3 class="formula">F = m &times; a</h3>
-                                <p id="newton-info">Atur massa dan dorong benda.</p>
+                    <div id="fisika-sim" class="content-container hidden">
+                        <button class="btn-back" onclick="closeContent('fisika-sim', 'fisika-sim-menu')">⬅ Kembali</button>
+                        <div class="sim-wrapper">
+                            <div class="info-bubble">
+                                <h3>F = m &times; a</h3>
+                                <p id="newton-info">Atur massa, lalu dorong!</p>
                             </div>
-                            <div class="controls-panel">
-                                <div class="mass-selector">
-                                    <button class="btn-mass active" onclick="setMass(10)">10kg</button>
-                                    <button class="btn-mass" onclick="setMass(50)">50kg</button>
-                                    <button class="btn-mass" onclick="setMass(100)">100kg</button>
-                                </div>
-                                <button id="btn-push" class="btn-action">DORONG (500N)</button>
+                            <div class="controls">
+                                <button class="btn-opt active" onclick="setMass(10)">10kg</button>
+                                <button class="btn-opt" onclick="setMass(50)">50kg</button>
+                                <button class="btn-opt" onclick="setMass(100)">100kg</button>
+                                <button id="btn-push" class="btn-action">DORONG</button>
                             </div>
-                            <div class="track-container">
-                                <div id="physics-box" class="box"><span id="box-label">10kg</span></div>
+                            <div class="track">
+                                <div id="physics-box" class="box">10kg</div>
                             </div>
-                            <div id="acceleration-display">a: 0 m/s²</div>
+                            <div id="acc-display">a: 0 m/s²</div>
                         </div>
                     </div>
                 </div>
@@ -186,48 +186,54 @@
 
         <section id="matematika-view" class="view hidden">
             <div class="split-layout">
-                <div class="notes-col">
-                    <div class="col-header">📝 Daftar Materi</div>
-                    <div id="mtk-menu-notes" class="menu-list">
-                        <button class="topic-btn" onclick="openSubContent('mtk-note-1', 'mtk-menu-notes')">
-                            📂 Dimensi Tiga (Jarak)
-                        </button>
+                <div class="panel-left glass-panel">
+                    <div class="panel-header">📝 Materi Matematika</div>
+                    <div id="mtk-menu" class="menu-container">
+                        <div class="menu-card" onclick="openContent('mtk-materi', 'mtk-menu')">
+                            <div class="icon-box">📐</div>
+                            <div class="menu-text">
+                                <h4>Dimensi Tiga</h4>
+                                <p>Jarak Titik, Garis, dan Bidang.</p>
+                            </div>
+                        </div>
                     </div>
-
-                    <div id="mtk-note-1" class="sub-content hidden">
-                        <button class="btn-back" onclick="closeSubContent('mtk-note-1', 'mtk-menu-notes')">⬅ Kembali</button>
-                        <h3>📏 Dimensi Tiga</h3>
-                        <h4>Jarak Antar Titik</h4>
-                        <div class="formula-box">AB = &radic;<span style="border-top:1px solid">(x<sub>2</sub>-x<sub>1</sub>)<sup>2</sup> + (y<sub>2</sub>-y<sub>1</sub>)<sup>2</sup></span></div>
-                        <h4>Jarak Titik ke Garis</h4>
-                        <p>Gunakan konsep luas segitiga: Luas = &frac12; &cdot; alas &cdot; tinggi</p>
+                    <div id="mtk-materi" class="content-container hidden">
+                        <button class="btn-back" onclick="closeContent('mtk-materi', 'mtk-menu')">⬅ Kembali</button>
+                        <h3>Dimensi Tiga</h3>
+                        <div class="scroll-content">
+                            <div class="modern-box">
+                                <h5>Jarak Antar Titik</h5>
+                                <p>Menggunakan Teorema Pythagoras.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="sim-col">
-                    <div class="col-header">⚗️ Daftar Simulasi</div>
-                    <div id="mtk-menu-sim" class="menu-list">
-                        <button class="topic-btn sim-btn" onclick="openSubContent('mtk-sim-1', 'mtk-menu-sim')">
-                            📐 Visualisasi Trigonometri
-                        </button>
+                <div class="panel-right glass-panel">
+                    <div class="panel-header">📐 Simulasi</div>
+                    <div id="mtk-sim-menu" class="menu-container">
+                        <div class="menu-card sim-card" onclick="openContent('mtk-sim', 'mtk-sim-menu')">
+                            <div class="icon-box">⭕</div>
+                            <div class="menu-text">
+                                <h4>Trigonometri Visual</h4>
+                                <p>Sin, Cos, Tan pada Lingkaran Satuan.</p>
+                            </div>
+                        </div>
                     </div>
-
-                    <div id="mtk-sim-1" class="sub-content hidden">
-                        <button class="btn-back" onclick="closeSubContent('mtk-sim-1', 'mtk-menu-sim')">⬅ Kembali</button>
-                        <h3>Zona Matematika</h3>
-                        <div class="simulation-container math-layout">
-                            <div class="circle-wrapper">
-                                <div class="unit-circle" id="unit-circle">
-                                    <div class="axis x-axis"></div><div class="axis y-axis"></div>
-                                    <div class="line-cos" id="line-cos"></div><div class="line-sin" id="line-sin"></div>
-                                    <div class="line-radius" id="line-radius"></div>
-                                    <div class="dot-point" id="dot-point"></div>
+                    <div id="mtk-sim" class="content-container hidden">
+                        <button class="btn-back" onclick="closeContent('mtk-sim', 'mtk-sim-menu')">⬅ Kembali</button>
+                        <div class="sim-wrapper math-layout">
+                            <div class="circle-area">
+                                <div id="unit-circle">
+                                    <div class="axis x"></div><div class="axis y"></div>
+                                    <div id="line-sin"></div><div id="line-cos"></div>
+                                    <div id="line-rad"></div><div id="dot"></div>
                                 </div>
                             </div>
-                            <div class="math-explanation">
-                                <div class="value-card"><h4>Sudut</h4><span id="angle-val">45°</span></div>
-                                <div class="value-card color-sin"><h4>Sin</h4><span id="sin-val">0.707</span></div>
-                                <div class="value-card color-cos"><h4>Cos</h4><span id="cos-val">0.707</span></div>
+                            <div class="math-vals">
+                                <div class="val-card">Deg: <span id="val-deg">45°</span></div>
+                                <div class="val-card c-sin">Sin: <span id="val-sin">0.7</span></div>
+                                <div class="val-card c-cos">Cos: <span id="val-cos">0.7</span></div>
                             </div>
                         </div>
                     </div>
@@ -237,67 +243,65 @@
 
         <section id="biologi-view" class="view hidden">
             <div class="split-layout">
-                <div class="notes-col">
-                    <div class="col-header">📝 Daftar Materi</div>
-                    <div id="bio-menu-notes" class="menu-list">
-                        <button class="topic-btn" onclick="openSubContent('bio-note-1', 'bio-menu-notes')">
-                            📂 DNA dan Gen: Pewarisan Sifat
-                        </button>
+                <div class="panel-left glass-panel">
+                    <div class="panel-header">📝 Materi Biologi</div>
+                    <div id="bio-menu" class="menu-container">
+                        <div class="menu-card" onclick="openContent('bio-materi', 'bio-menu')">
+                            <div class="icon-box">🧬</div>
+                            <div class="menu-text">
+                                <h4>DNA & Pewarisan Sifat</h4>
+                                <p>Genotip, Fenotip, dan Hukum Mendel.</p>
+                            </div>
+                        </div>
                     </div>
-
-                    <div id="bio-note-1" class="sub-content hidden">
-                        <button class="btn-back" onclick="closeSubContent('bio-note-1', 'bio-menu-notes')">⬅ Kembali</button>
-                        <h3>🧬 DNA dan Gen</h3>
-                        <h4>1. Istilah Penting</h4>
-                        <ul>
-                            <li><b>Fenotip:</b> Sifat tampak.</li>
-                            <li><b>Genotip:</b> Susunan gen.</li>
-                        </ul>
-                        <h4>2. Pasangan Basa DNA</h4>
-                        <ul>
-                            <li>Adenin (A) &harr; Timin (T)</li>
-                            <li>Sitosin (C) &harr; Guanin (G)</li>
-                        </ul>
-                        <h4>3. Dogma Sentral</h4>
-                        <div class="formula-box">DNA &rarr; RNA &rarr; Protein &rarr; Sifat</div>
+                    <div id="bio-materi" class="content-container hidden">
+                        <button class="btn-back" onclick="closeContent('bio-materi', 'bio-menu')">⬅ Kembali</button>
+                        <h3>DNA dan Gen</h3>
+                        <div class="scroll-content">
+                            <p><b>Dogma Sentral:</b> DNA &rarr; RNA &rarr; Protein.</p>
+                            <div class="modern-box info">
+                                <h5>Pasangan Basa</h5>
+                                <p>A-T (Adenin-Timin)<br>G-C (Guanin-Sitosin)</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="sim-col">
-                    <div class="col-header">⚗️ Daftar Simulasi</div>
-                    <div id="bio-menu-sim" class="menu-list">
-                        <button class="topic-btn sim-btn" onclick="openSubContent('bio-sim-1', 'bio-menu-sim')">
-                            🌺 Genetika: Hukum Mendel 1
-                        </button>
-                    </div>
-
-                    <div id="bio-sim-1" class="sub-content hidden">
-                        <button class="btn-back" onclick="closeSubContent('bio-sim-1', 'bio-menu-sim')">⬅ Kembali</button>
-                        <h3>Laboratorium Genetika</h3>
-                        <div class="simulation-container bio-container">
-                            <div class="info-panel" id="bio-info-panel">
-                                <h3>Mulai Persilangan!</h3>
-                                <p>Tarik gamet Jantan dan Betina ke dalam kotak anak.</p>
+                <div class="panel-right glass-panel">
+                    <div class="panel-header">🌺 Simulasi</div>
+                    <div id="bio-sim-menu" class="menu-container">
+                        <div class="menu-card sim-card" onclick="openContent('bio-sim', 'bio-sim-menu')">
+                            <div class="icon-box">🌱</div>
+                            <div class="menu-text">
+                                <h4>Hukum Mendel 1</h4>
+                                <p>Persilangan Monohibrid Interaktif.</p>
                             </div>
-                            <div class="mendel-lab">
-                                <div class="parents-area">
-                                    <div class="parent male">
-                                        <span class="parent-label">Jantan (Merah-MM)</span>
-                                        <div class="gamete-source" draggable="true" data-gene="M">M</div>
-                                        <div class="gamete-source" draggable="true" data-gene="M">M</div>
+                        </div>
+                    </div>
+                    <div id="bio-sim" class="content-container hidden">
+                        <button class="btn-back" onclick="closeContent('bio-sim', 'bio-sim-menu')">⬅ Kembali</button>
+                        <div class="sim-wrapper">
+                            <div class="info-bubble" id="bio-info">
+                                <h4>Mulai Persilangan</h4>
+                                <p>Tarik gamet ke kotak anak.</p>
+                            </div>
+                            <div class="mendel-area">
+                                <div class="parents">
+                                    <div class="p-card male">
+                                        <span>Jantan (MM)</span>
+                                        <div class="gamete" draggable="true" data-g="M">M</div>
+                                        <div class="gamete" draggable="true" data-g="M">M</div>
                                     </div>
-                                    <div class="parent female">
-                                        <span class="parent-label">Betina (Putih-mm)</span>
-                                        <div class="gamete-source" draggable="true" data-gene="m">m</div>
-                                        <div class="gamete-source" draggable="true" data-gene="m">m</div>
+                                    <div class="p-card female">
+                                        <span>Betina (mm)</span>
+                                        <div class="gamete" draggable="true" data-g="m">m</div>
+                                        <div class="gamete" draggable="true" data-g="m">m</div>
                                     </div>
                                 </div>
-                                <div class="offspring-area">
-                                    <div class="offspring-box" data-filled="0">
-                                        <div class="gene-slot slot-1"></div>
-                                        <div class="gene-slot slot-2"></div>
-                                        <div class="result-flower hidden">🌺</div>
-                                    </div>
+                                <div class="offspring-box">
+                                    <div class="slot s1"></div>
+                                    <div class="slot s2"></div>
+                                    <div class="flower-res hidden">🌺</div>
                                 </div>
                             </div>
                         </div>
