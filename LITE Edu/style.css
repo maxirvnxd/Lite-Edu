@@ -31,7 +31,7 @@ body {
 .shape-1 { width: 400px; height: 400px; background: #b3d1ff; top: -100px; left: -100px; }
 .shape-2 { width: 300px; height: 300px; background: #ffe0b2; bottom: -50px; right: -50px; }
 
-/* --- GLASS NAVIGASI --- */
+/* --- GLASS NAVIGASI (UPDATED) --- */
 .glass-nav {
     display: flex;
     justify-content: space-between;
@@ -47,7 +47,7 @@ body {
     box-shadow: 0 4px 15px rgba(0,0,0,0.03);
 }
 
-.nav-left { display: flex; align-items: center; gap: 20px; }
+.nav-left { display: flex; align-items: center; }
 
 .nav-pills-container {
     background: rgba(255, 255, 255, 0.5);
@@ -75,6 +75,13 @@ body {
     box-shadow: 0 4px 10px rgba(75, 133, 231, 0.3);
 }
 
+/* REVISI: Grup Kanan (Home + Logo) */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Jarak antara Home dan Logo */
+}
+
 .home-btn {
     background: white;
     border: none;
@@ -88,11 +95,14 @@ body {
     cursor: pointer;
     box-shadow: 0 5px 15px rgba(75, 133, 231, 0.2);
     transition: transform 0.3s;
-    margin-left: 10px;
 }
-.home-btn:hover { transform: scale(1.1) rotate(-10deg); background: var(--primary); color: white; }
+.home-btn:hover { transform: scale(1.1); background: var(--primary); color: white; }
 
-.brand-logo { height: 45px; }
+.brand-logo { 
+    height: 60px; /* Diperbesar sedikit sesuai request */
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
 
 /* --- LAYOUT UTAMA --- */
 main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
@@ -106,16 +116,21 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     to { opacity: 1; transform: scale(1); }
 }
 
-/* HOME STYLING */
+/* HOME STYLING (UPDATED) */
 .hero-card {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
     border-radius: 30px;
-    padding: 4rem;
+    padding: 3rem;
     text-align: center;
     box-shadow: var(--shadow-soft);
     border: 1px solid var(--glass-border);
     margin-top: 2rem;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .hero-card h1 { font-size: 3rem; margin-bottom: 1rem; color: var(--dark-blue); }
 .text-gradient {
@@ -123,9 +138,19 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.hero-icon { width: 150px; margin-top: 2rem; }
+
+/* Ikon HP Mengambang di Tengah */
+.hero-image-container {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+}
+.hero-icon { 
+    width: 220px; /* Diperbesar */
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
+}
 .floating { animation: float 3s ease-in-out infinite; }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
 /* --- SPLIT LAYOUT MODERN --- */
 .split-layout {
@@ -193,7 +218,7 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
 .menu-text h4 { margin-bottom: 3px; color: var(--dark-blue); }
 .menu-text p { font-size: 0.85rem; color: #777; }
 
-/* CONTENT & SIMULATION STYLES */
+/* CONTENT & MATERI STYLES */
 .btn-back {
     background: white;
     border: none;
@@ -209,22 +234,38 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
 .btn-back:hover { background: var(--primary); color: white; }
 
 .content-container { height: 100%; display: flex; flex-direction: column; }
-.scroll-content { overflow-y: auto; padding-right: 10px; }
+.scroll-content { 
+    overflow-y: auto; 
+    padding-right: 10px; 
+    flex: 1;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.scroll-content h3 { color: var(--primary); margin-bottom: 1rem; }
+.scroll-content h4 { color: var(--dark-blue); margin-top: 1.5rem; margin-bottom: 0.5rem; border-left: 4px solid var(--primary); padding-left: 10px; }
 
 .modern-box {
     background: white;
     padding: 15px;
     border-radius: 15px;
     margin: 15px 0;
-    border-left: 5px solid var(--primary);
+    border: 1px solid #eee;
     box-shadow: 0 5px 15px rgba(0,0,0,0.03);
 }
 
-.modern-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; margin-top: 10px; }
-.modern-table th { background: var(--primary); color: white; padding: 10px; text-align: left; }
-.modern-table td { padding: 10px; border-bottom: 1px solid #eee; }
+.modern-box.info { border-left: 5px solid var(--primary); background: #fdfdfd; }
 
-/* --- SIMULATION ELEMENTS (Beautified) --- */
+.modern-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; margin-top: 10px; font-size: 0.9rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.modern-table th { background: var(--primary); color: white; padding: 12px; text-align: left; }
+.modern-table td { padding: 10px; border-bottom: 1px solid #eee; }
+.modern-table tr:nth-child(even) { background: #f9f9f9; }
+
+/* Chemical & Math Formulas */
+.formula-text { font-family: 'Courier New', monospace; background: #eee; padding: 5px 10px; border-radius: 5px; display: inline-block; font-weight: bold; color: #333; }
+.chem-struct { font-family: 'Courier New', monospace; background: #fafafa; padding: 15px; border-radius: 8px; border: 1px dashed #ccc; text-align: center; margin: 10px 0; font-weight: bold; font-size: 1.1rem; }
+
+/* --- SIMULATION ELEMENTS --- */
 .sim-wrapper { background: white; border-radius: 20px; padding: 20px; height: 100%; display: flex; flex-direction: column; }
 .info-bubble { background: #fff8e1; padding: 15px; border-radius: 12px; border: 1px dashed #ffd54f; text-align: center; margin-bottom: 15px; }
 
@@ -238,7 +279,7 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
 .liquid { position: absolute; bottom: 0; width: 100%; height: 60%; opacity: 0.7; }
 .l-lemon { background: #ffeb3b; } .l-water { background: #90caf9; } .l-bleach { background: #eeeeee; }
 
-/* Fisika & Mtk (Short) */
+/* Fisika & Mtk */
 .controls button { padding: 8px 15px; margin: 5px; border: none; border-radius: 8px; cursor: pointer; }
 .btn-opt.active { background: var(--primary); color: white; }
 .btn-action { background: #ff7043; color: white; font-weight: bold; }
@@ -270,4 +311,5 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
 @media (max-width: 768px) {
     .split-layout { grid-template-columns: 1fr; height: auto; }
     .glass-nav { flex-direction: column; gap: 10px; }
+    .nav-right { width: 100%; justify-content: center; }
 }
