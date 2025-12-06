@@ -5,22 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LITE Edu - Belajar Sains Seru</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <nav class="top-bar">
-        <div class="nav-subjects">
-            <button class="nav-pill" onclick="showView('kimia-view')">Kimia</button>
-            <button class="nav-pill" onclick="showView('fisika-view')">Fisika</button>
-            <button class="nav-pill" onclick="showView('matematika-view')">Matematika</button>
+        <div class="nav-left">
+            <div class="nav-subjects">
+                <button class="nav-pill" onclick="showView('kimia-view')">Kimia</button>
+                <button class="nav-pill" onclick="showView('fisika-view')">Fisika</button>
+                <button class="nav-pill" onclick="showView('matematika-view')">Matematika</button>
+                <button class="nav-pill" onclick="showView('biologi-view')">Biologi</button>
+            </div>
+            
+            <button class="home-icon" onclick="showView('home-view')" title="Kembali ke Beranda">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+            </button>
         </div>
-        <button class="home-icon" onclick="showView('home-view')" title="Kembali ke Beranda">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-            </svg>
-        </button>
+
+        <div class="nav-right">
+            <img src="LogoLite.png" alt="LITE Edu Logo" class="brand-logo">
+        </div>
     </nav>
 
     <main id="main-content">
@@ -29,7 +37,7 @@
             <div class="hero-content">
                 <h1>Selamat Datang di <span class="brand-lite">LITE</span> <span class="brand-edu">Edu</span></h1>
                 <p class="welcome-text">
-                    Platform belajar interaktif yang dirancang untuk membantumu memahami konsep sains dan matematika dengan cara yang seru, visual, dan mudah dimengerti. Mari bereksperimen!
+                    Platform belajar interaktif yang dirancang untuk membantumu memahami sains dengan cara yang seru. Jelajahi simulasi dan materi tanpa batas!
                 </p>
                 <div class="hero-illustration">
                     <div class="circle-deco"></div>
@@ -39,36 +47,86 @@
         </section>
 
         <section id="kimia-view" class="view hidden">
-            <div class="header-section">
-                <h2>🧪 Laboratorium Kimia Mini</h2>
-                <p>Simulasi Praktikum: Pengukuran pH Asam & Basa</p>
-            </div>
-            
-            <div class="simulation-container">
-                <div class="info-panel">
-                    <h3 id="ph-info-title">Siap Mengukur?</h3>
-                    <p id="ph-info-desc">Tarik alat pengukur pH (probe) ke dalam salah satu gelas kimia di bawah ini untuk melihat reaksinya.</p>
+            <div class="split-layout">
+                <div class="notes-col">
+                    <div class="col-header">📝 Catatan Belajar</div>
+                    <div class="notes-content">
+                        <h3>Tata Nama Senyawa Organik</h3>
+                        <p>Tata nama senyawa organik secara umum mengikuti aturan yang ditetapkan oleh IUPAC.</p>
+                        
+                        <h4>🏷️ Prinsip Dasar Penamaan</h4>
+                        <ul>
+                            <li><b>Gugus Fungsi Menentukan Rantai Induk:</b> Gugus fungsi prioritas tertinggi masuk rantai utama.</li>
+                            <li><b>Prioritas Rendah:</b> Bertindak sebagai cabang.</li>
+                        </ul>
+                        <div class="formula-box">
+                            Posisi Cabang - Nama Cabang - Nama Rantai Utama
+                        </div>
+
+                        <h4>🥇 Prioritas Gugus Fungsi</h4>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr><th>Prioritas</th><th>Golongan</th><th>Akhiran (Induk)</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>1</td><td>Asam Karboksilat</td><td>Asam ...-oat</td></tr>
+                                    <tr><td>2</td><td>Ester</td><td>...il ...-oat</td></tr>
+                                    <tr><td>3</td><td>Aldehida</td><td>-al</td></tr>
+                                    <tr><td>4</td><td>Keton</td><td>-on</td></tr>
+                                    <tr><td>5</td><td>Alkohol</td><td>-ol</td></tr>
+                                    <tr><td>6</td><td>Amina</td><td>-amina</td></tr>
+                                    <tr><td>7</td><td>Halida</td><td>-ana (Halo-)</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4>✍️ Contoh Penerapan</h4>
+                        <div class="example-box">
+                            <strong>1. 2-Heptanol</strong><br>
+                            Rantai utama: 7 C (Heptan). Gugus -OH di no 2.<br>
+                            <em>Nama: 2-heptanol</em>
+                        </div>
+                        <div class="example-box">
+                            <strong>2. 6-hidroksi-2-heptanon</strong><br>
+                            Ada Keton (-on) dan Alkohol (-OH). Keton menang prioritas.<br>
+                            <em>Nama: 6-hidroksi-2-heptanon</em>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="lab-bench">
-                    <div id="ph-probe" class="draggable-tool">
-                        <div class="probe-screen" id="probe-screen">--</div>
-                        <div class="probe-stick"></div>
-                        <span class="tool-label">pH Meter</span>
-                    </div>
-
-                    <div class="beakers-container">
-                        <div class="beaker" data-ph="2" data-name="Jus Lemon" data-desc="Asam Kuat! Ion H+ sangat banyak. Rasanya masam dan bisa memerahkan lakmus biru.">
-                            <div class="liquid liquid-lemon"></div>
-                            <span class="beaker-label">Jus Lemon</span>
-                        </div>
-                        <div class="beaker" data-ph="7" data-name="Air Murni" data-desc="Netral. Jumlah ion H+ dan OH- seimbang. Aman untuk diminum.">
-                            <div class="liquid liquid-water"></div>
-                            <span class="beaker-label">Air Murni</span>
-                        </div>
-                        <div class="beaker" data-ph="13" data-name="Pemutih" data-desc="Basa Kuat! Banyak ion OH-. Terasa licin di tangan dan berbahaya jika terkena kulit.">
-                            <div class="liquid liquid-bleach"></div>
-                            <span class="beaker-label">Pemutih</span>
+                <div class="sim-col">
+                    <div class="col-header">⚗️ Simulasi</div>
+                    <div class="sim-content">
+                        <h3>Laboratorium Kimia Mini</h3>
+                        <p>Simulasi Praktikum: Pengukuran pH Asam & Basa</p>
+                        
+                        <div class="simulation-container">
+                            <div class="info-panel">
+                                <h3 id="ph-info-title">Siap Mengukur?</h3>
+                                <p id="ph-info-desc">Tarik pH meter ke dalam gelas kimia.</p>
+                            </div>
+                            <div class="lab-bench">
+                                <div id="ph-probe" class="draggable-tool">
+                                    <div class="probe-screen" id="probe-screen">--</div>
+                                    <div class="probe-stick"></div>
+                                    <span class="tool-label">pH Meter</span>
+                                </div>
+                                <div class="beakers-container">
+                                    <div class="beaker" data-ph="2" data-name="Jus Lemon" data-desc="Asam Kuat! Rasanya masam, memerahkan lakmus biru.">
+                                        <div class="liquid liquid-lemon"></div>
+                                        <span class="beaker-label">Lemon</span>
+                                    </div>
+                                    <div class="beaker" data-ph="7" data-name="Air Murni" data-desc="Netral. Aman untuk diminum.">
+                                        <div class="liquid liquid-water"></div>
+                                        <span class="beaker-label">Air</span>
+                                    </div>
+                                    <div class="beaker" data-ph="13" data-name="Pemutih" data-desc="Basa Kuat! Licin dan berbahaya bagi kulit.">
+                                        <div class="liquid liquid-bleach"></div>
+                                        <span class="beaker-label">Pemutih</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,72 +134,213 @@
         </section>
 
         <section id="fisika-view" class="view hidden">
-            <div class="header-section">
-                <h2>🍎 Laboratorium Fisika</h2>
-                <p>Mekanika Klasik: Hukum II Newton</p>
-            </div>
+            <div class="split-layout">
+                <div class="notes-col">
+                    <div class="col-header">📝 Catatan Belajar</div>
+                    <div class="notes-content">
+                        <h3>⚛️ Peluruhan Radioaktif</h3>
+                        <p>Proses di mana isotop tidak stabil mencapai kestabilan dengan melepaskan radiasi.</p>
 
-            <div class="simulation-container">
-                <div class="info-panel">
-                    <h3 class="formula">F = m × a</h3>
-                    <p id="newton-info">Gaya (Force) berbanding lurus dengan Massa dan Percepatan. Coba ubah massa benda dan dorong!</p>
-                </div>
+                        <h4>1. Kestabilan Inti</h4>
+                        <ul>
+                            <li><b>Inti Ringan (Z < 20):</b> Cenderung stabil (N=Z).</li>
+                            <li><b>Inti Berat (Z > 20):</b> Cenderung tidak stabil, sering melepaskan emisi alfa/beta.</li>
+                        </ul>
 
-                <div class="controls-panel">
-                    <label>Pilih Massa Benda:</label>
-                    <div class="mass-selector">
-                        <button class="btn-mass active" onclick="setMass(10)">Ringan (10kg)</button>
-                        <button class="btn-mass" onclick="setMass(50)">Sedang (50kg)</button>
-                        <button class="btn-mass" onclick="setMass(100)">Berat (100kg)</button>
+                        <h4>2. Jenis Partikel Radiasi</h4>
+                        <table class="data-table">
+                            <thead><tr><th>Partikel</th><th>Simbol</th><th>Daya Tembus</th></tr></thead>
+                            <tbody>
+                                <tr><td>Alfa</td><td>&alpha;</td><td>Lemah (Kertas)</td></tr>
+                                <tr><td>Beta</td><td>&beta;</td><td>Sedang (Aluminium)</td></tr>
+                                <tr><td>Gamma</td><td>&gamma;</td><td>Kuat (Timbal/Beton)</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h4>3. Jenis Peluruhan</h4>
+                        <div class="example-box">
+                            <strong>A. Peluruhan Alfa (&alpha;)</strong><br>
+                            Inti melepaskan inti Helium.<br>
+                            <span class="math-formula"><sup>A</sup><sub>Z</sub>X &rarr; <sup>A-4</sup><sub>Z-2</sub>Y + <sup>4</sup><sub>2</sub>&alpha;</span>
+                        </div>
+                        <div class="example-box">
+                            <strong>B. Peluruhan Beta (&beta;)</strong><br>
+                            Neutron berubah jadi proton (atau sebaliknya).<br>
+                            <span class="math-formula"><sup>A</sup><sub>Z</sub>X &rarr; <sup>A</sup><sub>Z+1</sub>Y + e<sup>-</sup></span>
+                        </div>
+                        
+                        <h4>4. Waktu Paruh (t<sub>1/2</sub>)</h4>
+                        <p>Waktu yang diperlukan zat radioaktif untuk meluruh menjadi setengah jumlah aslinya.</p>
+                        <div class="formula-box">
+                            N(t) = N<sub>0</sub> &cdot; (1/2)<sup>(t / t<sub>1/2</sub>)</sup>
+                        </div>
                     </div>
-                    <button id="btn-push" class="btn-action">BERI GAYA DORONG (500N)</button>
                 </div>
 
-                <div class="track-container">
-                    <div id="physics-box" class="box">
-                        <span id="box-label">10kg</span>
+                <div class="sim-col">
+                    <div class="col-header">⚗️ Simulasi</div>
+                    <div class="sim-content">
+                        <h3>Laboratorium Fisika</h3>
+                        <p>Mekanika Klasik: Hukum II Newton</p>
+
+                        <div class="simulation-container">
+                            <div class="info-panel">
+                                <h3 class="formula">F = m &times; a</h3>
+                                <p id="newton-info">Gaya berbanding lurus dengan Massa dan Percepatan.</p>
+                            </div>
+                            <div class="controls-panel">
+                                <label>Massa:</label>
+                                <div class="mass-selector">
+                                    <button class="btn-mass active" onclick="setMass(10)">10kg</button>
+                                    <button class="btn-mass" onclick="setMass(50)">50kg</button>
+                                    <button class="btn-mass" onclick="setMass(100)">100kg</button>
+                                </div>
+                                <button id="btn-push" class="btn-action">DORONG (500N)</button>
+                            </div>
+                            <div class="track-container">
+                                <div id="physics-box" class="box">
+                                    <span id="box-label">10kg</span>
+                                </div>
+                                <div class="track"></div>
+                            </div>
+                            <div id="acceleration-display">a: 0 m/s²</div>
+                        </div>
                     </div>
-                    <div class="track"></div>
                 </div>
-                <div id="acceleration-display">Percepatan (a): 0 m/s²</div>
             </div>
         </section>
 
         <section id="matematika-view" class="view hidden">
-            <div class="header-section">
-                <h2>📐 Zona Matematika</h2>
-                <p>Visualisasi Trigonometri: Sin, Cos, dan Tan</p>
-            </div>
+            <div class="split-layout">
+                <div class="notes-col">
+                    <div class="col-header">📝 Catatan Belajar</div>
+                    <div class="notes-content">
+                        <h3>📏 Dimensi Tiga (Jarak)</h3>
+                        
+                        <h4>1. Konsep Dasar</h4>
+                        <p>Menggunakan <b>Teorema Pythagoras</b> sebagai pondasi utama perhitungan jarak.</p>
 
-            <div class="simulation-container math-layout">
-                <div class="circle-wrapper">
-                    <div class="unit-circle" id="unit-circle">
-                        <div class="axis x-axis"></div>
-                        <div class="axis y-axis"></div>
-                        <div class="line-cos" id="line-cos"></div>
-                        <div class="line-sin" id="line-sin"></div>
-                        <div class="line-radius" id="line-radius"></div>
-                        <div class="dot-point" id="dot-point"></div>
+                        <h4>2. Jarak Antar Titik</h4>
+                        <p>Panjang garis terpendek yang menghubungkan dua titik.</p>
+                        <div class="formula-box">
+                            AB = &radic;<span style="border-top:1px solid">(x<sub>2</sub>-x<sub>1</sub>)<sup>2</sup> + (y<sub>2</sub>-y<sub>1</sub>)<sup>2</sup></span>
+                        </div>
+
+                        <h4>3. Jarak Titik ke Garis</h4>
+                        <p>Panjang ruas garis yang ditarik dari titik tersebut secara <b>tegak lurus</b> ke garis.</p>
+                        <div class="example-box">
+                            <strong>Tips:</strong> Gunakan kesamaan luas segitiga.<br>
+                            Luas = &frac12; &cdot; alas &cdot; tinggi
+                        </div>
+
+                        <h4>4. Jarak Titik ke Bidang</h4>
+                        <p>Panjang ruas garis dari titik, tegak lurus menembus bidang. Titik tembus disebut proyeksi.</p>
                     </div>
                 </div>
 
-                <div class="math-explanation">
-                    <div class="value-card">
-                        <h4>Sudut (&theta;)</h4>
-                        <span id="angle-val">45°</span>
+                <div class="sim-col">
+                    <div class="col-header">⚗️ Simulasi</div>
+                    <div class="sim-content">
+                        <h3>Zona Matematika</h3>
+                        <p>Visualisasi Trigonometri: Sin, Cos, dan Tan</p>
+                        
+                        <div class="simulation-container math-layout">
+                            <div class="circle-wrapper">
+                                <div class="unit-circle" id="unit-circle">
+                                    <div class="axis x-axis"></div>
+                                    <div class="axis y-axis"></div>
+                                    <div class="line-cos" id="line-cos"></div>
+                                    <div class="line-sin" id="line-sin"></div>
+                                    <div class="line-radius" id="line-radius"></div>
+                                    <div class="dot-point" id="dot-point"></div>
+                                </div>
+                            </div>
+                            <div class="math-explanation">
+                                <div class="value-card">
+                                    <h4>Sudut (&theta;)</h4><span id="angle-val">45°</span>
+                                </div>
+                                <div class="value-card color-sin">
+                                    <h4>Sin (y)</h4><span id="sin-val">0.707</span>
+                                </div>
+                                <div class="value-card color-cos">
+                                    <h4>Cos (x)</h4><span id="cos-val">0.707</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="value-card color-sin">
-                        <h4>Sinus (Tinggi/y)</h4>
-                        <span id="sin-val">0.707</span>
-                        <p class="small-desc">Seberapa "tinggi" titik tersebut dari sumbu X.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="biologi-view" class="view hidden">
+            <div class="split-layout">
+                <div class="notes-col">
+                    <div class="col-header">📝 Catatan Belajar</div>
+                    <div class="notes-content">
+                        <h3>🧬 DNA dan Gen: Pewarisan Sifat</h3>
+                        
+                        <h4>1. Istilah Penting</h4>
+                        <ul>
+                            <li><b>Fenotip:</b> Sifat yang tampak (misal: warna mata).</li>
+                            <li><b>Genotip:</b> Susunan gen (misal: Aa, BB).</li>
+                            <li><b>Gen:</b> Segmen DNA penentu sifat.</li>
+                        </ul>
+
+                        <h4>2. DNA (Deoxyribonucleic Acid)</h4>
+                        <p>Tersusun atas Nukleotida (Gula, Fosfat, Basa Nitrogen).</p>
+                        <p><b>Pasangan Basa:</b></p>
+                        <ul>
+                            <li>Adenin (A) &harr; Timin (T)</li>
+                            <li>Sitosin (C) &harr; Guanin (G)</li>
+                        </ul>
+
+                        <h4>3. Dogma Sentral</h4>
+                        <div class="formula-box">
+                            DNA &rarr; RNA &rarr; Protein &rarr; Sifat
+                        </div>
+
+                        <h4>4. Replikasi DNA</h4>
+                        <p>Proses penggandaan DNA sebelum pembelahan sel dibantu enzim Helikase dan Polimerase.</p>
                     </div>
-                    <div class="value-card color-cos">
-                        <h4>Cosinus (Lebar/x)</h4>
-                        <span id="cos-val">0.707</span>
-                        <p class="small-desc">Seberapa "jauh" titik tersebut ke samping.</p>
-                    </div>
-                    <div class="educational-note">
-                        <p><strong>Konsep Dasar:</strong> Bayangkan sebuah tangga yang disandarkan. Sinus adalah tinggi tembok yang dicapai tangga, sedangkan Cosinus adalah jarak kaki tangga ke tembok.</p>
+                </div>
+
+                <div class="sim-col">
+                    <div class="col-header">⚗️ Simulasi</div>
+                    <div class="sim-content">
+                        <h3>Laboratorium Genetika</h3>
+                        <p>Hukum Mendel 1: Persilangan Monohibrid</p>
+                        
+                        <div class="simulation-container bio-container">
+                            <div class="info-panel" id="bio-info-panel">
+                                <h3>Mulai Persilangan!</h3>
+                                <p>Tarik gamet (sel kelamin) Jantan dan Betina ke dalam kotak anak untuk melihat hasil keturunan.</p>
+                            </div>
+
+                            <div class="mendel-lab">
+                                <div class="parents-area">
+                                    <div class="parent male">
+                                        <span class="parent-label">Jantan (Merah - MM)</span>
+                                        <div class="gamete-source" draggable="true" data-gene="M">M</div>
+                                        <div class="gamete-source" draggable="true" data-gene="M">M</div>
+                                    </div>
+                                    <div class="parent female">
+                                        <span class="parent-label">Betina (Putih - mm)</span>
+                                        <div class="gamete-source" draggable="true" data-gene="m">m</div>
+                                        <div class="gamete-source" draggable="true" data-gene="m">m</div>
+                                    </div>
+                                </div>
+
+                                <div class="offspring-area">
+                                    <div class="offspring-box" data-filled="0">
+                                        <div class="gene-slot slot-1"></div>
+                                        <div class="gene-slot slot-2"></div>
+                                        <div class="result-flower hidden">🌺</div>
+                                    </div>
+                                    <div class="arrow-down">&darr;</div>
+                                    <p class="instruction-text">Drag huruf (gamet) ke kotak di atas!</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
