@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LITE Edu - Modern Learning</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -20,16 +20,15 @@
                 <button class="nav-pill" onclick="showView('matematika-view')">Matematika</button>
                 <button class="nav-pill" onclick="showView('biologi-view')">Biologi</button>
             </div>
-            
+        </div>
+
+        <div class="nav-right">
             <button class="home-btn" onclick="showView('home-view')" title="Beranda">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                     <polyline points="9 22 9 12 15 12 15 22"></polyline>
                 </svg>
             </button>
-        </div>
-
-        <div class="nav-right">
             <img src="images/LogoLite.png" alt="LITE Edu" class="brand-logo">
         </div>
     </nav>
@@ -39,8 +38,10 @@
         <section id="home-view" class="view active">
             <div class="hero-card glass-panel">
                 <h1>Selamat Datang di <span class="text-gradient">LITE Edu</span></h1>
-                <p>Platform interaktif untuk eksplorasi sains. Pilih mapel di atas untuk memulai petualanganmu!</p>
-                <img src="https://cdn-icons-png.flaticon.com/512/2920/2920329.png" alt="Science" class="hero-icon floating">
+                <p>Platform interaktif untuk eksplorasi sains. Pilih mata pelajaran di pojok kiri atas untuk memulai petualanganmu!</p>
+                <div class="hero-image-container">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2920/2920329.png" alt="Science" class="hero-icon floating">
+                </div>
             </div>
         </section>
 
@@ -54,7 +55,7 @@
                             <div class="icon-box">⚗️</div>
                             <div class="menu-text">
                                 <h4>Tata Nama Senyawa Organik</h4>
-                                <p>Pelajari aturan IUPAC dan gugus fungsi.</p>
+                                <p>Alkana, Alkena, Alkohol, Ester, dll.</p>
                             </div>
                         </div>
                     </div>
@@ -63,22 +64,84 @@
                         <button class="btn-back" onclick="closeContent('kimia-materi', 'kimia-menu')">⬅ Kembali</button>
                         <h3>Tata Nama Senyawa Organik</h3>
                         <div class="scroll-content">
-                            <p>Penamaan senyawa organik mengikuti aturan <b>IUPAC</b>.</p>
-                            <div class="modern-box">
-                                <h5>Prinsip Dasar</h5>
-                                <p>Posisi Cabang - Nama Cabang - Nama Rantai Utama</p>
+                            <p>Tata nama senyawa organik diatur oleh <b>IUPAC</b> (International Union of Pure and Applied Chemistry) untuk memastikan setiap senyawa memiliki nama yang unik.</p>
+
+                            <div class="modern-box info">
+                                <h5>📚 Struktur Nama IUPAC</h5>
+                                <p class="formula-text"><b>Cabang</b> + <b>Rantai Utama</b> + <b>Akhiran Gugus Fungsi</b></p>
                             </div>
-                            <h4>Prioritas Gugus Fungsi</h4>
+
+                            <h4>1. Deret Homolog Alkana (Dasar)</h4>
+                            <p>Hafalan wajib jumlah atom karbon:</p>
                             <table class="modern-table">
-                                <thead><tr><th>Prioritas</th><th>Golongan</th><th>Akhiran</th></tr></thead>
+                                <tr><th>Jumlah C</th><th>Nama Dasar</th><th>Rumus</th></tr>
+                                <tr><td>1</td><td>Metana</td><td>CH<sub>4</sub></td></tr>
+                                <tr><td>2</td><td>Etana</td><td>C<sub>2</sub>H<sub>6</sub></td></tr>
+                                <tr><td>3</td><td>Propana</td><td>C<sub>3</sub>H<sub>8</sub></td></tr>
+                                <tr><td>4</td><td>Butana</td><td>C<sub>4</sub>H<sub>10</sub></td></tr>
+                                <tr><td>5</td><td>Pentana</td><td>C<sub>5</sub>H<sub>12</sub></td></tr>
+                            </table>
+
+                            <h4>2. Prioritas Gugus Fungsi</h4>
+                            <p>Jika terdapat lebih dari satu gugus fungsi, penomoran dimulai dari gugus yang prioritasnya lebih tinggi.</p>
+                            <table class="modern-table">
+                                <thead>
+                                    <tr>
+                                        <th>Prioritas</th>
+                                        <th>Golongan</th>
+                                        <th>Rumus</th>
+                                        <th>Awalan (Cabang)</th>
+                                        <th>Akhiran (Utama)</th>
+                                    </tr>
+                                </thead>
                                 <tbody>
-                                    <tr><td>1</td><td>Asam Karboksilat</td><td>-oat</td></tr>
-                                    <tr><td>2</td><td>Ester</td><td>-oat</td></tr>
-                                    <tr><td>3</td><td>Aldehida</td><td>-al</td></tr>
-                                    <tr><td>4</td><td>Keton</td><td>-on</td></tr>
-                                    <tr><td>5</td><td>Alkohol</td><td>-ol</td></tr>
+                                    <tr><td>1 (Tertinggi)</td><td>Asam Karboksilat</td><td>-COOH</td><td>Karboksi-</td><td>Asam ...-oat</td></tr>
+                                    <tr><td>2</td><td>Ester</td><td>-COO-</td><td>Alkoksi karbonil-</td><td>...il ...-oat</td></tr>
+                                    <tr><td>3</td><td>Amida</td><td>-CONH<sub>2</sub></td><td>Amido-</td><td>-amida</td></tr>
+                                    <tr><td>4</td><td>Aldehida</td><td>-CHO</td><td>Formil-</td><td>-al</td></tr>
+                                    <tr><td>5</td><td>Keton</td><td>-CO-</td><td>Okso-</td><td>-on</td></tr>
+                                    <tr><td>6</td><td>Alkohol</td><td>-OH</td><td>Hidroksi-</td><td>-ol</td></tr>
+                                    <tr><td>7</td><td>Amina</td><td>-NH<sub>2</sub></td><td>Amino-</td><td>-amina</td></tr>
+                                    <tr><td>8 (Terendah)</td><td>Eter/Alkana</td><td>-O- / C-C</td><td>Alkoksi-</td><td>-ana</td></tr>
                                 </tbody>
                             </table>
+
+                            <h4>3. Contoh Kasus & Struktur</h4>
+                            
+                            <div class="modern-box">
+                                <h5>A. Alkohol (Alkanol)</h5>
+                                <p>Gugus fungsi: <b>-OH</b>. Rantai utama harus mengandung -OH. Penomoran dimulai dari ujung terdekat -OH.</p>
+                                <div class="chem-struct">
+                                    CH<sub>3</sub> — CH<sub>2</sub> — CH(OH) — CH<sub>3</sub>
+                                </div>
+                                <p><b>Analisis:</b> Rantai C=4 (Butana). OH di nomor 2.<br><b>Nama: 2-Butanol</b></p>
+                            </div>
+
+                            <div class="modern-box">
+                                <h5>B. Senyawa Multifungsi</h5>
+                                <p>Contoh: Senyawa memiliki gugus Keton dan Alkohol.</p>
+                                <div class="chem-struct">
+                                    CH<sub>3</sub> — CO — CH<sub>2</sub> — CH(OH) — CH<sub>3</sub>
+                                </div>
+                                <p><b>Analisis:</b>
+                                <br>1. Gugus Keton (-CO-) vs Alkohol (-OH).
+                                <br>2. Lihat tabel: Keton (5) > Alkohol (6).
+                                <br>3. Rantai utama = Keton (akhiran -on). Alkohol jadi cabang (Hidroksi).
+                                <br>4. Penomoran dari kiri (dekat keton).
+                                <br><b>Nama: 4-hidroksi-2-pentanon</b></p>
+                            </div>
+
+                            <div class="modern-box">
+                                <h5>C. Ester (Alkil Alkanoat)</h5>
+                                <p>Rumus: R-COO-R'. Bagian yang terikat O adalah Alkil, bagian yang ada C=O adalah Alkanoat.</p>
+                                <div class="chem-struct">
+                                    CH<sub>3</sub> — COO — CH<sub>2</sub>CH<sub>3</sub>
+                                </div>
+                                <p><b>Analisis:</b>
+                                <br>Yang nempel di O: Etil (CH<sub>2</sub>CH<sub>3</sub>)
+                                <br>Yang punya C=O: Etanoat (CH<sub>3</sub>COO)
+                                <br><b>Nama: Etil Etanoat</b> (Sering disebut aroma lem/pembersih kutek).</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -109,9 +172,9 @@
                                     <div class="stick"></div>
                                 </div>
                                 <div class="beaker-group">
-                                    <div class="beaker" data-ph="2" data-name="Lemon" data-desc="Asam Kuat!"><div class="liquid l-lemon"></div></div>
-                                    <div class="beaker" data-ph="7" data-name="Air" data-desc="Netral"><div class="liquid l-water"></div></div>
-                                    <div class="beaker" data-ph="13" data-name="Pemutih" data-desc="Basa Kuat!"><div class="liquid l-bleach"></div></div>
+                                    <div class="beaker" data-ph="2" data-name="Lemon" data-desc="Asam Kuat! [H+] tinggi."><div class="liquid l-lemon"></div></div>
+                                    <div class="beaker" data-ph="7" data-name="Air" data-desc="Netral. [H+] = [OH-]"><div class="liquid l-water"></div></div>
+                                    <div class="beaker" data-ph="13" data-name="Pemutih" data-desc="Basa Kuat! [OH-] tinggi."><div class="liquid l-bleach"></div></div>
                                 </div>
                             </div>
                         </div>
@@ -129,22 +192,91 @@
                             <div class="icon-box">⚛️</div>
                             <div class="menu-text">
                                 <h4>Peluruhan Radioaktif</h4>
-                                <p>Alfa, Beta, Gamma dan Waktu Paruh.</p>
+                                <p>Inti atom, jenis radiasi, dan waktu paruh.</p>
                             </div>
                         </div>
                     </div>
+
                     <div id="fisika-materi" class="content-container hidden">
                         <button class="btn-back" onclick="closeContent('fisika-materi', 'fisika-menu')">⬅ Kembali</button>
                         <h3>Peluruhan Radioaktif</h3>
                         <div class="scroll-content">
-                            <p>Proses inti atom tidak stabil melepaskan energi.</p>
+                            <p>Peluruhan radioaktif adalah proses pemecahan inti atom yang tidak stabil (radioisotop) menjadi inti yang lebih stabil dengan memancarkan radiasi.</p>
+
+                            <h4>1. Kestabilan Inti</h4>
+                            <ul>
+                                <li><b>Gaya Ikat Inti:</b> Gaya kuat yang menahan proton dan neutron tetap bersatu melawan gaya tolak elektrostatik antar proton.</li>
+                                <li><b>Defek Massa:</b> Massa inti selalu lebih kecil dari jumlah massa proton + neutron penyusunnya. Selisih ini berubah menjadi energi ikat ($E = mc^2$).</li>
+                            </ul>
+
+                            <h4>2. Jenis-Jenis Sinar Radioaktif</h4>
+                            <table class="modern-table">
+                                <thead>
+                                    <tr>
+                                        <th>Jenis</th>
+                                        <th>Simbol</th>
+                                        <th>Muatan</th>
+                                        <th>Daya Tembus</th>
+                                        <th>Identitas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><b>Alfa</b></td>
+                                        <td>$\alpha$ / $^4_2He$</td>
+                                        <td>+2</td>
+                                        <td>Lemah (Kertas)</td>
+                                        <td>Inti Helium</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Beta</b></td>
+                                        <td>$\beta$ / $^0_{-1}e$</td>
+                                        <td>-1</td>
+                                        <td>Sedang (Alumunium)</td>
+                                        <td>Elektron Cepat</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Gamma</b></td>
+                                        <td>$\gamma$</td>
+                                        <td>0</td>
+                                        <td>Sangat Kuat (Timbal)</td>
+                                        <td>Gelombang EM</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h4>3. Persamaan Reaksi Peluruhan</h4>
+                            <div class="modern-box">
+                                <p>Berlaku hukum kekekalan nomor massa (atas) dan nomor atom (bawah).</p>
+                                <p><b>Contoh Peluruhan Alfa:</b></p>
+                                <p class="formula-text">
+                                    $^{238}_{92}U \rightarrow ^{234}_{90}Th + ^4_2\alpha$
+                                </p>
+                                <p><small>Uranium-238 meluruh menjadi Thorium-234 + partikel Alfa.</small></p>
+                            </div>
+
+                            <h4>4. Waktu Paruh (Half Life)</h4>
+                            <p>Waktu yang dibutuhkan zat radioaktif untuk meluruh hingga jumlahnya menjadi setengah dari jumlah semula.</p>
+                            
                             <div class="modern-box info">
-                                <h5>Partikel & Daya Tembus</h5>
+                                <h5>Rumus Peluruhan:</h5>
+                                <p class="formula-text">$$N_t = N_0 \left(\frac{1}{2}\right)^{\frac{t}{T_{1/2}}}$$</p>
                                 <ul>
-                                    <li><b>Alfa (&alpha;):</b> Lemah (Kertas)</li>
-                                    <li><b>Beta (&beta;):</b> Sedang (Logam tipis)</li>
-                                    <li><b>Gamma (&gamma;):</b> Kuat (Beton/Timbal)</li>
+                                    <li>$N_t$: Jumlah zat sisa</li>
+                                    <li>$N_0$: Jumlah zat awal</li>
+                                    <li>$t$: Waktu berjalan</li>
+                                    <li>$T_{1/2}$: Waktu paruh</li>
                                 </ul>
+                            </div>
+                            
+                            <div class="modern-box">
+                                <h5>Contoh Soal:</h5>
+                                <p>Suatu zat 100 gram memiliki waktu paruh 5 tahun. Berapa sisa zat setelah 15 tahun?</p>
+                                <p><b>Jawab:</b><br>
+                                $N_t = 100 \cdot (0.5)^{(15/5)}$<br>
+                                $N_t = 100 \cdot (0.5)^3$<br>
+                                $N_t = 100 \cdot 0.125 = 12.5$ gram.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -193,17 +325,63 @@
                             <div class="icon-box">📐</div>
                             <div class="menu-text">
                                 <h4>Dimensi Tiga</h4>
-                                <p>Jarak Titik, Garis, dan Bidang.</p>
+                                <p>Analisis Jarak Titik, Garis, dan Bidang dalam Ruang.</p>
                             </div>
                         </div>
                     </div>
+
                     <div id="mtk-materi" class="content-container hidden">
                         <button class="btn-back" onclick="closeContent('mtk-materi', 'mtk-menu')">⬅ Kembali</button>
-                        <h3>Dimensi Tiga</h3>
+                        <h3>Dimensi Tiga (Geometri Ruang)</h3>
                         <div class="scroll-content">
+                            <p>Materi ini mempelajari pengukuran jarak dan sudut dalam bangun ruang (kubus, balok, limas, dll).</p>
+
+                            <h4>1. Kunci Utama: Teorema Pythagoras</h4>
+                            <p>Hampir semua soal dimensi tiga diselesaikan dengan mencari segitiga siku-siku bantuan.</p>
+                            <div class="modern-box info">
+                                <p class="formula-text">$$c = \sqrt{a^2 + b^2}$$</p>
+                                <p>Dimana $c$ adalah sisi miring (hipotenusa).</p>
+                            </div>
+
+                            <h4>2. Rumus Cepat Kubus (Rusuk = a)</h4>
+                            <table class="modern-table">
+                                <tr>
+                                    <th>Objek</th>
+                                    <th>Rumus</th>
+                                    <th>Contoh (Rusuk 6cm)</th>
+                                </tr>
+                                <tr>
+                                    <td>Diagonal Sisi</td>
+                                    <td>$a\sqrt{2}$</td>
+                                    <td>$6\sqrt{2}$ cm</td>
+                                </tr>
+                                <tr>
+                                    <td>Diagonal Ruang</td>
+                                    <td>$a\sqrt{3}$</td>
+                                    <td>$6\sqrt{3}$ cm</td>
+                                </tr>
+                            </table>
+
+                            <h4>3. Konsep Jarak</h4>
+                            
                             <div class="modern-box">
-                                <h5>Jarak Antar Titik</h5>
-                                <p>Menggunakan Teorema Pythagoras.</p>
+                                <h5>A. Jarak Titik ke Titik</h5>
+                                <p>Hubungkan kedua titik, cari panjang garis lurusnya.</p>
+                                <p><i>Contoh: Jarak titik A(x1, y1, z1) ke B(x2, y2, z2)</i></p>
+                                <p class="formula-text">$$d = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2 + (z_2-z_1)^2}$$</p>
+                            </div>
+
+                            <div class="modern-box">
+                                <h5>B. Jarak Titik ke Garis</h5>
+                                <p>Adalah panjang garis tegak lurus dari titik ke garis tersebut (Proyeksi).</p>
+                                <p><b>Tips:</b> Gunakan rumus Luas Segitiga.</p>
+                                <p class="formula-text">$$\text{Luas} = \frac{1}{2} \cdot \text{alas}_1 \cdot \text{tinggi}_1 = \frac{1}{2} \cdot \text{alas}_2 \cdot \text{tinggi}_2$$</p>
+                            </div>
+
+                            <div class="modern-box">
+                                <h5>C. Jarak Titik ke Bidang</h5>
+                                <p>Tarik garis dari titik menembus bidang secara tegak lurus.</p>
+                                <p><b>Kasus Kubus:</b> Jarak titik C ke bidang AFH (diagonal) adalah $\frac{2}{3} \times \text{Diagonal Ruang}$.</p>
                             </div>
                         </div>
                     </div>
@@ -250,18 +428,56 @@
                             <div class="icon-box">🧬</div>
                             <div class="menu-text">
                                 <h4>DNA & Pewarisan Sifat</h4>
-                                <p>Genotip, Fenotip, dan Hukum Mendel.</p>
+                                <p>Genetika Molekuler dan Hukum Mendel.</p>
                             </div>
                         </div>
                     </div>
+
                     <div id="bio-materi" class="content-container hidden">
                         <button class="btn-back" onclick="closeContent('bio-materi', 'bio-menu')">⬅ Kembali</button>
-                        <h3>DNA dan Gen</h3>
+                        <h3>DNA & Pewarisan Sifat</h3>
                         <div class="scroll-content">
-                            <p><b>Dogma Sentral:</b> DNA &rarr; RNA &rarr; Protein.</p>
+                            <h4>1. Struktur DNA (Deoxyribonucleic Acid)</h4>
+                            <p>DNA adalah materi genetik pembawa sifat berbentuk <i>Double Helix</i> (Tangga berpilin).</p>
+                            <ul>
+                                <li><b>Unit Terkecil:</b> Nukleotida (Gula Deoksiribosa + Fosfat + Basa Nitrogen).</li>
+                                <li><b>Pasangan Basa Nitrogen:</b>
+                                    <ul style="margin-top:5px; list-style: circle;">
+                                        <li><b>Adenin (A)</b> selalu berpasangan dengan <b>Timin (T)</b> (2 ikatan hidrogen).</li>
+                                        <li><b>Guanin (G)</b> selalu berpasangan dengan <b>Sitosin (C)</b> (3 ikatan hidrogen).</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
                             <div class="modern-box info">
-                                <h5>Pasangan Basa</h5>
-                                <p>A-T (Adenin-Timin)<br>G-C (Guanin-Sitosin)</p>
+                                <h5>Dogma Sentral Biologi</h5>
+                                <p class="formula-text">DNA $\xrightarrow{\text{Transkripsi}}$ RNA $\xrightarrow{\text{Translasi}}$ Protein</p>
+                                <p><small>Protein inilah yang kemudian membentuk sifat (fenotip) seperti warna mata, jenis rambut, dll.</small></p>
+                            </div>
+
+                            <h4>2. Hukum Mendel I (Segregasi)</h4>
+                            <p>Pada pembentukan gamet (sel kelamin), pasangan gen (alel) akan memisah secara bebas.</p>
+                            <p><b>Contoh Monohibrid (Satu Sifat Beda):</b></p>
+                            <table class="modern-table">
+                                <tr><td>Induk (P)</td><td>Bunga Merah (MM) x Bunga Putih (mm)</td></tr>
+                                <tr><td>Gamet</td><td>M dan m</td></tr>
+                                <tr><td>Anak (F1)</td><td>Mm (Merah Heterozigot)</td></tr>
+                            </table>
+
+                            <h4>3. Hukum Mendel II (Asortasi)</h4>
+                            <p>Setiap gen dapat berpasangan secara bebas dengan gen lain. Ini berlaku pada persilangan Dihibrid (Dua sifat beda).</p>
+                            <p>Contoh: Biji Bulat Kuning (BBKK) x Kisut Hijau (bbkk).</p>
+                            <p><b>Rasio Fenotip F2:</b> 9 : 3 : 3 : 1</p>
+
+                            <h4>4. Istilah Penting</h4>
+                            <div class="modern-box">
+                                <ul>
+                                    <li><b>Genotip:</b> Susunan gen yang tidak tampak (Misal: AA, Aa, aa).</li>
+                                    <li><b>Fenotip:</b> Sifat fisik yang tampak (Misal: Tinggi, Pendek, Merah).</li>
+                                    <li><b>Dominan:</b> Sifat yang menutupi (Huruf Besar).</li>
+                                    <li><b>Resesif:</b> Sifat yang tertutupi (Huruf Kecil).</li>
+                                    <li><b>Intermediet:</b> Sifat gabungan (Merah x Putih = Merah Muda).</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -311,6 +527,7 @@
         </section>
 
     </main>
+    
     <script src="script.js"></script>
 </body>
 </html>
