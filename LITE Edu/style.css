@@ -1,7 +1,325 @@
-/* ... KODE CSS SEBELUMNYA TETAP SAMA (Pastikan Logo size 75px) ... */
-/* ... Paste kode ini di bagian paling bawah style.css ... */
+:root {
+    --primary: #4b85e7;
+    --primary-light: #6a9df5;
+    --dark-blue: #1a2b4b;
+    --cream: #fdfbf7;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --shadow-soft: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
 
-/* --- PERPUSTAKAAN STYLES --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cream);
+    color: var(--dark-blue);
+    overflow-x: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* BACKGROUND MODERN SHAPES */
+.bg-shape {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.6;
+}
+.shape-1 { width: 400px; height: 400px; background: #b3d1ff; top: -100px; left: -100px; }
+.shape-2 { width: 300px; height: 300px; background: #ffe0b2; bottom: -50px; right: -50px; }
+
+/* --- GLASS NAVIGASI --- */
+.glass-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.nav-left { display: flex; align-items: center; }
+
+.nav-pills-container {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 5px;
+    border-radius: 50px;
+    border: 1px solid white;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.nav-pill {
+    background: transparent;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 40px;
+    font-weight: 600;
+    color: var(--primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-pill:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(75, 133, 231, 0.3);
+}
+
+/* Kanan: Home + Logo */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+}
+
+.home-btn {
+    background: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(75, 133, 231, 0.2);
+    transition: transform 0.3s;
+}
+.home-btn:hover { transform: scale(1.1); background: var(--primary); color: white; }
+
+.brand-logo { 
+    height: 75px; /* LOGO DIPERBESAR SEDIKIT (Tadi 60px) */
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* --- LAYOUT UTAMA --- */
+main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
+
+.view { height: 100%; display: none; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.view.active { display: block; }
+.hidden { display: none !important; }
+
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* HOME STYLING */
+.hero-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--glass-border);
+    margin-top: 2rem;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.hero-card h1 { font-size: 3rem; margin-bottom: 1rem; color: var(--dark-blue); }
+.text-gradient {
+    background: linear-gradient(45deg, var(--primary), #8e44ad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-image-container {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+}
+.hero-icon { 
+    width: 250px; /* ICON DIPERBESAR SEDIKIT LAGI */
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
+}
+.floating { animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+/* --- SPLIT LAYOUT MODERN --- */
+.split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    height: 80vh;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px);
+    border-radius: 25px;
+    border: 1px solid white;
+    box-shadow: var(--shadow-soft);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.panel-header {
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary);
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(75, 133, 231, 0.2);
+    padding-bottom: 10px;
+}
+
+/* CONTENT STYLES */
+.btn-back {
+    background: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: #666;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: all 0.2s;
+}
+.btn-back:hover { background: var(--primary); color: white; }
+
+.content-container { height: 100%; display: flex; flex-direction: column; }
+.scroll-content { 
+    overflow-y: auto; 
+    padding-right: 10px; 
+    flex: 1;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* FORMULA & MATH STYLES */
+.formula-text {
+    font-family: 'Times New Roman', Times, serif; /* Font Matematika */
+    font-size: 1.1rem;
+    background: #eef;
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: inline-block;
+    color: #222;
+}
+
+.math-display {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.chem-struct { 
+    font-family: 'Courier New', monospace; 
+    background: #fafafa; 
+    padding: 15px; 
+    border-radius: 8px; 
+    border: 1px dashed #ccc; 
+    text-align: center; 
+    margin: 10px 0; 
+    font-weight: bold; 
+    font-size: 1.1rem; 
+    color: #333;
+}
+
+.modern-box {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    margin: 15px 0;
+    border: 1px solid #eee;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+}
+.modern-box.info { border-left: 5px solid var(--primary); background: #fdfdfd; }
+
+.modern-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; margin-top: 10px; font-size: 0.9rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.modern-table th { background: var(--primary); color: white; padding: 12px; text-align: left; }
+.modern-table td { padding: 10px; border-bottom: 1px solid #eee; }
+.modern-table tr:nth-child(even) { background: #f9f9f9; }
+
+/* Menu Cards */
+.menu-container { display: flex; flex-direction: column; gap: 15px; }
+.menu-card {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+.menu-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(75, 133, 231, 0.15); border-color: var(--primary); }
+.icon-box { width: 50px; height: 50px; background: #e3f2fd; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+.sim-card .icon-box { background: #e8f5e9; }
+.menu-text h4 { margin-bottom: 3px; color: var(--dark-blue); }
+
+/* --- SIMULATION ELEMENTS --- */
+.sim-wrapper { background: white; border-radius: 20px; padding: 20px; height: 100%; display: flex; flex-direction: column; }
+.info-bubble { background: #fff8e1; padding: 15px; border-radius: 12px; border: 1px dashed #ffd54f; text-align: center; margin-bottom: 15px; }
+
+/* Kimia */
+.lab-bench { position: relative; height: 250px; margin-top: auto; }
+.draggable-tool { position: absolute; left: 45%; top: 0; cursor: grab; z-index: 10; width: 60px; }
+.screen { background: #222; color: #0f0; border-radius: 5px; padding: 5px; text-align: center; font-family: monospace; }
+.stick { width: 8px; height: 80px; background: #888; margin: 0 auto; border-radius: 0 0 5px 5px; }
+.beaker-group { display: flex; gap: 15px; justify-content: center; position: absolute; bottom: 0; width: 100%; }
+.beaker { width: 80px; height: 100px; border: 3px solid #ddd; border-top: none; position: relative; border-radius: 0 0 15px 15px; overflow: hidden; }
+.liquid { position: absolute; bottom: 0; width: 100%; height: 60%; opacity: 0.7; }
+.l-lemon { background: #ffeb3b; } .l-water { background: #90caf9; } .l-bleach { background: #eeeeee; }
+
+/* Fisika & Mtk */
+.controls button { padding: 8px 15px; margin: 5px; border: none; border-radius: 8px; cursor: pointer; }
+.btn-opt.active { background: var(--primary); color: white; }
+.btn-action { background: #ff7043; color: white; font-weight: bold; }
+.track { height: 80px; background: #f5f5f5; border-bottom: 4px solid #aaa; position: relative; border-radius: 5px; margin-top: 20px; }
+.box { width: 60px; height: 60px; background: var(--primary); position: absolute; bottom: 0; left: 10px; border-radius: 10px; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+
+/* Mtk */
+.math-layout { display: flex; align-items: center; flex-direction: column; }
+#unit-circle { width: 200px; height: 200px; border: 2px solid #ccc; border-radius: 50%; position: relative; margin-bottom: 20px; }
+.axis { position: absolute; background: #ddd; }
+.x { width: 100%; height: 1px; top: 50%; } .y { height: 100%; width: 1px; left: 50%; }
+#dot { width: 16px; height: 16px; background: var(--primary); border-radius: 50%; position: absolute; transform: translate(-50%, -50%); cursor: pointer; box-shadow: 0 0 0 4px rgba(75, 133, 231, 0.2); }
+#line-sin { position: absolute; width: 2px; background: #e53935; transform-origin: top; }
+#line-cos { position: absolute; height: 2px; background: #43a047; transform-origin: left; }
+.math-vals { display: flex; gap: 10px; }
+.val-card { background: #f5f5f5; padding: 5px 10px; border-radius: 8px; font-size: 0.9rem; }
+
+/* Biologi */
+.mendel-area { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.parents { display: flex; gap: 30px; }
+.p-card { background: #f0f7ff; padding: 10px; border-radius: 12px; text-align: center; }
+.gamete { width: 35px; height: 35px; background: white; border-radius: 50%; border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; margin: 5px auto; cursor: grab; font-weight: bold; }
+.offspring-box { width: 100px; height: 100px; border: 2px dashed #bbb; border-radius: 15px; position: relative; background: #fafafa; display: flex; justify-content: center; align-items: center; }
+.slot { position: absolute; top: 5px; width: 25px; height: 25px; background: #eee; border-radius: 50%; font-size: 0.8rem; text-align: center; line-height: 25px; }
+.s1 { left: 10px; } .s2 { right: 10px; }
+.flower-res { font-size: 3rem; animation: popIn 0.5s; }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .split-layout { grid-template-columns: 1fr; height: auto; }
+    .glass-nav { flex-direction: column; gap: 10px; }
+    .nav-right { width: 100%; justify-content: center; margin-top: 10px; }
+}
 .library-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -53,3 +371,4 @@
     font-weight: 600;
     margin-top: auto; /* Push ke bawah */
 }
+
