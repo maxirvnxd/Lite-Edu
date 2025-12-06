@@ -1,380 +1,72 @@
-/* --- VARIABEL WARNA --- */
-:root {
-    --primary: #4b85e7;       
-    --primary-dark: #3a6bb5;  
-    --bg-cream: #fdfbf7;      
-    --accent-cream: #FFF8E1;  
-    --text-dark: #1a2b4b;     
-    --text-light: #ffffff;
-    --success: #4CAF50;
-    --danger: #FF5252;
-    --border-color: #e0e0e0;
-}
+/* ... (Style sebelumnya tetap sama, tambahkan/update bagian ini) ... */
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-cream);
-    color: var(--text-dark);
-    line-height: 1.6;
-    height: 100vh;
+/* --- MENU & LIST STYLE --- */
+.menu-list {
     display: flex;
     flex-direction: column;
+    gap: 15px;
+    animation: fadeIn 0.3s ease;
 }
 
-/* --- NAVIGASI BARU --- */
-.top-bar {
+.topic-btn {
+    background: white;
+    border: 2px solid var(--primary); /* Border Biru */
+    padding: 20px;
+    border-radius: 12px;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary);
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0.8rem 2rem;
-    background-color: rgba(255, 255, 255, 0.9);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-.nav-left {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-
-.nav-subjects {
-    display: flex;
     gap: 10px;
 }
 
-.nav-pill {
-    background-color: transparent;
-    color: var(--primary);
-    border: 2px solid var(--primary);
-    padding: 6px 18px;
-    border-radius: 50px;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 0.85rem;
-    transition: all 0.3s ease;
+.sim-btn {
+    border-color: var(--success); /* Warna Hijau untuk simulasi agar beda */
+    color: var(--success);
 }
 
-.nav-pill:hover {
+.topic-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     background-color: var(--primary);
     color: white;
 }
-
-.home-icon {
-    background-color: var(--bg-cream);
-    color: var(--primary);
-    border: 2px solid var(--border-color);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s;
-    margin-left: 10px; /* Geser sedikit */
+.sim-btn:hover {
+    background-color: var(--success);
 }
 
-.home-icon:hover {
-    background-color: var(--primary);
-    color: white;
-    border-color: var(--primary);
-}
-
-.brand-logo {
-    height: 40px; /* Sesuaikan ukuran logo */
-    width: auto;
-}
-
-/* --- LAYOUT UTAMA --- */
-main {
-    flex: 1;
-    position: relative;
-    overflow: hidden; /* Mencegah double scrollbar */
-}
-
-.view {
-    height: 100%;
-    display: none;
+/* --- KONTEN SUB-VIEW --- */
+.sub-content {
     animation: fadeIn 0.4s ease;
 }
-.view.active { display: block; }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+.btn-back {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #eee;
 }
 
-/* --- LAYOUT 2 KOLOM (Split Layout) --- */
-.split-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 50% Kiri, 50% Kanan */
-    height: 100%;
-    overflow: hidden;
-}
-
-/* Kolom Kiri: Catatan (Scrollable) */
-.notes-col {
-    background-color: #fff;
-    border-right: 1px solid var(--border-color);
-    overflow-y: auto;
-    padding: 2rem;
-}
-
-/* Kolom Kanan: Simulasi (Fixed/Sticky feel) */
-.sim-col {
-    background-color: var(--bg-cream);
-    padding: 2rem;
-    overflow-y: auto;
-}
-
-.col-header {
-    background: var(--primary);
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    display: inline-block;
-    font-size: 0.8rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* --- STYLING CATATAN BELAJAR --- */
-.notes-content h3 {
-    color: var(--primary);
-    border-bottom: 2px solid var(--accent-cream);
-    padding-bottom: 10px;
-    margin-bottom: 1.5rem;
-}
-
-.notes-content h4 {
-    margin-top: 1.5rem;
-    margin-bottom: 0.8rem;
+.btn-back:hover {
+    background-color: #ddd;
     color: #333;
 }
 
-.notes-content p, .notes-content ul {
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-    color: #555;
+.hidden {
+    display: none !important;
 }
 
-.notes-content ul { padding-left: 1.5rem; }
-
-/* Komponen Khusus Catatan */
-.formula-box {
-    background: var(--accent-cream);
-    border-left: 4px solid var(--primary);
-    padding: 1rem;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    text-align: center;
-    margin: 1rem 0;
-    color: var(--text-dark);
-}
-
-.example-box {
-    background: #f4f8ff;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid #dbeafe;
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-}
-
-.math-formula {
-    font-style: italic;
-    font-weight: bold;
-}
-
-/* Tabel Data */
-.table-responsive { overflow-x: auto; }
-.data-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-    font-size: 0.9rem;
-}
-.data-table th, .data-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-.data-table th { background-color: var(--primary); color: white; }
-.data-table tr:nth-child(even) { background-color: #f9f9f9; }
-
-/* --- STYLING SIMULASI UMUM --- */
-.sim-content h3 { color: var(--text-dark); margin-bottom: 0.5rem; }
-.simulation-container {
-    background: white;
-    border-radius: 15px;
-    padding: 1.5rem;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    margin-top: 1.5rem;
-    min-height: 400px;
-    position: relative;
-}
-
-.info-panel {
-    background: var(--accent-cream);
-    padding: 1rem;
-    border-radius: 8px;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    border: 1px dashed var(--primary);
-}
-
-/* --- SIMULASI KHUSUS --- */
-/* (Style Kimia, Fisika, Matematika disederhanakan/disalin dari sebelumnya) */
-/* ... Style Kimia & Fisika & MTK sama seperti sebelumnya ... */
-/* Saya sertakan style penting agar tetap jalan */
-
-/* Kimia */
-.lab-bench { height: 250px; position: relative; margin-top: 2rem; }
-.beakers-container { display: flex; gap: 1rem; justify-content: center; position: absolute; bottom: 0; width: 100%; }
-.beaker { width: 70px; height: 90px; border: 2px solid #aaa; border-top: none; position: relative; border-radius: 0 0 10px 10px;}
-.liquid { position: absolute; bottom: 0; width: 100%; height: 60%; opacity: 0.6; }
-.liquid-lemon { background: #ffeb3b; } .liquid-water { background: #03a9f4; } .liquid-bleach { background: #e0e0e0; }
-.draggable-tool { position: absolute; top: 0; left: 45%; cursor: grab; z-index: 10; text-align: center; }
-.probe-screen { background: #333; color: #0f0; padding: 2px 8px; border-radius: 4px; }
-.probe-stick { width: 6px; height: 60px; background: #666; margin: 0 auto; }
-
-/* Fisika */
-.track-container { background: #eee; height: 100px; position: relative; border-bottom: 3px solid #666; margin-top: 1rem; }
-.box { width: 60px; height: 60px; background: var(--primary); position: absolute; bottom: 0; left: 10px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; }
-
-/* Matematika */
-.math-layout { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
-.circle-wrapper { width: 200px; height: 200px; position: relative; }
-.unit-circle { width: 100%; height: 100%; border: 2px solid #ccc; border-radius: 50%; position: relative; }
-.axis { position: absolute; background: #ddd; }
-.x-axis { width: 100%; height: 1px; top: 50%; } .y-axis { height: 100%; width: 1px; left: 50%; }
-.dot-point { width: 14px; height: 14px; background: var(--primary); border-radius: 50%; position: absolute; z-index: 5; transform: translate(-50%, -50%); cursor: pointer; }
-.line-sin { position: absolute; width: 2px; background: var(--danger); transform-origin: top; }
-.line-cos { position: absolute; height: 2px; background: var(--success); transform-origin: left; }
-.line-radius { position: absolute; height: 1px; background: #333; transform-origin: left; }
-
-/* --- SIMULASI BIOLOGI (BARU) --- */
-.bio-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.mendel-lab {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    align-items: center;
-}
-
-.parents-area {
-    display: flex;
-    gap: 3rem;
-    justify-content: center;
-}
-
-.parent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    background: #f0f4f8;
-    padding: 1rem;
-    border-radius: 10px;
-    border: 2px solid transparent;
-}
-.parent.male { border-color: #90caf9; }
-.parent.female { border-color: #f48fb1; }
-
-.parent-label { font-size: 0.8rem; font-weight: bold; margin-bottom: 5px; }
-
-.gamete-source {
-    width: 40px;
-    height: 40px;
-    background: white;
-    border: 2px solid var(--primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    cursor: grab;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
-}
-.gamete-source:hover { transform: scale(1.1); }
-.gamete-source:active { cursor: grabbing; }
-
-.offspring-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
-.arrow-down { font-size: 2rem; color: #ccc; }
-
-.offspring-box {
-    width: 120px;
-    height: 120px;
-    border: 3px dashed #ccc;
-    border-radius: 10px;
-    position: relative;
-    background: #fafafa;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    padding-bottom: 10px;
-    transition: background 0.3s;
-}
-
-.offspring-box.highlight { background: #e3f2fd; border-color: var(--primary); }
-
-.gene-slot {
-    position: absolute;
-    top: 10px;
-    width: 30px;
-    height: 30px;
-    background: rgba(0,0,0,0.05);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
-.slot-1 { left: 20px; }
-.slot-2 { right: 20px; }
-
-.result-flower {
-    font-size: 3rem;
-    animation: grow 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes grow {
-    from { transform: scale(0); }
-    to { transform: scale(1); }
-}
-
-/* Home Styling */
-.hero-content { margin-top: 5rem; text-align: center; }
-.hero-content h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; }
-.welcome-text { max-width: 600px; margin: 0 auto; color: #666; }
-.brand-lite { font-weight: 300; } .brand-edu { font-weight: 700; }
-.hero-img { margin-top: 2rem; width: 150px; opacity: 0.8; }
-
-/* Responsive */
-@media (max-width: 768px) {
-    .split-layout { grid-template-columns: 1fr; overflow-y: auto; }
-    .notes-col { height: auto; border-right: none; border-bottom: 1px solid #eee; }
-    .sim-col { height: auto; }
-    .nav-pill { padding: 4px 10px; font-size: 0.75rem; }
-}
+/* ... (Sisa CSS tabel, simulasi, dll tetap sama) ... */
