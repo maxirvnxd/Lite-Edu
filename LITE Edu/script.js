@@ -62,52 +62,42 @@ if(probe) {
     document.addEventListener('mouseup', endHandler);
     document.addEventListener('touchend', endHandler);
 
-    // MOVE DRAG
+   // MOVE DRAG (Diperbarui untuk alat baru)
     const moveHandler = (clientX, clientY) => {
         if(!isDrag) return;
 
         const container = document.querySelector('.lab-bench');
         const contRect = container.getBoundingClientRect();
 
-        // Pindahkan Probe
-        // Kita kurangi dengan contRect.left agar posisinya relatif terhadap container
-        // Kita kurangi offsetX agar mouse tetap di posisi yang sama pada alat saat digeser
         let newLeft = clientX - contRect.left - offsetX;
         let newTop = clientY - contRect.top - offsetY;
+
+        // Batasi agar tidak keluar area (Opsional)
+        // if(newTop < 0) newTop = 0;
 
         probe.style.left = newLeft + 'px';
         probe.style.top = newTop + 'px';
 
-        // DETEKSI COLLISION (Ujung Tangkai)
-        // Ujung tangkai kira-kira ada di:
-        // X: newLeft + (lebar probe / 2)
-        // Y: newTop + (tinggi screen + tinggi stick) ~ sekitar 130px dari atas probe
-        const probeWidth = 70;
-        const probeTipY_Offset = 130; // Jarak dari atas alat ke ujung stick
+        // DETEKSI COLLISION (Ujung Sensor)
+        // Total tinggi alat baru kira-kira:
+        // Head (70px) + Stick (140px) + Tip (20px) = 230px
+        // Kita set titik deteksi di ujung paling bawah
+        
+        const probeTotalHeight = 220; // Estimasi jarak dari atas alat ke ujung hitam
+        const probeCenterWidth = 45;  // Setengah lebar alat (90px/2)
 
-        const tipX = clientX; // Posisi X relatif layar (untuk bandingkan dengan getBoundingClientRect beaker)
-        const tipY = contRect.top + newTop + probeTipY_Offset; // Posisi Y absolut layar ujung stick
+        // Koordinat Ujung Sensor (Relatif terhadap layar viewport)
+        const tipX = contRect.left + newLeft + probeCenterWidth; 
+        const tipY = contRect.top + newTop + probeTotalHeight;
 
         checkPh(tipX, tipY);
     };
 
-    document.addEventListener('mousemove', (e) => {
-        if(isDrag) { e.preventDefault(); moveHandler(e.clientX, e.clientY); }
-    });
-    
-    document.addEventListener('touchmove', (e) => {
-        if(isDrag) {
-            e.preventDefault(); // Stop scrolling
-            const t = e.touches[0];
-            moveHandler(t.clientX, t.clientY);
-        }
-    }, {passive: false});
-}
+// ... (Event listener mousemove/touchmove tetap sama) ...
 
 function checkPh(tipX, tipY) {
     let hit = false;
     
-    // Reset Tampilan Default
     const screen = document.getElementById('probe-screen');
     const infoTitle = document.getElementById('ph-info-title');
     const infoDesc = document.getElementById('ph-info-desc');
@@ -116,41 +106,35 @@ function checkPh(tipX, tipY) {
     document.querySelectorAll('.beaker').forEach(b => {
         const r = b.getBoundingClientRect();
         
-        // Logika Deteksi:
-        // Apakah Ujung Stick (tipX, tipY) ada di dalam kotak Beaker?
-        // Kita beri toleransi sedikit agar tidak harus pas banget
-        if(tipX >= r.left && tipX <= r.right && tipY >= r.top && tipY <= r.bottom) {
+        // Logika Deteksi: Ujung sensor harus masuk ke dalam area CAIRAN (bukan cuma gelas)
+        // Cairan mulai dari bagian bawah gelas sampai sekitar 35% dari atas gelas
+        // Kita pakai r.bottom (bawah gelas) dan r.top + 30 (permukaan air)
+        
+        const liquidTop = r.top + (r.height * 0.35); // Permukaan air
+
+        if(tipX >= r.left && tipX <= r.right && tipY >= liquidTop && tipY <= r.bottom) {
             hit = true;
             
-            // 1. Update Layar pH
+            // Tampilkan pH
             screen.textContent = b.dataset.ph;
             
-            // 2. Update Info Atas
-            infoTitle.textContent = "Larutan: " + b.dataset.name;
-            infoTitle.style.color = varToHex(b.dataset.ph); // Opsional: ubah warna teks sesuai pH
+            // Info Update
+            infoTitle.textContent = "Terdeteksi: " + b.dataset.name;
             infoDesc.textContent = b.dataset.desc;
 
-            // 3. Update Penjelasan Tengah (REASONING)
-            reasoning.innerHTML = `<span style="color:#333; font-weight:bold;">Mengapa pH ${b.dataset.ph}?</span><br>${b.dataset.reason}`;
-            reasoning.style.borderColor = varToHex(b.dataset.ph);
+            // Reasoning Update
+            reasoning.innerHTML = `<span style="color:#d32f2f; font-weight:bold;">Analisis pH ${b.dataset.ph}:</span> ${b.dataset.reason}`;
+            reasoning.style.border = `2px solid ${varToHex(b.dataset.ph)}`;
             reasoning.style.background = "#fff";
         }
     });
 
     if(!hit) {
         screen.textContent = "--";
-        // Jangan reset teks Reasoning sepenuhnya agar user masih bisa baca sebentar
-        // Tapi kita kembalikan style default
-        reasoning.style.borderColor = "var(--primary)";
-        reasoning.style.background = "#f0f7ff";
+        // Reset info jika diangkat
+        // reasoning.innerHTML = "<em>Celupkan ujung alat ke cairan...</em>"; 
+        // (Opsional: biarkan tulisan terakhir agar bisa dibaca, atau reset)
     }
-}
-
-// Fungsi bantu warna (Hanya hiasan tambahan)
-function varToHex(ph) {
-    if(ph < 7) return "#e53935"; // Merah
-    if(ph == 7) return "#1e88e5"; // Biru
-    return "#43a047"; // Hijau
 }
 
 // === FISIKA (Newton) ===
@@ -377,5 +361,6 @@ window.resetBio = function() {
     document.querySelector('.flower-res').classList.add('hidden');
     document.getElementById('bio-info').innerHTML = `<h4>Mulai Lagi</h4><p>Pilih gamet, lalu klik kotak anak.</p>`;
 };
+
 
 
