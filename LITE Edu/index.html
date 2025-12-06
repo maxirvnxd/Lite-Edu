@@ -125,6 +125,7 @@
 
                 <div class="panel-right glass-panel">
                     <div class="panel-header">🧪 Simulasi</div>
+                    
                     <div id="kimia-sim-menu" class="menu-container">
                         <div class="menu-card sim-card" onclick="openContent('kimia-sim', 'kimia-sim-menu')">
                             <div class="icon-box">💧</div>
@@ -134,28 +135,68 @@
                             </div>
                         </div>
                     </div>
+
                     <div id="kimia-sim" class="content-container hidden">
                         <button class="btn-back" onclick="closeContent('kimia-sim', 'kimia-sim-menu')">⬅ Kembali</button>
+                        
                         <div class="sim-wrapper">
                             <div class="info-bubble">
                                 <h4 id="ph-info-title">Siap Mengukur?</h4>
-                                <p id="ph-info-desc">Tarik alat ke dalam gelas.</p>
+                                <p id="ph-info-desc">Geser ujung tangkai pH meter ke dalam cairan.</p>
                             </div>
+                            
                             <div class="lab-bench">
                                 <div id="ph-probe" class="draggable-tool">
                                     <div class="screen" id="probe-screen">--</div>
                                     <div class="stick"></div>
+                                    <div class="sensor-tip"></div>
                                 </div>
+
+                                <div id="chem-reasoning" class="reasoning-box">
+                                    <em>Data ilmiah akan muncul di sini...</em>
+                                </div>
+
                                 <div class="beaker-group">
-                                    <div class="beaker" data-ph="2" data-name="Lemon" data-desc="Asam Kuat!"><div class="liquid l-lemon"></div></div>
-                                    <div class="beaker" data-ph="7" data-name="Air" data-desc="Netral."><div class="liquid l-water"></div></div>
-                                    <div class="beaker" data-ph="13" data-name="Pemutih" data-desc="Basa Kuat!"><div class="liquid l-bleach"></div></div>
+                                    <div class="beaker" data-ph="0" data-name="Asam Baterai" data-desc="Sangat Berbahaya! Korosif." 
+                                         data-reason="Mengandung Asam Sulfat (H₂SO₄) pekat yang terionisasi sempurna melepaskan banyak ion H⁺.">
+                                        <div class="liquid l-battery"></div>
+                                        <span class="beaker-lbl">Baterai</span>
+                                    </div>
+                                    
+                                    <div class="beaker" data-ph="2" data-name="Jus Lemon" data-desc="Asam, aman dikonsumsi." 
+                                         data-reason="Mengandung Asam Sitrat (C₆H₈O₇), asam organik lemah yang terionisasi sebagian.">
+                                        <div class="liquid l-lemon"></div>
+                                        <span class="beaker-lbl">Lemon</span>
+                                    </div>
+
+                                    <div class="beaker" data-ph="4" data-name="Jus Tomat" data-desc="Asam Lemah." 
+                                         data-reason="Mengandung berbagai asam organik seperti asam malat dan askorbat dalam konsentrasi rendah.">
+                                        <div class="liquid l-tomato"></div>
+                                        <span class="beaker-lbl">Tomat</span>
+                                    </div>
+
+                                    <div class="beaker" data-ph="7" data-name="Air Murni" data-desc="Netral." 
+                                         data-reason="Jumlah ion H⁺ sama persis dengan ion OH⁻. pH 7 adalah titik keseimbangan air.">
+                                        <div class="liquid l-water"></div>
+                                        <span class="beaker-lbl">Air</span>
+                                    </div>
+                                    
+                                    <div class="beaker" data-ph="10" data-name="Air Sabun" data-desc="Basa Lemah, licin." 
+                                         data-reason="Mengandung garam dari asam lemak yang terhidrolisis menghasilkan ion OH⁻.">
+                                        <div class="liquid l-soap"></div>
+                                        <span class="beaker-lbl">Sabun</span>
+                                    </div>
+
+                                    <div class="beaker" data-ph="13" data-name="Pemutih" data-desc="Basa Kuat! Iritasi kulit." 
+                                         data-reason="Mengandung Natrium Hipoklorit (NaClO) yang bersifat oksidator kuat dan sangat basa.">
+                                        <div class="liquid l-bleach"></div>
+                                        <span class="beaker-lbl">Pemutih</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
 
         <section id="fisika-view" class="view hidden">
