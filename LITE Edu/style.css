@@ -364,15 +364,13 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
 
 /* --- FOOTER MODERN STYLE --- */
 .app-footer {
-    /* Gradient Biru ke Ungu (Modern Style) */
+    /* Gradient Biru ke Ungu */
     background: linear-gradient(135deg, var(--primary), #6a4bc2);
     color: white;
-    padding: 40px 20px;
-    margin-top: auto; /* Mendorong footer ke paling bawah */
+    padding: 40px 20px 20px 20px; /* Padding bawah lebih kecil */
+    margin-top: auto; 
     position: relative;
     z-index: 10;
-    
-    /* Membuat sudut atas melengkung estetik */
     border-radius: 50px 50px 0 0;
     box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
 }
@@ -382,50 +380,82 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    /* Tampilan PC: Rata Kanan */
-    align-items: flex-end; 
-    padding-right: 20px;
 }
 
-.footer-logo {
-    height: 90px; /* Ukuran logo agak besar */
-    width: auto;
-    margin-bottom: 10px;
-    /* Memberikan efek bayangan putih halus agar logo pop-up di background biru */
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+/* --- BAGIAN ATAS (LOGO) --- */
+.footer-top {
+    display: flex;
+    justify-content: flex-start; /* PC: Logo Rata Kiri */
+    margin-bottom: 20px;
+    padding-left: 10px; /* Sedikit jarak dari pinggir */
+}
+
+.logo-box {
+    background: white;
+    padding: 10px 20px;
+    border-radius: 20px; /* Rounded Rectangle */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Bayangan halus */
     transition: transform 0.3s ease;
 }
 
-.footer-logo:hover {
-    transform: scale(1.05) rotate(-2deg);
+.logo-box:hover {
+    transform: scale(1.03);
+}
+
+.footer-logo {
+    height: 60px; /* Ukuran logo di dalam kotak */
+    width: auto;
+    display: block;
+}
+
+/* --- BAGIAN BAWAH (GARIS & COPYRIGHT) --- */
+.footer-bottom {
+    /* Garis Putih Tipis & Estetik (Pakai opacity agar tidak kaku) */
+    border-top: 1px solid rgba(255, 255, 255, 0.3); 
+    padding-top: 20px;
+    text-align: center; /* PC: Copyright Rata Tengah */
+    width: 100%;
 }
 
 .copyright {
-    font-size: 0.95rem;
-    font-weight: 500;
-    opacity: 0.9;
-    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    opacity: 0.8;
+    letter-spacing: 1px;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* --- RESPONSIVE FOOTER (ANDROID/IOS) --- */
 @media (max-width: 768px) {
     .app-footer {
-        padding: 30px 15px;
-        border-radius: 30px 30px 0 0; /* Lengkungan lebih kecil di HP */
+        padding: 30px 15px 15px 15px;
+        border-radius: 30px 30px 0 0;
     }
 
-    .footer-container {
-        /* Tampilan HP: Rata Tengah */
-        align-items: center;
-        padding-right: 0;
-        text-align: center;
+    .footer-top {
+        /* HP: Logo jadi Rata Tengah */
+        justify-content: center;
+        padding-left: 0;
+    }
+
+    .logo-box {
+        padding: 8px 15px;
+        border-radius: 15px;
     }
 
     .footer-logo {
-        height: 80px; /* Sesuaikan sedikit untuk HP */
+        height: 50px; /* Sedikit lebih kecil di HP */
+    }
+
+    .footer-bottom {
+        margin-top: 10px;
+        padding-top: 15px;
     }
 
     .copyright {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 }
