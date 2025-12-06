@@ -361,3 +361,71 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     .mendel-area { width: 100%; }
     .parents { gap: 10px; }
 }
+
+/* --- FOOTER MODERN STYLE --- */
+.app-footer {
+    /* Gradient Biru ke Ungu (Modern Style) */
+    background: linear-gradient(135deg, var(--primary), #6a4bc2);
+    color: white;
+    padding: 40px 20px;
+    margin-top: auto; /* Mendorong footer ke paling bawah */
+    position: relative;
+    z-index: 10;
+    
+    /* Membuat sudut atas melengkung estetik */
+    border-radius: 50px 50px 0 0;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    /* Tampilan PC: Rata Kanan */
+    align-items: flex-end; 
+    padding-right: 20px;
+}
+
+.footer-logo {
+    height: 90px; /* Ukuran logo agak besar */
+    width: auto;
+    margin-bottom: 10px;
+    /* Memberikan efek bayangan putih halus agar logo pop-up di background biru */
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+    transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+    transform: scale(1.05) rotate(-2deg);
+}
+
+.copyright {
+    font-size: 0.95rem;
+    font-weight: 500;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+}
+
+/* --- RESPONSIVE FOOTER (ANDROID/IOS) --- */
+@media (max-width: 768px) {
+    .app-footer {
+        padding: 30px 15px;
+        border-radius: 30px 30px 0 0; /* Lengkungan lebih kecil di HP */
+    }
+
+    .footer-container {
+        /* Tampilan HP: Rata Tengah */
+        align-items: center;
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .footer-logo {
+        height: 80px; /* Sesuaikan sedikit untuk HP */
+    }
+
+    .copyright {
+        font-size: 0.85rem;
+    }
+}
