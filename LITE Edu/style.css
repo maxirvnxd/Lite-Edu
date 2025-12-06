@@ -31,7 +31,7 @@ body {
 .shape-1 { width: 400px; height: 400px; background: #b3d1ff; top: -100px; left: -100px; }
 .shape-2 { width: 300px; height: 300px; background: #ffe0b2; bottom: -50px; right: -50px; }
 
-/* --- GLASS NAVIGASI (UPDATED) --- */
+/* --- GLASS NAVIGASI --- */
 .glass-nav {
     display: flex;
     justify-content: space-between;
@@ -75,11 +75,11 @@ body {
     box-shadow: 0 4px 10px rgba(75, 133, 231, 0.3);
 }
 
-/* REVISI: Grup Kanan (Home + Logo) */
+/* Kanan: Home + Logo */
 .nav-right {
     display: flex;
     align-items: center;
-    gap: 15px; /* Jarak antara Home dan Logo */
+    gap: 15px; 
 }
 
 .home-btn {
@@ -99,7 +99,7 @@ body {
 .home-btn:hover { transform: scale(1.1); background: var(--primary); color: white; }
 
 .brand-logo { 
-    height: 60px; /* Diperbesar sedikit sesuai request */
+    height: 75px; /* LOGO DIPERBESAR SEDIKIT (Tadi 60px) */
     width: auto;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
@@ -116,7 +116,7 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     to { opacity: 1; transform: scale(1); }
 }
 
-/* HOME STYLING (UPDATED) */
+/* HOME STYLING */
 .hero-card {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
@@ -139,14 +139,13 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     -webkit-text-fill-color: transparent;
 }
 
-/* Ikon HP Mengambang di Tengah */
 .hero-image-container {
     margin-top: 3rem;
     display: flex;
     justify-content: center;
 }
 .hero-icon { 
-    width: 220px; /* Diperbesar */
+    width: 250px; /* ICON DIPERBESAR SEDIKIT LAGI */
     filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
 }
 .floating { animation: float 3s ease-in-out infinite; }
@@ -184,41 +183,7 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     padding-bottom: 10px;
 }
 
-/* MENU CARDS */
-.menu-container { display: flex; flex-direction: column; gap: 15px; }
-
-.menu-card {
-    background: white;
-    padding: 20px;
-    border-radius: 18px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.05);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-}
-
-.menu-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(75, 133, 231, 0.15);
-    border-color: var(--primary);
-}
-
-.icon-box {
-    width: 50px; height: 50px;
-    background: #e3f2fd;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
-}
-.sim-card .icon-box { background: #e8f5e9; }
-
-.menu-text h4 { margin-bottom: 3px; color: var(--dark-blue); }
-.menu-text p { font-size: 0.85rem; color: #777; }
-
-/* CONTENT & MATERI STYLES */
+/* CONTENT STYLES */
 .btn-back {
     background: white;
     border: none;
@@ -242,8 +207,36 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     line-height: 1.7;
 }
 
-.scroll-content h3 { color: var(--primary); margin-bottom: 1rem; }
-.scroll-content h4 { color: var(--dark-blue); margin-top: 1.5rem; margin-bottom: 0.5rem; border-left: 4px solid var(--primary); padding-left: 10px; }
+/* FORMULA & MATH STYLES */
+.formula-text {
+    font-family: 'Times New Roman', Times, serif; /* Font Matematika */
+    font-size: 1.1rem;
+    background: #eef;
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: inline-block;
+    color: #222;
+}
+
+.math-display {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.chem-struct { 
+    font-family: 'Courier New', monospace; 
+    background: #fafafa; 
+    padding: 15px; 
+    border-radius: 8px; 
+    border: 1px dashed #ccc; 
+    text-align: center; 
+    margin: 10px 0; 
+    font-weight: bold; 
+    font-size: 1.1rem; 
+    color: #333;
+}
 
 .modern-box {
     background: white;
@@ -253,7 +246,6 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     border: 1px solid #eee;
     box-shadow: 0 5px 15px rgba(0,0,0,0.03);
 }
-
 .modern-box.info { border-left: 5px solid var(--primary); background: #fdfdfd; }
 
 .modern-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; margin-top: 10px; font-size: 0.9rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
@@ -261,9 +253,24 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
 .modern-table td { padding: 10px; border-bottom: 1px solid #eee; }
 .modern-table tr:nth-child(even) { background: #f9f9f9; }
 
-/* Chemical & Math Formulas */
-.formula-text { font-family: 'Courier New', monospace; background: #eee; padding: 5px 10px; border-radius: 5px; display: inline-block; font-weight: bold; color: #333; }
-.chem-struct { font-family: 'Courier New', monospace; background: #fafafa; padding: 15px; border-radius: 8px; border: 1px dashed #ccc; text-align: center; margin: 10px 0; font-weight: bold; font-size: 1.1rem; }
+/* Menu Cards */
+.menu-container { display: flex; flex-direction: column; gap: 15px; }
+.menu-card {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+.menu-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(75, 133, 231, 0.15); border-color: var(--primary); }
+.icon-box { width: 50px; height: 50px; background: #e3f2fd; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+.sim-card .icon-box { background: #e8f5e9; }
+.menu-text h4 { margin-bottom: 3px; color: var(--dark-blue); }
 
 /* --- SIMULATION ELEMENTS --- */
 .sim-wrapper { background: white; border-radius: 20px; padding: 20px; height: 100%; display: flex; flex-direction: column; }
@@ -311,5 +318,5 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
 @media (max-width: 768px) {
     .split-layout { grid-template-columns: 1fr; height: auto; }
     .glass-nav { flex-direction: column; gap: 10px; }
-    .nav-right { width: 100%; justify-content: center; }
+    .nav-right { width: 100%; justify-content: center; margin-top: 10px; }
 }
