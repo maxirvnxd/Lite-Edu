@@ -1,3 +1,6 @@
+/* =========================================
+   1. VARIABEL & RESET
+   ========================================= */
 :root {
     --primary: #4b85e7;
     --primary-light: #6a9df5;
@@ -32,13 +35,16 @@ body {
 .shape-1 { width: 400px; height: 400px; background: #b3d1ff; top: -100px; left: -100px; }
 .shape-2 { width: 300px; height: 300px; background: #ffe0b2; bottom: -50px; right: -50px; }
 
-/* --- GLASS NAVIGASI --- */
+
+/* =========================================
+   2. NAVIGASI (GLASSMORPHISM)
+   ========================================= */
 .glass-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    background: rgba(255, 255, 255, 0.8); /* Lebih solid sedikit untuk mobile */
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.8);
@@ -51,8 +57,8 @@ body {
 .nav-left { 
     display: flex; 
     align-items: center; 
-    overflow: hidden; /* Mencegah overflow container */
-    flex: 1; /* Agar mengambil sisa ruang */
+    overflow: hidden; 
+    flex: 1; 
     margin-right: 15px;
 }
 
@@ -75,7 +81,7 @@ body {
     color: var(--primary);
     cursor: pointer;
     transition: all 0.3s ease;
-    white-space: nowrap; /* Mencegah teks turun baris */
+    white-space: nowrap;
 }
 
 .nav-pill:hover {
@@ -92,7 +98,7 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    flex-shrink: 0; /* Agar logo tidak gepeng */
+    flex-shrink: 0;
 }
 
 .home-btn {
@@ -117,7 +123,10 @@ body {
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
 
-/* --- MAIN LAYOUT --- */
+
+/* =========================================
+   3. LAYOUT UTAMA & UMUM
+   ========================================= */
 main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
 
 .view { height: 100%; display: none; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
@@ -129,7 +138,7 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     to { opacity: 1; transform: scale(1); }
 }
 
-/* HERO */
+/* HERO SECTION */
 .hero-card {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
@@ -156,23 +165,57 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
 .floating { animation: float 3s ease-in-out infinite; }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
-/* PERPUSTAKAAN STYLES (FIXED FONT) */
+/* SPLIT LAYOUT (Kiri Kanan) */
+.split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; height: 80vh; }
+.glass-panel {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px);
+    border-radius: 25px;
+    border: 1px solid white;
+    box-shadow: var(--shadow-soft);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+.panel-header { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--primary); margin-bottom: 20px; border-bottom: 2px solid rgba(75, 133, 231, 0.2); padding-bottom: 10px; }
+
+/* KONTEN & SCROLL */
+.btn-back { background: white; border: none; padding: 8px 15px; border-radius: 20px; color: #666; font-weight: 600; cursor: pointer; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: all 0.2s; }
+.btn-back:hover { background: var(--primary); color: white; }
+.content-container { height: 100%; display: flex; flex-direction: column; }
+.scroll-content { overflow-y: auto; padding-right: 10px; flex: 1; font-size: 0.95rem; line-height: 1.7; }
+
+/* BOX & TABLES */
+.modern-box { background: white; padding: 15px; border-radius: 15px; margin: 15px 0; border: 1px solid #eee; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+.modern-box.info { border-left: 5px solid var(--primary); background: #fdfdfd; }
+.modern-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; margin-top: 10px; font-size: 0.9rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.modern-table th { background: var(--primary); color: white; padding: 12px; text-align: left; }
+.modern-table td { padding: 10px; border-bottom: 1px solid #eee; }
+.modern-table tr:nth-child(even) { background: #f9f9f9; }
+
+.formula-text { font-family: 'Times New Roman', Times, serif; font-size: 1.1rem; background: #eef; padding: 8px 12px; border-radius: 8px; display: inline-block; color: #222; }
+.math-display { display: block; text-align: center; margin: 10px 0; font-weight: bold; }
+.chem-struct { font-family: 'Courier New', monospace; background: #fafafa; padding: 15px; border-radius: 8px; border: 1px dashed #ccc; text-align: center; margin: 10px 0; font-weight: bold; font-size: 1.1rem; color: #333; }
+
+/* MENU CARDS */
+.menu-container { display: flex; flex-direction: column; gap: 15px; }
+.menu-card { background: white; padding: 20px; border-radius: 18px; display: flex; align-items: center; gap: 15px; cursor: pointer; transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+.menu-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(75, 133, 231, 0.15); border-color: var(--primary); }
+.icon-box { width: 50px; height: 50px; background: #e3f2fd; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+.sim-card .icon-box { background: #e8f5e9; }
+.menu-text h4 { margin-bottom: 3px; color: var(--dark-blue); }
+
+
+/* =========================================
+   4. PERPUSTAKAAN DIGITAL
+   ========================================= */
 .library-panel {
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 75vh;
-}
-.panel-header-large {
-    font-size: clamp(1.2rem, 5vw, 2rem); /* Font responsif: min 1.2rem, max 2rem */
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--accent-purple);
-    margin-bottom: 1rem;
-    text-align: center;
-    padding: 0 10px;
-    line-height: 1.3;
 }
 .library-grid {
     display: grid;
@@ -201,127 +244,80 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
 .lib-card h3 { font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--primary); }
 .lib-card p { font-size: 0.9rem; color: #777; }
 
-/* SPLIT LAYOUT */
-.split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; height: 80vh; }
-.glass-panel {
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(16px);
-    border-radius: 25px;
-    border: 1px solid white;
-    box-shadow: var(--shadow-soft);
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transition: transform 0.3s;
-}
-.panel-header { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--primary); margin-bottom: 20px; border-bottom: 2px solid rgba(75, 133, 231, 0.2); padding-bottom: 10px; }
 
-/* CONTENT & SIMULATION */
-.btn-back { background: white; border: none; padding: 8px 15px; border-radius: 20px; color: #666; font-weight: 600; cursor: pointer; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: all 0.2s; }
-.btn-back:hover { background: var(--primary); color: white; }
-.content-container { height: 100%; display: flex; flex-direction: column; }
-.scroll-content { overflow-y: auto; padding-right: 10px; flex: 1; font-size: 0.95rem; line-height: 1.7; }
-.modern-box { background: white; padding: 15px; border-radius: 15px; margin: 15px 0; border: 1px solid #eee; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
-.modern-box.info { border-left: 5px solid var(--primary); background: #fdfdfd; }
-.modern-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; margin-top: 10px; font-size: 0.9rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-.modern-table th { background: var(--primary); color: white; padding: 12px; text-align: left; }
-.modern-table td { padding: 10px; border-bottom: 1px solid #eee; }
-.modern-table tr:nth-child(even) { background: #f9f9f9; }
-
-.formula-text { font-family: 'Times New Roman', Times, serif; font-size: 1.1rem; background: #eef; padding: 8px 12px; border-radius: 8px; display: inline-block; color: #222; }
-.math-display { display: block; text-align: center; margin: 10px 0; font-weight: bold; }
-.chem-struct { font-family: 'Courier New', monospace; background: #fafafa; padding: 15px; border-radius: 8px; border: 1px dashed #ccc; text-align: center; margin: 10px 0; font-weight: bold; font-size: 1.1rem; color: #333; }
-
-/* MENU CARDS */
-.menu-container { display: flex; flex-direction: column; gap: 15px; }
-.menu-card { background: white; padding: 20px; border-radius: 18px; display: flex; align-items: center; gap: 15px; cursor: pointer; transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
-.menu-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(75, 133, 231, 0.15); border-color: var(--primary); }
-.icon-box { width: 50px; height: 50px; background: #e3f2fd; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
-.sim-card .icon-box { background: #e8f5e9; }
-.menu-text h4 { margin-bottom: 3px; color: var(--dark-blue); }
-
-/* SIMULATION ELEMENTS */
+/* =========================================
+   5. SIMULASI & INTERAKSI
+   ========================================= */
 .sim-wrapper { background: white; border-radius: 20px; padding: 20px; height: 100%; display: flex; flex-direction: column; }
+.sim-wrapper.scroll-content { overflow-y: auto; justify-content: flex-start; }
 .info-bubble { background: #fff8e1; padding: 15px; border-radius: 12px; border: 1px dashed #ffd54f; text-align: center; margin-bottom: 15px; }
 
-/* --- CSS SIMULASI KIMIA (VISUAL REVISI) --- */
-
-/* 1. Layout Meja Lab */
+/* --- A. KIMIA (pH Meter) --- */
 .lab-bench { 
     position: relative; 
-    min-height: 350px; /* Ruang lebih tinggi untuk alat */
+    min-height: 350px; 
     margin-top: auto; 
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Isi mulai dari bawah */
+    justify-content: flex-end; 
 }
 
-/* 2. ALAT pH METER (Design Baru yang Utuh) */
+/* Alat pH Meter */
 .draggable-tool { 
     position: absolute; 
     left: 50%; 
-    top: 10px; /* Mulai dari atas */
+    top: 10px; 
     transform: translateX(-50%);
     cursor: grab; 
-    z-index: 100; /* Pastikan di atas gelas */
+    z-index: 100;
     width: 90px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2)); /* Efek bayangan nyata */
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2)); 
 }
-
 .draggable-tool:active { cursor: grabbing; }
 
-/* Kepala Alat */
+/* Komponen Alat */
 .ph-head {
     width: 100%;
-    background: #fbc02d; /* Warna Kuning Khas Alat Lab */
+    background: #fbc02d;
     border-radius: 12px 12px 4px 4px;
     padding: 10px;
     text-align: center;
     border: 2px solid #e65100;
 }
-
 .screen-border {
     background: #333;
     padding: 4px;
     border-radius: 4px;
     margin-bottom: 5px;
 }
-
 .screen { 
-    background: #4caf50; /* Layar Hijau Digital */
+    background: #4caf50;
     color: #000; 
     font-family: 'Courier New', monospace; 
     font-weight: bold; 
     font-size: 1.2rem;
     padding: 2px;
 }
-
 .brand-text { font-size: 0.7rem; font-weight: bold; color: #b71c1c; text-transform: uppercase; }
-
-/* Tangkai Alat */
 .ph-stick { 
     width: 12px; 
-    height: 140px; /* Tangkai Panjang */
-    background: linear-gradient(90deg, #ccc, #eee, #ccc); /* Efek Logam/Plastik */
+    height: 140px; 
+    background: linear-gradient(90deg, #ccc, #eee, #ccc); 
     border-left: 1px solid #999;
     border-right: 1px solid #999;
 }
-
-/* Ujung Sensor */
 .ph-tip {
     width: 16px;
     height: 20px;
-    background: #222; /* Sensor Hitam */
+    background: #222; 
     border-radius: 0 0 8px 8px;
     margin-top: -2px;
 }
 
-
-/* 3. WADAH & CAIRAN NYATA */
+/* Wadah & Cairan */
 .beaker-group { 
     display: flex; 
     gap: 15px; 
@@ -330,42 +326,37 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     margin-top: 20px;
     padding-bottom: 30px; 
 }
-
 .beaker { 
     width: 65px; 
     height: 90px; 
-    border: 2px solid #aaa; /* Kaca Gelas */
+    border: 2px solid #aaa; 
     border-top: none; 
     position: relative; 
     border-radius: 0 0 10px 10px; 
-    background: rgba(255, 255, 255, 0.2); /* Efek Kaca */
+    background: rgba(255, 255, 255, 0.2); 
     box-shadow: inset 0 -5px 10px rgba(0,0,0,0.05);
 }
-
-/* Cairan di dalam gelas */
 .liquid { 
     position: absolute; 
-    bottom: 2px; left: 2px; right: 2px; /* Ada jarak dikit dari gelas */
-    height: 65%; /* Terisi 65% */
+    bottom: 2px; left: 2px; right: 2px; 
+    height: 65%; 
     border-radius: 0 0 8px 8px;
-    opacity: 0.85; /* Sedikit transparan tapi warnanya kuat */
+    opacity: 0.85; 
     transition: all 0.3s;
 }
-/* Permukaan air */
 .liquid::before {
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 5px;
     background: rgba(255,255,255,0.4);
 }
-
-/* Warna-warna Cairan Realistis */
-.l-battery { background: #d50000; } /* Merah Pekat */
-.l-lemon { background: #ffea00; }   /* Kuning Cerah */
-.l-tomato { background: #ff5722; }  /* Merah Tomat */
-.l-water { background: #81d4fa; }   /* Biru Air */
-.l-soap { background: #a5d6a7; }    /* Hijau Sabun */
-.l-bleach { background: #e0e0e0; }  /* Putih Keruh */
+/* Warna Cairan */
+.l-battery { background: #d50000; } 
+.l-lemon { background: #ffea00; }   
+.l-tomato { background: #ff5722; }  
+.l-water { background: #81d4fa; }   
+.l-soap { background: #a5d6a7; }    
+.l-bleach { background: #e0e0e0; }  
 
 .beaker-lbl {
     position: absolute;
@@ -377,8 +368,6 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     white-space: nowrap;
     color: #444;
 }
-
-/* Penjelasan Tengah */
 .reasoning-box {
     text-align: center;
     min-height: 60px;
@@ -395,50 +384,37 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-/* Fisika & Mtk */
+/* --- B. FISIKA (Newton) --- */
 .controls button { padding: 8px 15px; margin: 5px; border: none; border-radius: 8px; cursor: pointer; }
 .btn-opt.active { background: var(--primary); color: white; }
 .btn-action { background: #ff7043; color: white; font-weight: bold; }
-/* --- UPDATE CSS TRACK FISIKA (AGAR TIDAK HILANG) --- */
 .track {
     height: 80px;
-    min-height: 80px; /* Pastikan tinggi minimal selalu 80px */
+    min-height: 80px; 
     background: #f5f5f5;
     border-bottom: 4px solid #aaa;
     position: relative;
     border-radius: 5px;
     margin-top: 20px;
-    
-    /* INI KUNCINYA: */
-    flex-shrink: 0; /* Mencegah track tergencet saat penjelasan muncul */
+    flex-shrink: 0; 
     width: 100%;
 }
-.box { width: 60px; height: 60px; background: var(--primary); position: absolute; bottom: 0; left: 10px; border-radius: 10px; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-/* Tambahan untuk scroll area di dalam simulasi jika konten panjang */
-.sim-wrapper.scroll-content {
-    overflow-y: auto;
-    justify-content: flex-start; /* Agar konten mulai dari atas */
-}
+.box { width: 60px; height: 60px; background: var(--primary); position: absolute; bottom: 0; left: 10px; border-radius: 10px; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; will-change: left; }
 
-/* Memastikan transisi animasi fisika smooth */
-.box {
-    will-change: left;
-}
-
-/* MTK - Trigonometri Visual */
+/* --- C. MATEMATIKA (Trigonometri) --- */
 .math-layout { display: flex; align-items: center; flex-direction: column; width: 100%; }
 .circle-area {
     width: 100%;
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
-    touch-action: none; /* Mencegah scroll layar saat main simulasi */
+    touch-action: none;
 }
 #unit-circle { width: 220px; height: 220px; border: 2px solid #ccc; border-radius: 50%; position: relative; background: radial-gradient(circle, #fff 0%, #f9f9f9 100%); }
 .axis { position: absolute; background: #ddd; }
 .x { width: 100%; height: 1px; top: 50%; } .y { height: 100%; width: 1px; left: 50%; }
 #dot { 
-    width: 24px; height: 24px; /* Dot diperbesar agar mudah disentuh */
+    width: 24px; height: 24px; 
     background: var(--primary); 
     border-radius: 50%; 
     position: absolute; 
@@ -465,7 +441,7 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     width: 100%;
 }
 
-/* Biologi */
+/* --- D. BIOLOGI (Genetika) --- */
 .mendel-area { display: flex; flex-direction: column; align-items: center; gap: 20px; }
 .parents { display: flex; gap: 30px; }
 .p-card { background: #f0f7ff; padding: 10px; border-radius: 12px; text-align: center; }
@@ -475,62 +451,14 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
 .s1 { left: 10px; } .s2 { right: 10px; }
 .flower-res { font-size: 3rem; animation: popIn 0.5s; }
 
-/* --- RESPONSIVE MOBILE (ANDROID/IOS) --- */
-@media (max-width: 768px) {
-    /* 1. Header & Navigasi */
-    .glass-nav { 
-        padding: 10px 15px; 
-    }
-    .brand-logo { height: 50px; } /* Kecilkan logo dikit di HP */
-    .home-btn { width: 35px; height: 35px; padding: 0; }
-    
-    /* Navigasi Horizontal Scroll (Rapi & Pleasing) */
-    .nav-left {
-        width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 5px; /* Ruang untuk scrollbar */
-        margin-right: 10px;
-    }
-    
-    /* Hilangkan scrollbar default agar rapi */
-    .nav-left::-webkit-scrollbar { display: none; }
-    .nav-left { -ms-overflow-style: none; scrollbar-width: none; }
 
-    .nav-pills-container {
-        display: flex;
-        flex-wrap: nowrap; /* Jangan turun baris */
-        gap: 8px;
-        padding: 4px;
-        width: max-content; /* Sesuai konten */
-    }
-
-    .nav-pill {
-        font-size: 0.85rem;
-        padding: 8px 16px;
-    }
-
-    /* 2. Layout */
-    .split-layout { grid-template-columns: 1fr; height: auto; }
-    .glass-panel { min-height: 400px; padding: 15px; }
-    
-    /* 3. Perpustakaan */
-    .library-grid { grid-template-columns: 1fr; gap: 15px; }
-    .hero-card h1 { font-size: 2rem; }
-    
-    /* 4. Simulasi di HP */
-    .beaker-group { gap: 5px; }
-    .beaker { width: 60px; height: 80px; }
-    .mendel-area { width: 100%; }
-    .parents { gap: 10px; }
-}
-
-/* --- FOOTER MODERN STYLE --- */
+/* =========================================
+   6. FOOTER (Modern)
+   ========================================= */
 .app-footer {
-    /* Gradient Biru ke Ungu */
     background: linear-gradient(135deg, var(--primary), #6a4bc2);
     color: white;
-    padding: 40px 20px 20px 20px; /* Padding bawah lebih kecil */
+    padding: 40px 20px 20px 20px;
     margin-top: auto; 
     position: relative;
     z-index: 10;
@@ -545,41 +473,31 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     flex-direction: column;
 }
 
-/* --- BAGIAN ATAS (LOGO) --- */
 .footer-top {
     display: flex;
     justify-content: flex-start; /* PC: Logo Rata Kiri */
     margin-bottom: 20px;
-    padding-left: 10px; /* Sedikit jarak dari pinggir */
+    padding-left: 10px;
 }
 
 .logo-box {
     background: white;
     padding: 10px 20px;
-    border-radius: 20px; /* Rounded Rectangle */
+    border-radius: 20px; 
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Bayangan halus */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
     transition: transform 0.3s ease;
 }
+.logo-box:hover { transform: scale(1.03); }
 
-.logo-box:hover {
-    transform: scale(1.03);
-}
+.footer-logo { height: 60px; width: auto; display: block; }
 
-.footer-logo {
-    height: 90px; /* Ukuran logo di dalam kotak */
-    width: auto;
-    display: block;
-}
-
-/* --- BAGIAN BAWAH (GARIS & COPYRIGHT) --- */
 .footer-bottom {
-    /* Garis Putih Tipis & Estetik (Pakai opacity agar tidak kaku) */
     border-top: 1px solid rgba(255, 255, 255, 0.3); 
     padding-top: 20px;
-    text-align: center; /* PC: Copyright Rata Tengah */
+    text-align: center;
     width: 100%;
 }
 
@@ -591,40 +509,54 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     font-family: 'Poppins', sans-serif;
 }
 
-/* --- RESPONSIVE FOOTER (ANDROID/IOS) --- */
+
+/* =========================================
+   7. RESPONSIVE MOBILE (ANDROID/IOS)
+   ========================================= */
 @media (max-width: 768px) {
-    .app-footer {
-        padding: 30px 15px 15px 15px;
-        border-radius: 30px 30px 0 0;
+    /* Navigasi */
+    .glass-nav { padding: 10px 15px; }
+    .brand-logo { height: 50px; }
+    .home-btn { width: 35px; height: 35px; padding: 0; }
+    
+    .nav-left {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 5px;
+        margin-right: 10px;
     }
+    .nav-left::-webkit-scrollbar { display: none; }
+    .nav-left { -ms-overflow-style: none; scrollbar-width: none; }
 
-    .footer-top {
-        /* HP: Logo jadi Rata Tengah */
-        justify-content: center;
-        padding-left: 0;
+    .nav-pills-container {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 8px;
+        padding: 4px;
+        width: max-content;
     }
+    .nav-pill { font-size: 0.85rem; padding: 8px 16px; }
 
-    .logo-box {
-        padding: 8px 15px;
-        border-radius: 15px;
-    }
+    /* Layout */
+    .split-layout { grid-template-columns: 1fr; height: auto; }
+    .glass-panel { min-height: 400px; padding: 15px; }
+    .hero-card h1 { font-size: 2rem; }
+    
+    /* Perpustakaan */
+    .library-grid { grid-template-columns: 1fr; gap: 15px; }
+    
+    /* Simulasi di HP */
+    .beaker-group { gap: 5px; }
+    .beaker { width: 60px; height: 80px; }
+    .mendel-area { width: 100%; }
+    .parents { gap: 10px; }
 
-    .footer-logo {
-        height: 50px; /* Sedikit lebih kecil di HP */
-    }
-
-    .footer-bottom {
-        margin-top: 10px;
-        padding-top: 15px;
-    }
-
-    .copyright {
-        font-size: 0.8rem;
-    }
+    /* Footer HP */
+    .app-footer { padding: 30px 15px 15px 15px; border-radius: 30px 30px 0 0; }
+    .footer-top { justify-content: center; padding-left: 0; }
+    .logo-box { padding: 8px 15px; border-radius: 15px; }
+    .footer-logo { height: 50px; }
+    .footer-bottom { margin-top: 10px; padding-top: 15px; }
+    .copyright { font-size: 0.8rem; }
 }
-
-
-
-
-
-
