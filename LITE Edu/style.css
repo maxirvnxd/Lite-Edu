@@ -406,7 +406,7 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
 }
 
 .footer-logo {
-    height: 80px; /* Ukuran logo di dalam kotak */
+    height: 90px; /* Ukuran logo di dalam kotak */
     width: auto;
     display: block;
 }
@@ -459,4 +459,5 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
         font-size: 0.8rem;
     }
 }
+
 
