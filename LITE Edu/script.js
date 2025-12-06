@@ -30,54 +30,127 @@ function closeContent(contentId, menuId) {
     document.getElementById(menuId).classList.remove('hidden');
 }
 
-// === KIMIA (pH) - Support Touch ===
+// === KIMIA (pH) - REVISI DETEKSI UJUNG TANGKAI ===
 const probe = document.getElementById('ph-probe');
 let isDrag = false;
 
-function moveProbe(x, y) {
-    const rect = document.querySelector('.lab-bench').getBoundingClientRect();
-    // Batasi area gerak
-    let newLeft = x - rect.left - 30;
-    let newTop = y - rect.top - 10;
-    
-    probe.style.left = newLeft + 'px';
-    probe.style.top = newTop + 'px';
-    checkPh(x, y);
-}
+// Offset untuk posisi mouse agar dragging terasa natural
+let offsetX = 0;
+let offsetY = 0;
 
 if(probe) {
-    // Mouse Events
-    probe.addEventListener('mousedown', () => { isDrag = true; probe.style.cursor='grabbing'; });
-    document.addEventListener('mouseup', () => { isDrag = false; probe.style.cursor='grab'; });
-    document.addEventListener('mousemove', (e) => {
-        if(!isDrag) return;
-        e.preventDefault();
-        moveProbe(e.clientX, e.clientY);
-    });
+    // START DRAG (Mouse & Touch)
+    const startHandler = (clientX, clientY) => {
+        isDrag = true;
+        probe.style.cursor = 'grabbing';
+        
+        // Hitung jarak klik mouse ke pojok kiri atas elemen probe
+        const rect = probe.getBoundingClientRect();
+        offsetX = clientX - rect.left;
+        offsetY = clientY - rect.top;
+    };
 
-    // Touch Events (Android/IOS)
-    probe.addEventListener('touchstart', (e) => { isDrag = true; }, {passive: false});
-    document.addEventListener('touchend', () => { isDrag = false; });
-    document.addEventListener('touchmove', (e) => {
-        if(!isDrag) return;
-        e.preventDefault(); // Stop scrolling screen
+    probe.addEventListener('mousedown', (e) => startHandler(e.clientX, e.clientY));
+    probe.addEventListener('touchstart', (e) => {
         const touch = e.touches[0];
-        moveProbe(touch.clientX, touch.clientY);
+        startHandler(touch.clientX, touch.clientY);
+        e.preventDefault(); 
+    }, {passive: false});
+
+    // END DRAG
+    const endHandler = () => { isDrag = false; probe.style.cursor = 'grab'; };
+    document.addEventListener('mouseup', endHandler);
+    document.addEventListener('touchend', endHandler);
+
+    // MOVE DRAG
+    const moveHandler = (clientX, clientY) => {
+        if(!isDrag) return;
+
+        const container = document.querySelector('.lab-bench');
+        const contRect = container.getBoundingClientRect();
+
+        // Pindahkan Probe
+        // Kita kurangi dengan contRect.left agar posisinya relatif terhadap container
+        // Kita kurangi offsetX agar mouse tetap di posisi yang sama pada alat saat digeser
+        let newLeft = clientX - contRect.left - offsetX;
+        let newTop = clientY - contRect.top - offsetY;
+
+        probe.style.left = newLeft + 'px';
+        probe.style.top = newTop + 'px';
+
+        // DETEKSI COLLISION (Ujung Tangkai)
+        // Ujung tangkai kira-kira ada di:
+        // X: newLeft + (lebar probe / 2)
+        // Y: newTop + (tinggi screen + tinggi stick) ~ sekitar 130px dari atas probe
+        const probeWidth = 70;
+        const probeTipY_Offset = 130; // Jarak dari atas alat ke ujung stick
+
+        const tipX = clientX; // Posisi X relatif layar (untuk bandingkan dengan getBoundingClientRect beaker)
+        const tipY = contRect.top + newTop + probeTipY_Offset; // Posisi Y absolut layar ujung stick
+
+        checkPh(tipX, tipY);
+    };
+
+    document.addEventListener('mousemove', (e) => {
+        if(isDrag) { e.preventDefault(); moveHandler(e.clientX, e.clientY); }
+    });
+    
+    document.addEventListener('touchmove', (e) => {
+        if(isDrag) {
+            e.preventDefault(); // Stop scrolling
+            const t = e.touches[0];
+            moveHandler(t.clientX, t.clientY);
+        }
     }, {passive: false});
 }
 
-function checkPh(x, y) {
+function checkPh(tipX, tipY) {
     let hit = false;
+    
+    // Reset Tampilan Default
+    const screen = document.getElementById('probe-screen');
+    const infoTitle = document.getElementById('ph-info-title');
+    const infoDesc = document.getElementById('ph-info-desc');
+    const reasoning = document.getElementById('chem-reasoning');
+
     document.querySelectorAll('.beaker').forEach(b => {
         const r = b.getBoundingClientRect();
-        if(x > r.left && x < r.right && y > r.top) {
+        
+        // Logika Deteksi:
+        // Apakah Ujung Stick (tipX, tipY) ada di dalam kotak Beaker?
+        // Kita beri toleransi sedikit agar tidak harus pas banget
+        if(tipX >= r.left && tipX <= r.right && tipY >= r.top && tipY <= r.bottom) {
             hit = true;
-            document.getElementById('probe-screen').textContent = b.dataset.ph;
-            document.getElementById('ph-info-title').textContent = "pH " + b.dataset.ph;
-            document.getElementById('ph-info-desc').textContent = b.dataset.desc;
+            
+            // 1. Update Layar pH
+            screen.textContent = b.dataset.ph;
+            
+            // 2. Update Info Atas
+            infoTitle.textContent = "Larutan: " + b.dataset.name;
+            infoTitle.style.color = varToHex(b.dataset.ph); // Opsional: ubah warna teks sesuai pH
+            infoDesc.textContent = b.dataset.desc;
+
+            // 3. Update Penjelasan Tengah (REASONING)
+            reasoning.innerHTML = `<span style="color:#333; font-weight:bold;">Mengapa pH ${b.dataset.ph}?</span><br>${b.dataset.reason}`;
+            reasoning.style.borderColor = varToHex(b.dataset.ph);
+            reasoning.style.background = "#fff";
         }
     });
-    if(!hit) document.getElementById('probe-screen').textContent = "--";
+
+    if(!hit) {
+        screen.textContent = "--";
+        // Jangan reset teks Reasoning sepenuhnya agar user masih bisa baca sebentar
+        // Tapi kita kembalikan style default
+        reasoning.style.borderColor = "var(--primary)";
+        reasoning.style.background = "#f0f7ff";
+    }
+}
+
+// Fungsi bantu warna (Hanya hiasan tambahan)
+function varToHex(ph) {
+    if(ph < 7) return "#e53935"; // Merah
+    if(ph == 7) return "#1e88e5"; // Biru
+    return "#43a047"; // Hijau
 }
 
 // === FISIKA (Newton) ===
@@ -304,4 +377,5 @@ window.resetBio = function() {
     document.querySelector('.flower-res').classList.add('hidden');
     document.getElementById('bio-info').innerHTML = `<h4>Mulai Lagi</h4><p>Pilih gamet, lalu klik kotak anak.</p>`;
 };
+
 
