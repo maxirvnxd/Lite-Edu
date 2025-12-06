@@ -82,21 +82,82 @@ function checkPh(x, y) {
 
 // === FISIKA (Newton) ===
 let mass = 10;
+const force = 500; // Gaya Tetap 500N
+
 function setMass(val) {
     mass = val;
     document.getElementById('physics-box').textContent = val + "kg";
     document.querySelectorAll('.btn-opt').forEach(b => b.classList.remove('active'));
     event.target.classList.add('active');
+    
+    // Reset saat ganti massa
+    document.getElementById('newton-explanation').classList.add('hidden');
+    document.getElementById('acc-display').textContent = "a: 0 m/s²";
+    document.getElementById('physics-box').style.left = '10px';
 }
+
 document.getElementById('btn-push').addEventListener('click', () => {
     const box = document.getElementById('physics-box');
-    const a = 500 / mass;
+    const a = force / mass; // Hitung percepatan
+    
+    // 1. Update Display Singkat
     document.getElementById('acc-display').textContent = `a: ${a} m/s²`;
-    box.style.transition = `left ${30/a}s cubic-bezier(0.25, 1, 0.5, 1)`;
-    box.style.left = "calc(100% - 70px)";
-    setTimeout(() => { box.style.transition='none'; box.style.left='10px'; }, 2000);
-});
+    
+    // 2. Jalankan Animasi
+    // Semakin besar percepatan, durasi animasi semakin kecil (cepat)
+    let duration = 30 / a; 
+    if (duration > 3) duration = 3; // Batasi lambatnya
+    if (duration < 0.5) duration = 0.5; // Batasi cepatnya
 
+    box.style.transition = `left ${duration}s cubic-bezier(0.25, 1, 0.5, 1)`;
+    box.style.left = "calc(100% - 70px)"; // Gerak ke ujung kanan
+    
+    // 3. Tampilkan Penjelasan Detail (Teori & Rumus)
+    const expBox = document.getElementById('newton-explanation');
+    let analysisText = "";
+
+    // Analisis Kata-kata berdasarkan berat
+    if (mass === 10) {
+        analysisText = "Benda ini <b>sangat ringan</b>. Karena massanya kecil, gaya 500N memberikan dampak percepatan yang sangat besar. Benda melesat dengan cepat.";
+    } else if (mass === 50) {
+        analysisText = "Benda ini memiliki <b>massa sedang</b>. Percepatannya standar, tidak terlalu cepat dan tidak terlalu lambat.";
+    } else {
+        analysisText = "Benda ini <b>sangat berat</b>. Karena inersia (kelembaman) yang besar, gaya 500N kesulitan menggerakkan benda ini, sehingga percepatannya kecil (lambat).";
+    }
+
+    // HTML Penjelasan
+    expBox.innerHTML = `
+        <h4 style="margin-top:0; color:var(--primary)">📊 Analisis Hukum Newton II</h4>
+        <p>${analysisText}</p>
+        
+        <h5 style="margin-top:15px; border-bottom:1px solid #ddd; padding-bottom:5px;">🧮 Perhitungan Rumus</h5>
+        <p>Diketahui:</p>
+        <ul style="margin-left:20px; margin-bottom:10px;">
+            <li>Gaya (F) = <b>${force} N</b></li>
+            <li>Massa (m) = <b>${mass} kg</b></li>
+        </ul>
+        
+        <p>Ditanya: Percepatan (a)?</p>
+        
+        <div style="background:#f0f7ff; padding:10px; border-radius:8px; margin-top:10px; font-family:'Courier New', monospace; font-weight:bold; color:#333;">
+            a = F / m <br>
+            a = ${force} / ${mass} <br>
+            a = ${a} m/s²
+        </div>
+        
+        <p style="margin-top:10px; font-size:0.9rem; color:#666;">
+            <i>Kesimpulan: Percepatan benda adalah <b>${a} m/s²</b>.</i>
+        </p>
+    `;
+    
+    expBox.classList.remove('hidden');
+
+    // Reset posisi setelah animasi selesai (opsional, delay 3 detik)
+    setTimeout(() => { 
+        box.style.transition='none'; 
+        box.style.left='10px'; 
+    }, 3000);
+});
 // === MTK (Trigono) - Support Touch & Improved ===
 const unitCircle = document.getElementById('unit-circle');
 const circleRadius = 110; // Setengah dari width/height 220px
@@ -243,3 +304,4 @@ window.resetBio = function() {
     document.querySelector('.flower-res').classList.add('hidden');
     document.getElementById('bio-info').innerHTML = `<h4>Mulai Lagi</h4><p>Pilih gamet, lalu klik kotak anak.</p>`;
 };
+
