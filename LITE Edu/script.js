@@ -68,7 +68,37 @@ if(probe) {
     document.addEventListener('mouseup', endKimia);
     document.addEventListener('touchend', endKimia);
 
-// Move Drag
+// =========================================
+// 3. SIMULASI KIMIA (pH Meter) - SENSITIF
+// =========================================
+const probe = document.getElementById('ph-probe');
+let isDragKimia = false;
+let offsetKimiaX = 0; 
+let offsetKimiaY = 0;
+
+if(probe) {
+    // Start Drag
+    const startKimia = (clientX, clientY) => {
+        isDragKimia = true;
+        probe.style.cursor = 'grabbing';
+        const rect = probe.getBoundingClientRect();
+        offsetKimiaX = clientX - rect.left;
+        offsetKimiaY = clientY - rect.top;
+    };
+
+    probe.addEventListener('mousedown', e => startKimia(e.clientX, e.clientY));
+    probe.addEventListener('touchstart', e => {
+        const t = e.touches[0];
+        startKimia(t.clientX, t.clientY);
+        e.preventDefault();
+    }, {passive: false});
+
+    // End Drag
+    const endKimia = () => { isDragKimia = false; probe.style.cursor = 'grab'; };
+    document.addEventListener('mouseup', endKimia);
+    document.addEventListener('touchend', endKimia);
+
+    // Move Drag
     const moveKimia = (clientX, clientY) => {
         if(!isDragKimia) return;
 
@@ -81,15 +111,15 @@ if(probe) {
         probe.style.left = newLeft + 'px';
         probe.style.top = newTop + 'px';
 
-        // --- UPDATE PENTING UNTUK RESPONSIVE ---
-        // Kita hitung tinggi asli alat secara dinamis (agar support HP & PC)
-        // offsetHeight akan mengambil tinggi alat yang sebenarnya (kecil di HP, besar di PC)
+        // --- HITUNG POSISI SENSOR SECARA DINAMIS ---
+        // offsetHeight mengambil tinggi aktual alat (baik di HP maupun PC)
         const currentProbeHeight = probe.offsetHeight; 
         const currentProbeWidth = probe.offsetWidth;
 
-        // Titik sensor ada di: Tengah Lebar alat, dan Paling Bawah alat
+        // Titik Sensor = Tengah Lebar + Ujung Paling Bawah
+        // Kita kurangi sedikit (misal 5px) agar titik deteksinya pas di ujung hitam
         const tipX = contRect.left + newLeft + (currentProbeWidth / 2);
-        const tipY = contRect.top + newTop + currentProbeHeight;
+        const tipY = contRect.top + newTop + currentProbeHeight - 5;
 
         checkPh(tipX, tipY);
     };
@@ -116,13 +146,17 @@ function checkPh(tipX, tipY) {
 
     document.querySelectorAll('.beaker').forEach(b => {
         const r = b.getBoundingClientRect();
-        // Area cairan (35% dari atas gelas sampai bawah)
-        const liquidTop = r.top + (r.height * 0.35);
-
-        if(tipX >= r.left && tipX <= r.right && tipY >= liquidTop && tipY <= r.bottom) {
+        
+        // --- LOGIKA SENSITIVITAS TINGGI ---
+        // Cairan dianggap mulai dari 40% tinggi gelas dari atas
+        // Kita beri toleransi batas kiri kanan (+5px) agar lebih mudah kena
+        const liquidTop = r.top + (r.height * 0.4); 
+        
+        // Deteksi: Apakah Ujung Sensor berada di dalam area gelas & di bawah permukaan air?
+        if(tipX >= (r.left + 5) && tipX <= (r.right - 5) && tipY >= liquidTop && tipY <= (r.bottom + 10)) {
             hit = true;
             screen.textContent = b.dataset.ph;
-            title.textContent = "Terdeteksi: " + b.dataset.name;
+            title.textContent = "Larutan: " + b.dataset.name;
             desc.textContent = b.dataset.desc;
             reason.innerHTML = `<span style="color:#d32f2f; font-weight:bold;">Analisis pH ${b.dataset.ph}:</span> ${b.dataset.reason}`;
             reason.style.border = `2px solid ${varToHex(b.dataset.ph)}`;
@@ -327,4 +361,5 @@ window.resetBio = function() {
     document.querySelector('.flower-res').classList.add('hidden');
     document.getElementById('bio-info').innerHTML = `<h4>Mulai</h4><p>Pilih gamet.</p>`;
 };
+
 
