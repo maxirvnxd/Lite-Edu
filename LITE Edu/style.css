@@ -252,25 +252,27 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
 .sim-wrapper.scroll-content { overflow-y: auto; justify-content: flex-start; }
 .info-bubble { background: #fff8e1; padding: 15px; border-radius: 12px; border: 1px dashed #ffd54f; text-align: center; margin-bottom: 15px; }
 
-/* --- A. KIMIA (pH Meter) --- */
+/* --- A. KIMIA (pH Meter) - REVISI DESKTOP --- */
 .lab-bench { 
     position: relative; 
-    min-height: 350px; 
-    margin-top: auto; 
+    min-height: 400px; /* Tinggi area kerja */
+    margin-top: 10px; 
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; 
+    /* Ubah ini agar tidak terlalu ke bawah */
+    justify-content: flex-start; 
+    gap: 15px;
 }
 
-/* Alat pH Meter (Desktop - Diperkecil Sedikit) */
+/* 1. ALAT pH METER (Desktop Diperkecil) */
 .draggable-tool { 
     position: absolute; 
     left: 50%; 
-    top: 10px; 
+    top: 50px; /* Posisi awal agak turun dikit */
     transform: translateX(-50%);
     cursor: grab; 
     z-index: 100;
-    width: 75px; /* Dulu 90px -> Sekarang 75px */
+    width: 60px; /* DIPERKECIL (Dulu 75px/90px) */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -278,78 +280,106 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
 }
 .draggable-tool:active { cursor: grabbing; }
 
-/* Komponen Alat */
 .ph-head {
     width: 100%;
     background: #fbc02d;
-    border-radius: 10px 10px 4px 4px;
-    padding: 8px; /* Padding dikurangi */
+    border-radius: 8px 8px 3px 3px;
+    padding: 6px;
     text-align: center;
     border: 2px solid #e65100;
 }
+
 .screen-border {
     background: #333;
-    padding: 4px;
-    border-radius: 4px;
-    margin-bottom: 5px;
+    padding: 3px;
+    border-radius: 3px;
+    margin-bottom: 3px;
 }
+
 .screen { 
     background: #4caf50;
     color: #000; 
     font-family: 'Courier New', monospace; 
     font-weight: bold; 
-    font-size: 1.2rem;
-    padding: 2px;
+    font-size: 1rem; /* Font layar pas */
+    padding: 1px;
 }
-.brand-text { font-size: 0.7rem; font-weight: bold; color: #b71c1c; text-transform: uppercase; }
+
+.brand-text { display: none; } /* Hilangkan teks merk biar bersih */
+
 .ph-stick { 
-    width: 10px; /* Lebih ramping */
-    height: 120px; /* Lebih pendek sedikit (Dulu 140px) */
+    width: 8px; 
+    height: 110px; /* Tangkai proporsional */
     background: linear-gradient(90deg, #ccc, #eee, #ccc); 
     border-left: 1px solid #999;
     border-right: 1px solid #999;
 }
+
 .ph-tip {
-    width: 16px;
-    height: 20px;
+    width: 12px;
+    height: 18px;
     background: #222; 
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 6px 6px;
     margin-top: -2px;
 }
 
-/* Wadah & Cairan */
-.beaker-group { 
-    display: flex; 
-    gap: 15px; 
-    justify-content: center; 
-    flex-wrap: wrap;
-    margin-top: 20px;
-    padding-bottom: 30px; 
+/* 2. PENJELASAN TENGAH (Space Dikurangi) */
+.reasoning-box {
+    text-align: center;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;      /* Hilangkan margin atas berlebih */
+    margin-bottom: 10px;
+    padding: 8px;
+    background: #fff;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    color: var(--dark-blue);
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    z-index: 5; /* Agar tidak tertutup wadah */
 }
+
+/* 3. WADAH & CAIRAN (Layout Grid 3x2) */
+.beaker-group { 
+    display: grid;
+    /* KUNCI: 3 Kolom Rata, Gap Lebar */
+    grid-template-columns: repeat(3, 100px); 
+    gap: 40px 60px; /* Atas-Bawah 40px, Kiri-Kanan 60px */
+    justify-content: center;
+    padding: 20px 0;
+    margin-top: auto; /* Dorong ke bawah sisa ruang */
+}
+
 .beaker { 
-    width: 65px; 
+    width: 70px; 
     height: 90px; 
     border: 2px solid #aaa; 
     border-top: none; 
     position: relative; 
     border-radius: 0 0 10px 10px; 
-    background: rgba(255, 255, 255, 0.2); 
+    background: rgba(255, 255, 255, 0.3); 
     box-shadow: inset 0 -5px 10px rgba(0,0,0,0.05);
 }
+
 .liquid { 
     position: absolute; 
-    bottom: 2px; left: 2px; right: 2px; 
-    height: 65%; 
-    border-radius: 0 0 8px 8px;
+    bottom: 3px; left: 3px; right: 3px; 
+    height: 70%; /* Isi cairan agak penuh */
+    border-radius: 0 0 7px 7px;
     opacity: 0.85; 
-    transition: all 0.3s;
+    transition: all 0.2s;
 }
+
 .liquid::before {
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 5px;
-    background: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.5);
 }
+
 /* Warna Cairan */
 .l-battery { background: #d50000; } 
 .l-lemon { background: #ffea00; }   
@@ -360,13 +390,16 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
 
 .beaker-lbl {
     position: absolute;
-    bottom: -25px;
+    bottom: -30px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 600;
     white-space: nowrap;
-    color: #444;
+    color: #333;
+    background: rgba(255,255,255,0.8); /* Background dikit biar baca jelas */
+    padding: 2px 5px;
+    border-radius: 4px;
 }
 .reasoning-box {
     text-align: center;
@@ -637,4 +670,5 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     .track { margin-top: 15px; height: 60px; min-height: 60px; }
     .box { width: 50px; height: 50px; font-size: 0.8rem; }
 }
+
 
