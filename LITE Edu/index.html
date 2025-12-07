@@ -59,6 +59,14 @@
                                 <p>Alkana, Alkena, Alkohol, Ester, dll.</p>
                             </div>
                         </div>
+
+                        <div class="menu-card" onclick="openContent('kimia-materi-2', 'kimia-menu')">
+                            <div class="icon-box">⚖️</div>
+                            <div class="menu-text">
+                                <h4>Stoikiometri (Konsep Mol)</h4>
+                                <p>Perhitungan kimia dasar, Mol, Massa, dan Volume.</p>
+                            </div>
+                        </div>
                     </div>
 
                     <div id="kimia-materi" class="content-container hidden">
@@ -150,6 +158,82 @@
                                     <li><b>Gugus Fungsi:</b> -COOH (Asam ... -oat).</li>
                                     <li><b>Nama Gabungan:</b> Asam Etanoat (Nama pasarnya Asam Asetat).</li>
                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                    <div id="kimia-materi-2" class="content-container hidden">
+                        <button class="btn-back" onclick="closeContent('kimia-materi-2', 'kimia-menu')">⬅ Kembali</button>
+                        <h3>Stoikiometri: Seni Menghitung Kimia</h3>
+                        <div class="scroll-content">
+                            <p>Stoikiometri berasal dari bahasa Yunani (<i>stoicheion</i> = unsur, <i>metron</i> = mengukur). Intinya: Ini adalah cara kita menghitung "resep" bahan kimia.</p>
+
+                            <div class="modern-box info">
+                                <h5>🍔 Analogi Sederhana: Membuat Burger</h5>
+                                <p>Bayangkan rumus kimia: <b>1 Roti + 1 Daging = 1 Burger</b>.</p>
+                                <p>Jika kamu punya <b>5 Roti</b> dan <b>3 Daging</b>, berapa burger yang bisa dibuat?</p>
+                                <p>Jawabannya <b>3 Burger</b>. (2 Roti sisa). Daging adalah <i>Pereaksi Pembatas</i>.</p>
+                                <p>Di Kimia, kita melakukan hal yang sama, tapi Roti/Daging diganti dengan <b>Mol</b>.</p>
+                            </div>
+
+                            <h4>1. Konsep Mol (Jembatan Keledai)</h4>
+                            <p>Mol adalah satuan jumlah zat. Bayangkan Mol sebagai "pusat terminal" di peta. Untuk pergi kemana saja (Massa, Volume, Jumlah Partikel), kamu harus lewat Mol dulu.</p>
+                            
+                            <table class="modern-table">
+                                <thead>
+                                    <tr><th>Mau Cari Apa?</th><th>Rumus Sakti (n = Mol)</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><b>Massa (gram)</b></td><td><span class="formula-text">Massa = n × Mr</span></td></tr>
+                                    <tr><td><b>Jumlah Partikel</b></td><td><span class="formula-text">JP = n × 6,02 × 10²³</span></td></tr>
+                                    <tr><td><b>Volume Gas (STP)</b></td><td><span class="formula-text">Vol = n × 22,4</span></td></tr>
+                                    <tr><td><b>Molaritas (M)</b></td><td><span class="formula-text">M = n / Volume (Liter)</span></td></tr>
+                                </tbody>
+                            </table>
+                            <p style="font-size: 0.85rem; margin-top: 5px;"><i>*Mr = Massa Molekul Relatif (Total Ar atom penyusun). STP = Suhu 0°C, Tekanan 1 atm.</i></p>
+
+                            <h4>2. Massa Atom Relatif (Ar) & Molekul (Mr)</h4>
+                            <p>Setiap atom punya berat badan masing-masing (lihat Tabel Periodik). Contoh:</p>
+                            <div class="modern-box">
+                                <p>Diketahui: <b>H=1, O=16, C=12</b>.</p>
+                                <p>Berapa Mr Air (H₂O)?</p>
+                                <p class="formula-text">(2 × H) + (1 × O) = (2×1) + 16 = <b>18</b></p>
+                                <p>Berapa Mr Gas CO₂?</p>
+                                <p class="formula-text">(1 × C) + (2 × O) = 12 + (2×16) = <b>44</b></p>
+                            </div>
+
+                            <h4>3. Cara Mengerjakan Soal Hitungan (3 Langkah)</h4>
+                            <p>Jangan panik lihat soal cerita! Ikuti 3 langkah resep ini:</p>
+                            
+                            <div class="modern-box">
+                                <h5>Langkah 1: Ubah ke Mol</h5>
+                                <p>Apapun data yang diketahui (gram, liter, partikel), ubah dulu menjadi <b>Mol (n)</b> menggunakan rumus di tabel atas.</p>
+                            </div>
+
+                            <div class="modern-box">
+                                <h5>Langkah 2: Gunakan Perbandingan Koefisien</h5>
+                                <p>Lihat reaksi kimianya. Angka di depan rumus kimia (Koefisien) adalah perbandingan Mol.</p>
+                                <p class="formula-text">N₂ + 3H₂ → 2NH₃</p>
+                                <p>Artinya: 1 mol N₂ butuh 3 mol H₂ untuk menghasilkan 2 mol NH₃.</p>
+                                <p><i>Rumus: (Koef Ditanya / Koef Diketahui) × Mol Diketahui</i></p>
+                            </div>
+
+                            <div class="modern-box">
+                                <h5>Langkah 3: Ubah ke Satuan yang Ditanya</h5>
+                                <p>Setelah dapat Mol zat yang ditanya, ubah kembali ke satuan yang diminta soal (gram/liter/dll).</p>
+                            </div>
+
+                            <h4>4. Contoh Kasus (SMA)</h4>
+                            <div class="modern-box info">
+                                <p><b>Soal:</b> Berapa gram air (H₂O) yang dihasilkan jika 4 gram gas Hidrogen (H₂) dibakar dengan Oksigen berlebih? (Ar H=1, O=16).</p>
+                                <hr style="border:0; border-top:1px dashed #ccc; margin:10px 0;">
+                                <p><b>Jawab:</b></p>
+                                <ol style="margin-left: 20px;">
+                                    <li><b>Cari Mol H₂:</b> Mr H₂ = 2.<br> n = massa/Mr = 4/2 = <b>2 mol</b>.</li>
+                                    <li><b>Reaksi:</b> 2H₂ + O₂ → 2H₂O.<br> Koef H₂ = 2, Koef H₂O = 2.<br> Mol H₂O = (2/2) × 2 mol = <b>2 mol</b>.</li>
+                                    <li><b>Cari Massa H₂O:</b> Mr H₂O = 18.<br> Massa = n × Mr = 2 × 18 = <b>36 gram</b>.</li>
+                                </ol>
                             </div>
                         </div>
                     </div>
