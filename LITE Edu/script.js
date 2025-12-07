@@ -126,7 +126,6 @@ if(probe) {
 
 function checkPh(tipX, tipY) {
     let hit = false;
-    
     const screen = document.getElementById('probe-screen');
     const title = document.getElementById('ph-info-title');
     const desc = document.getElementById('ph-info-desc');
@@ -135,27 +134,32 @@ function checkPh(tipX, tipY) {
     document.querySelectorAll('.beaker').forEach(b => {
         const r = b.getBoundingClientRect();
         
-        // Logika Deteksi: Cairan mulai dari 40% tinggi gelas
-        const liquidTop = r.top + (r.height * 0.4); 
+        // --- LOGIKA SENSITIVITAS TINGGI ---
+        // Cairan dimulai dari bagian atas gelas + sedikit offset (permukaan air)
+        // Kita set permukaan air di 30% dari atas gelas.
+        const liquidSurfaceY = r.top + (r.height * 0.3); 
         
-        // Cek tabrakan
-        if(tipX >= (r.left + 5) && tipX <= (r.right - 5) && tipY >= liquidTop && tipY <= (r.bottom + 10)) {
+        // Toleransi Samping (X): Masuk 2px dari kiri/kanan gelas sudah dianggap masuk
+        // Toleransi Bawah (Y): Ujung sensor boleh lebih rendah dari dasar gelas (visual effect)
+        
+        if(tipX >= (r.left + 2) && tipX <= (r.right - 2) && tipY >= liquidSurfaceY) {
+            // Cek apakah tipY belum terlalu jauh ke bawah (opsional, biar ga tembus meja)
+            // Tapi untuk UX yang enak, biarkan saja asal masuk area X gelas
+            
             hit = true;
             screen.textContent = b.dataset.ph;
             title.textContent = "Larutan: " + b.dataset.name;
             desc.textContent = b.dataset.desc;
             reason.innerHTML = `<span style="color:#d32f2f; font-weight:bold;">Analisis pH ${b.dataset.ph}:</span> ${b.dataset.reason}`;
             reason.style.border = `2px solid ${varToHex(b.dataset.ph)}`;
-            reason.style.background = "#fff";
         }
     });
 
     if(!hit) {
         screen.textContent = "--";
-        // Opsional: Reset border reasoning jika tidak kena
+        // Opsional: Kembalikan border default
         if(reason) {
             reason.style.borderColor = "#ddd";
-            reason.style.background = "#fff";
         }
     }
 }
@@ -390,3 +394,4 @@ window.resetBio = function() {
     document.querySelector('.flower-res').classList.add('hidden');
     document.getElementById('bio-info').innerHTML = `<h4>Mulai</h4><p>Pilih gamet.</p>`;
 };
+
