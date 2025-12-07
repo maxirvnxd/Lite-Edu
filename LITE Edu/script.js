@@ -1,38 +1,33 @@
 // =========================================
-// 1. SISTEM NAVIGASI (VITAL)
+// 1. SISTEM NAVIGASI
 // =========================================
 function showView(viewId) {
-    // Sembunyikan semua Halaman Utama (.view)
-    const allViews = document.querySelectorAll('.view');
-    allViews.forEach(view => {
-        view.classList.remove('active');
-        view.classList.add('hidden');
+    document.querySelectorAll('.view').forEach(v => {
+        v.classList.remove('active');
+        v.classList.add('hidden');
     });
-
-    // Tampilkan Halaman yang Dipilih
-    const targetView = document.getElementById(viewId);
-    if (targetView) {
-        targetView.classList.remove('hidden');
-        targetView.classList.add('active');
-    }
-
-    // Reset Sub-Menu (Agar saat balik, menu terbuka dulu, bukan isinya)
+    
+    // Reset Submenu
     document.querySelectorAll('.content-container').forEach(c => c.classList.add('hidden'));
     document.querySelectorAll('.menu-container').forEach(m => m.classList.remove('hidden'));
 
-    // Scroll ke atas otomatis
+    const selected = document.getElementById(viewId);
+    if(selected) {
+        selected.classList.remove('hidden');
+        selected.classList.add('active');
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // =========================================
-// 2. SISTEM BUKA-TUTUP MATERI (SUB-KONTEN)
+// 2. SISTEM BUKA-TUTUP KONTEN
 // =========================================
 function openContent(contentId, menuId) {
     document.getElementById(menuId).classList.add('hidden');
     const content = document.getElementById(contentId);
     content.classList.remove('hidden');
 
-    // Refresh Visualisasi Matematika (Agar tidak gepeng saat dibuka)
+    // Refresh Visualisasi MTK
     if(contentId === 'mtk-sim') {
         setTimeout(() => updateTrig(-Math.PI/4, 110, 110), 100);
     }
@@ -44,7 +39,7 @@ function closeContent(contentId, menuId) {
 }
 
 // =========================================
-// 3. SIMULASI KIMIA (pH Meter)
+// 3. KIMIA (pH Meter)
 // =========================================
 const probe = document.getElementById('ph-probe');
 let isDragKimia = false;
@@ -52,90 +47,79 @@ let offsetKimiaX = 0;
 let offsetKimiaY = 0;
 
 if(probe) {
-    // START DRAG
-    const startHandler = (clientX, clientY) => {
+    // Start Drag
+    const startKimia = (clientX, clientY) => {
         isDragKimia = true;
         probe.style.cursor = 'grabbing';
-        
-        // Hitung jarak klik mouse ke pojok kiri atas elemen probe
         const rect = probe.getBoundingClientRect();
         offsetKimiaX = clientX - rect.left;
         offsetKimiaY = clientY - rect.top;
     };
 
-    probe.addEventListener('mousedown', (e) => startHandler(e.clientX, e.clientY));
-    probe.addEventListener('touchstart', (e) => {
-        const touch = e.touches[0];
-        startHandler(touch.clientX, touch.clientY);
-        e.preventDefault(); 
+    probe.addEventListener('mousedown', e => startKimia(e.clientX, e.clientY));
+    probe.addEventListener('touchstart', e => {
+        const t = e.touches[0];
+        startKimia(t.clientX, t.clientY);
+        e.preventDefault();
     }, {passive: false});
 
-    // END DRAG
-    const endHandler = () => { isDragKimia = false; probe.style.cursor = 'grab'; };
-    document.addEventListener('mouseup', endHandler);
-    document.addEventListener('touchend', endHandler);
+    // End Drag
+    const endKimia = () => { isDragKimia = false; probe.style.cursor = 'grab'; };
+    document.addEventListener('mouseup', endKimia);
+    document.addEventListener('touchend', endKimia);
 
-    // MOVE DRAG
-    const moveHandler = (clientX, clientY) => {
+    // Move Drag
+    const moveKimia = (clientX, clientY) => {
         if(!isDragKimia) return;
 
         const container = document.querySelector('.lab-bench');
         const contRect = container.getBoundingClientRect();
 
-        // Pindahkan Probe
         let newLeft = clientX - contRect.left - offsetKimiaX;
         let newTop = clientY - contRect.top - offsetKimiaY;
 
         probe.style.left = newLeft + 'px';
         probe.style.top = newTop + 'px';
 
-        // DETEKSI COLLISION (Ujung Sensor)
-        const probeTotalHeight = 220; // Estimasi jarak dari atas alat ke ujung hitam
-        const probeCenterWidth = 45;  // Setengah lebar alat
-
-        const tipX = contRect.left + newLeft + probeCenterWidth; 
-        const tipY = contRect.top + newTop + probeTotalHeight;
+        // Deteksi Ujung Sensor (Sesuaikan dengan desain baru)
+        const tipX = contRect.left + newLeft + 45; // Tengah lebar alat (90px/2)
+        const tipY = contRect.top + newTop + 220;  // Total tinggi alat ~230px
 
         checkPh(tipX, tipY);
     };
 
-    document.addEventListener('mousemove', (e) => {
-        if(isDragKimia) { e.preventDefault(); moveHandler(e.clientX, e.clientY); }
+    document.addEventListener('mousemove', e => {
+        if(isDragKimia) { e.preventDefault(); moveKimia(e.clientX, e.clientY); }
     });
     
-    document.addEventListener('touchmove', (e) => {
+    document.addEventListener('touchmove', e => {
         if(isDragKimia) {
             e.preventDefault(); 
             const t = e.touches[0];
-            moveHandler(t.clientX, t.clientY);
+            moveKimia(t.clientX, t.clientY);
         }
     }, {passive: false});
 }
 
 function checkPh(tipX, tipY) {
     let hit = false;
-    
     const screen = document.getElementById('probe-screen');
-    const infoTitle = document.getElementById('ph-info-title');
-    const infoDesc = document.getElementById('ph-info-desc');
-    const reasoning = document.getElementById('chem-reasoning');
+    const title = document.getElementById('ph-info-title');
+    const desc = document.getElementById('ph-info-desc');
+    const reason = document.getElementById('chem-reasoning');
 
     document.querySelectorAll('.beaker').forEach(b => {
         const r = b.getBoundingClientRect();
-        
-        // Logika Deteksi: Ujung sensor harus masuk ke dalam area CAIRAN
-        const liquidTop = r.top + (r.height * 0.35); // Permukaan air
+        // Area cairan (35% dari atas gelas sampai bawah)
+        const liquidTop = r.top + (r.height * 0.35);
 
         if(tipX >= r.left && tipX <= r.right && tipY >= liquidTop && tipY <= r.bottom) {
             hit = true;
-            
             screen.textContent = b.dataset.ph;
-            infoTitle.textContent = "Terdeteksi: " + b.dataset.name;
-            infoDesc.textContent = b.dataset.desc;
-
-            reasoning.innerHTML = `<span style="color:#d32f2f; font-weight:bold;">Analisis pH ${b.dataset.ph}:</span> ${b.dataset.reason}`;
-            reasoning.style.border = `2px solid ${varToHex(b.dataset.ph)}`;
-            reasoning.style.background = "#fff";
+            title.textContent = "Terdeteksi: " + b.dataset.name;
+            desc.textContent = b.dataset.desc;
+            reason.innerHTML = `<span style="color:#d32f2f; font-weight:bold;">Analisis pH ${b.dataset.ph}:</span> ${b.dataset.reason}`;
+            reason.style.border = `2px solid ${varToHex(b.dataset.ph)}`;
         }
     });
 
@@ -144,15 +128,14 @@ function checkPh(tipX, tipY) {
     }
 }
 
-// Fungsi Bantuan Warna Kimia
 function varToHex(ph) {
-    if(ph < 7) return "#e53935"; // Merah
-    if(ph == 7) return "#1e88e5"; // Biru
-    return "#43a047"; // Hijau
+    if(ph < 7) return "#e53935";
+    if(ph == 7) return "#1e88e5";
+    return "#43a047";
 }
 
 // =========================================
-// 4. SIMULASI FISIKA (Hukum Newton)
+// 4. FISIKA (Newton)
 // =========================================
 let mass = 10;
 const force = 500;
@@ -163,7 +146,6 @@ window.setMass = function(val) {
     document.querySelectorAll('.btn-opt').forEach(b => b.classList.remove('active'));
     event.target.classList.add('active');
     
-    // Reset
     document.getElementById('newton-explanation').classList.add('hidden');
     document.getElementById('acc-display').textContent = "a: 0 m/s²";
     document.getElementById('physics-box').style.left = '10px';
@@ -175,36 +157,22 @@ if(btnPush) {
         const box = document.getElementById('physics-box');
         const a = force / mass;
         
-        // Update Display Singkat
         document.getElementById('acc-display').textContent = `a: ${a} m/s²`;
         
-        // Animasi
         let dur = 30 / a;
         if(dur > 3) dur = 3; if(dur < 0.5) dur = 0.5;
 
         box.style.transition = `left ${dur}s cubic-bezier(0.25, 1, 0.5, 1)`;
         box.style.left = "calc(100% - 70px)";
 
-        // Tampilkan Penjelasan
         const expBox = document.getElementById('newton-explanation');
-        let analysisText = "";
-
-        if (mass === 10) {
-            analysisText = "Benda ini <b>sangat ringan</b>. Karena massanya kecil, gaya 500N memberikan dampak percepatan yang sangat besar. Benda melesat dengan cepat.";
-        } else if (mass === 50) {
-            analysisText = "Benda ini memiliki <b>massa sedang</b>. Percepatannya standar.";
-        } else {
-            analysisText = "Benda ini <b>sangat berat</b>. Karena inersia besar, gaya 500N kesulitan menggerakkan benda ini.";
-        }
+        let text = mass === 10 ? "Ringan, melesat cepat." : (mass === 50 ? "Sedang." : "Berat, gerak lambat.");
         
         expBox.innerHTML = `
             <h4 style="margin-top:0; color:var(--primary)">📊 Analisis Hukum Newton II</h4>
-            <p>${analysisText}</p>
-            <h5 style="margin-top:15px; border-bottom:1px solid #ddd; padding-bottom:5px;">🧮 Perhitungan Rumus</h5>
-            <div style="background:#f0f7ff; padding:10px; border-radius:8px; margin-top:10px; font-family:'Courier New', monospace; font-weight:bold; color:#333;">
-                a = F / m <br>
-                a = ${force} / ${mass} <br>
-                a = ${a} m/s²
+            <p>${text}</p>
+            <div style="background:#f0f7ff; padding:10px; border-radius:8px; margin-top:10px; font-weight:bold;">
+                a = F / m = ${force} / ${mass} = ${a} m/s²
             </div>
         `;
         expBox.classList.remove('hidden');
@@ -214,7 +182,7 @@ if(btnPush) {
 }
 
 // =========================================
-// 5. SIMULASI MATEMATIKA (Trigonometri)
+// 5. MATEMATIKA (Trigonometri)
 // =========================================
 const unitCircle = document.getElementById('unit-circle');
 const circleRadius = 110; 
@@ -224,33 +192,22 @@ function handleCircleInteraction(clientX, clientY) {
     const rect = unitCircle.getBoundingClientRect();
     const centerX = rect.left + circleRadius;
     const centerY = rect.top + circleRadius;
-
-    const dx = clientX - centerX;
-    const dy = clientY - centerY;
-    const angle = Math.atan2(dy, dx);
-
+    const angle = Math.atan2(clientY - centerY, clientX - centerX);
     updateTrig(angle, circleRadius, circleRadius);
 }
 
 if(unitCircle) {
-    // Mouse
     unitCircle.addEventListener('mousedown', e => { isDragMtk=true; handleCircleInteraction(e.clientX, e.clientY); });
-    document.addEventListener('mousemove', e => {
-        if(isDragMtk && unitCircle.offsetParent !== null) { 
-            e.preventDefault(); 
-            handleCircleInteraction(e.clientX, e.clientY); 
-        }
-    });
+    document.addEventListener('mousemove', e => { if(isDragMtk) { e.preventDefault(); handleCircleInteraction(e.clientX, e.clientY); } });
     document.addEventListener('mouseup', () => isDragMtk=false);
 
-    // Touch
     unitCircle.addEventListener('touchstart', e => {
         isDragMtk=true; 
         handleCircleInteraction(e.touches[0].clientX, e.touches[0].clientY);
     }, {passive:false});
     
     document.addEventListener('touchmove', e => {
-        if(isDragMtk && unitCircle.offsetParent !== null) {
+        if(isDragMtk) {
             e.preventDefault(); 
             handleCircleInteraction(e.touches[0].clientX, e.touches[0].clientY);
         }
@@ -305,21 +262,17 @@ function updateTrig(rad, cx, cy) {
 }
 
 // =========================================
-// 6. SIMULASI BIOLOGI (Genetika)
+// 6. BIOLOGI (Genetika)
 // =========================================
 const slots = [document.querySelector('.s1'), document.querySelector('.s2')];
 let filled = 0;
 let genes = [];
 let selectedGene = null;
 
-// Handle Click Selection
 document.querySelectorAll('.gamete').forEach(g => {
-    // Drag PC
     g.addEventListener('dragstart', e => { e.dataTransfer.setData('gene', g.dataset.g); });
-    
-    // Click HP
     g.addEventListener('click', () => {
-        document.querySelectorAll('.gamete').forEach(x => x.style.border = '2px solid #4b85e7');
+        document.querySelectorAll('.gamete').forEach(x => x.style.border = '2px solid var(--primary)');
         g.style.border = '3px solid #e53935'; 
         selectedGene = g.dataset.g;
     });
@@ -327,19 +280,16 @@ document.querySelectorAll('.gamete').forEach(g => {
 
 const offBox = document.querySelector('.offspring-box');
 if(offBox) {
-    // Drop PC
     offBox.addEventListener('dragover', e => e.preventDefault());
     offBox.addEventListener('drop', e => {
         e.preventDefault();
         addGene(e.dataTransfer.getData('gene'));
     });
-    
-    // Click Drop HP
     offBox.addEventListener('click', () => {
         if(selectedGene) {
             addGene(selectedGene);
             selectedGene = null;
-            document.querySelectorAll('.gamete').forEach(x => x.style.border = '2px solid #4b85e7');
+            document.querySelectorAll('.gamete').forEach(x => x.style.border = '2px solid var(--primary)');
         }
     });
 }
