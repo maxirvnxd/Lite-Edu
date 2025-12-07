@@ -68,7 +68,7 @@ if(probe) {
     document.addEventListener('mouseup', endKimia);
     document.addEventListener('touchend', endKimia);
 
-    // Move Drag
+// Move Drag
     const moveKimia = (clientX, clientY) => {
         if(!isDragKimia) return;
 
@@ -81,9 +81,15 @@ if(probe) {
         probe.style.left = newLeft + 'px';
         probe.style.top = newTop + 'px';
 
-        // Deteksi Ujung Sensor (Sesuaikan dengan desain baru)
-        const tipX = contRect.left + newLeft + 45; // Tengah lebar alat (90px/2)
-        const tipY = contRect.top + newTop + 220;  // Total tinggi alat ~230px
+        // --- UPDATE PENTING UNTUK RESPONSIVE ---
+        // Kita hitung tinggi asli alat secara dinamis (agar support HP & PC)
+        // offsetHeight akan mengambil tinggi alat yang sebenarnya (kecil di HP, besar di PC)
+        const currentProbeHeight = probe.offsetHeight; 
+        const currentProbeWidth = probe.offsetWidth;
+
+        // Titik sensor ada di: Tengah Lebar alat, dan Paling Bawah alat
+        const tipX = contRect.left + newLeft + (currentProbeWidth / 2);
+        const tipY = contRect.top + newTop + currentProbeHeight;
 
         checkPh(tipX, tipY);
     };
@@ -321,3 +327,4 @@ window.resetBio = function() {
     document.querySelector('.flower-res').classList.add('hidden');
     document.getElementById('bio-info').innerHTML = `<h4>Mulai</h4><p>Pilih gamet.</p>`;
 };
+
