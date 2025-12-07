@@ -65,54 +65,94 @@
                         <button class="btn-back" onclick="closeContent('kimia-materi', 'kimia-menu')">⬅ Kembali</button>
                         <h3>Tata Nama Senyawa Organik</h3>
                         <div class="scroll-content">
-                            <p>Tata nama senyawa organik diatur oleh <b>IUPAC</b> untuk memastikan setiap senyawa memiliki nama yang unik.</p>
+                            <p>Senyawa organik adalah senyawa yang tersusun dari atom Karbon (C). Bayangkan atom C itu seperti "Lego" yang punya 4 tangan untuk menggandeng atom lain.</p>
 
                             <div class="modern-box info">
-                                <h5>📚 Rumus Struktur Nama</h5>
-                                <p class="formula-text">Posisi Cabang - Nama Cabang - Rantai Utama - Akhiran</p>
+                                <h5>🚀 Rumus Cepat Penamaan (IUPAC)</h5>
+                                <p>Ingat urutan ini seperti menulis alamat rumah:</p>
+                                <p class="formula-text" style="font-size: 0.9rem;">(Nomor Cabang) - (Nama Cabang) - (Nama Rantai Induk) - (Akhiran)</p>
                             </div>
 
-                            <h4>1. Deret Homolog Alkana (Dasar)</h4>
+                            <h4>1. Hafalan Wajib: Nama Dasar (Alkana)</h4>
+                            <p>Ini adalah nama untuk "Rantai Induk" berdasarkan jumlah atom C-nya. Cukup hafal 1-10!</p>
                             <table class="modern-table">
-                                <tr><th>Jumlah C</th><th>Nama</th><th>Rumus</th></tr>
-                                <tr><td>1</td><td>Metana</td><td>CH<sub>4</sub></td></tr>
-                                <tr><td>2</td><td>Etana</td><td>C<sub>2</sub>H<sub>6</sub></td></tr>
-                                <tr><td>3</td><td>Propana</td><td>C<sub>3</sub>H<sub>8</sub></td></tr>
-                                <tr><td>4</td><td>Butana</td><td>C<sub>4</sub>H<sub>10</sub></td></tr>
-                                <tr><td>5</td><td>Pentana</td><td>C<sub>5</sub>H<sub>12</sub></td></tr>
-                            </table>
-
-                            <h4>2. Prioritas Gugus Fungsi</h4>
-                            <p>Urutan prioritas dari tertinggi ke terendah:</p>
-                            <table class="modern-table">
-                                <thead>
-                                    <tr>
-                                        <th>Gugus</th>
-                                        <th>Rumus</th>
-                                        <th>Akhiran (Utama)</th>
-                                    </tr>
-                                </thead>
+                                <thead><tr><th>Jumlah C</th><th>Nama Induk</th><th>Cara Hafal</th></tr></thead>
                                 <tbody>
-                                    <tr><td>Asam Karboksilat</td><td>-COOH</td><td>Asam ...-oat</td></tr>
-                                    <tr><td>Ester</td><td>-COO-</td><td>...il ...-oat</td></tr>
-                                    <tr><td>Aldehida</td><td>-CHO</td><td>-al</td></tr>
-                                    <tr><td>Keton</td><td>-CO-</td><td>-on</td></tr>
-                                    <tr><td>Alkohol</td><td>-OH</td><td>-ol</td></tr>
-                                    <tr><td>Amina</td><td>-NH<sub>2</sub></td><td>-amina</td></tr>
+                                    <tr><td>1</td><td>Metana</td><td><b>M</b>ama</td></tr>
+                                    <tr><td>2</td><td>Etana</td><td><b>E</b>nak</td></tr>
+                                    <tr><td>3</td><td>Propana</td><td><b>P</b>epaya</td></tr>
+                                    <tr><td>4</td><td>Butana</td><td><b>B</b>utuh</td></tr>
+                                    <tr><td>5</td><td>Pentana</td><td><b>P</b>isah</td></tr>
+                                    <tr><td>6</td><td>Heksana</td><td>(Hexa = 6)</td></tr>
                                 </tbody>
                             </table>
 
-                            <h4>3. Contoh Struktur</h4>
+                            <h4>2. Langkah Penamaan (Step-by-Step)</h4>
+                            
                             <div class="modern-box">
-                                <h5>A. Alkohol (2-Butanol)</h5>
+                                <h5>Langkah 1: Cari Rantai Terpanjang</h5>
+                                <p>Cari jalur rantai C yang paling panjang dan tidak terputus. Ini disebut <b>Rantai Induk</b>.</p>
+                            </div>
+
+                            <div class="modern-box">
+                                <h5>Langkah 2: Beri Nomor</h5>
+                                <p>Nomori atom C dari ujung yang <b>paling dekat</b> dengan gugus fungsi (aksesoris) atau cabang.</p>
+                            </div>
+
+                            <div class="modern-box">
+                                <h5>Langkah 3: Kenali Gugus Fungsi</h5>
+                                <p>Gugus fungsi adalah "aksesoris" yang menentukan sifat zat tersebut. Ini menentukan akhiran namanya.</p>
+                            </div>
+
+                            <h4>3. Tabel Prioritas & Akhiran</h4>
+                            <p>Jika ada banyak aksesoris, siapa yang menang? Lihat urutan prioritas ini:</p>
+                            <table class="modern-table">
+                                <thead>
+                                    <tr>
+                                        <th>Prioritas</th>
+                                        <th>Golongan</th>
+                                        <th>Rumus</th>
+                                        <th>Akhiran Nama</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>1 (Raja)</td><td>Asam Karboksilat</td><td>-COOH</td><td>Asam ...-oat</td></tr>
+                                    <tr><td>2</td><td>Ester</td><td>-COO-</td><td>...il ...-oat</td></tr>
+                                    <tr><td>3</td><td>Aldehida</td><td>-CHO</td><td>-al</td></tr>
+                                    <tr><td>4</td><td>Keton</td><td>-CO-</td><td>-on</td></tr>
+                                    <tr><td>5</td><td>Alkohol</td><td>-OH</td><td>-ol</td></tr>
+                                    <tr><td>6</td><td>Amina</td><td>-NH<sub>2</sub></td><td>-amina</td></tr>
+                                </tbody>
+                            </table>
+
+                            <h4>4. Contoh Bedah Kasus</h4>
+                            
+                            <div class="modern-box">
+                                <h5>Kasus A: Alkohol (Pembersih Luka)</h5>
                                 <div class="chem-struct">
                                     CH<sub>3</sub> — CH<sub>2</sub> — CH(OH) — CH<sub>3</sub>
                                 </div>
-                                <p>Gugus -OH berada di atom C nomor 2.</p>
+                                <ul style="margin-left:20px; font-size:0.9rem;">
+                                    <li><b>Rantai Induk:</b> Ada 4 atom C (Butana).</li>
+                                    <li><b>Gugus Fungsi:</b> Ada -OH (Alkohol/alkanol). Akhiran jadi <b>-ol</b>.</li>
+                                    <li><b>Penomoran:</b> Dari kanan, karena lebih dekat ke OH (OH kena nomor 2).</li>
+                                    <li><b>Nama Gabungan:</b> 2-Butanol.</li>
+                                </ul>
+                            </div>
+
+                            <div class="modern-box">
+                                <h5>Kasus B: Asam Cuka (Asam Karboksilat)</h5>
+                                <div class="chem-struct">
+                                    CH<sub>3</sub> — COOH
+                                </div>
+                                <ul style="margin-left:20px; font-size:0.9rem;">
+                                    <li><b>Rantai Induk:</b> Ada 2 atom C (Etana).</li>
+                                    <li><b>Gugus Fungsi:</b> -COOH (Asam ... -oat).</li>
+                                    <li><b>Nama Gabungan:</b> Asam Etanoat (Nama pasarnya Asam Asetat).</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                </div>
 
                 <div class="panel-right glass-panel">
                     <div class="panel-header">🧪 Simulasi</div>
@@ -537,6 +577,7 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
