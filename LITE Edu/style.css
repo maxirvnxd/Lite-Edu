@@ -271,6 +271,7 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     -webkit-user-select: none;
     user-select: none;
 }
+
 .sim-wrapper.scroll-content { overflow-y: auto; justify-content: flex-start; }
 .info-bubble { background: #fff8e1; padding: 15px; border-radius: 12px; border: 1px dashed #ffd54f; text-align: center; margin-bottom: 15px; }
 
@@ -689,6 +690,7 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     .track { margin-top: 15px; height: 60px; min-height: 60px; }
     .box { width: 50px; height: 50px; font-size: 0.8rem; }
 }
+
 
 
 
