@@ -514,9 +514,9 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
    7. RESPONSIVE MOBILE (ANDROID/IOS)
    ========================================= */
 @media (max-width: 768px) {
-    /* Navigasi */
+    /* --- 1. Navigasi & Layout Umum --- */
     .glass-nav { padding: 10px 15px; }
-    .brand-logo { height: 50px; }
+    .brand-logo { height: 45px; }
     .home-btn { width: 35px; height: 35px; padding: 0; }
     
     .nav-left {
@@ -526,7 +526,7 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
         padding-bottom: 5px;
         margin-right: 10px;
     }
-    .nav-left::-webkit-scrollbar { display: none; }
+    .nav-left::-webkit-scrollbar { display: none; } /* Sembunyikan scrollbar */
     .nav-left { -ms-overflow-style: none; scrollbar-width: none; }
 
     .nav-pills-container {
@@ -536,27 +536,90 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
         padding: 4px;
         width: max-content;
     }
-    .nav-pill { font-size: 0.85rem; padding: 8px 16px; }
+    .nav-pill { font-size: 0.8rem; padding: 6px 14px; }
 
-    /* Layout */
-    .split-layout { grid-template-columns: 1fr; height: auto; }
-    .glass-panel { min-height: 400px; padding: 15px; }
-    .hero-card h1 { font-size: 2rem; }
+    /* Layout Utama */
+    .split-layout { grid-template-columns: 1fr; height: auto; gap: 20px; }
+    .glass-panel { min-height: auto; padding: 15px; }
+    .hero-card h1 { font-size: 1.8rem; }
     
     /* Perpustakaan */
     .library-grid { grid-template-columns: 1fr; gap: 15px; }
     
-    /* Simulasi di HP */
-    .beaker-group { gap: 5px; }
-    .beaker { width: 60px; height: 80px; }
-    .mendel-area { width: 100%; }
-    .parents { gap: 10px; }
+    /* --- 2. PERBAIKAN SIMULASI KIMIA (MOBILE) --- */
+    
+    .lab-bench {
+        min-height: 300px; /* Tinggi area lab disesuaikan */
+    }
 
-    /* Footer HP */
-    .app-footer { padding: 30px 15px 15px 15px; border-radius: 30px 30px 0 0; }
-    .footer-top { justify-content: center; padding-left: 0; }
-    .logo-box { padding: 8px 15px; border-radius: 15px; }
-    .footer-logo { height: 50px; }
-    .footer-bottom { margin-top: 10px; padding-top: 15px; }
-    .copyright { font-size: 0.8rem; }
+    /* A. Perbaiki Wadah (Agar Rapi & Tidak Bertumpuk) */
+    .beaker-group {
+        display: grid; /* Ganti ke Grid agar baris & kolom rapi */
+        grid-template-columns: repeat(3, auto); /* 3 Wadah per baris */
+        gap: 25px 10px; /* Jarak: Atas-Bawah 25px, Kiri-Kanan 10px */
+        justify-content: center;
+        padding-bottom: 20px;
+        width: 100%;
+    }
+
+    .beaker { 
+        width: 55px; /* Lebar wadah diperkecil dikit */
+        height: 75px; 
+    }
+    
+    .beaker-lbl {
+        font-size: 0.65rem; /* Font label diperkecil */
+        bottom: -22px;
+        width: 120%; /* Lebarkan area teks agar tidak terpotong */
+        text-align: center;
+    }
+
+    /* B. Perbaiki Alat pH Meter (Diperkecil) */
+    .draggable-tool {
+        width: 60px; /* Lebar alat dikecilkan (Desktop: 90px) */
+    }
+
+    .ph-head {
+        padding: 5px; /* Padding kepala dikurangi */
+        border-radius: 8px 8px 3px 3px;
+    }
+
+    .screen {
+        font-size: 0.9rem; /* Angka layar dikecilkan */
+        padding: 1px;
+    }
+
+    .brand-text { font-size: 0.5rem; }
+
+    .ph-stick {
+        width: 8px; /* Tangkai lebih kurus */
+        height: 90px; /* Tangkai lebih pendek (Desktop: 140px) */
+    }
+
+    .ph-tip {
+        width: 12px;
+        height: 15px;
+    }
+
+    /* Penjelasan Tengah */
+    .reasoning-box {
+        font-size: 0.75rem;
+        min-height: 50px;
+        margin: 5px 0 15px 0;
+    }
+
+    /* --- 3. Simulasi Lainnya --- */
+    .mendel-area { width: 100%; }
+    .parents { gap: 15px; }
+    .p-card { padding: 8px; font-size: 0.85rem; }
+    .gamete { width: 30px; height: 30px; font-size: 0.9rem; }
+    
+    .track { margin-top: 15px; height: 60px; min-height: 60px; }
+    .box { width: 50px; height: 50px; font-size: 0.8rem; }
+
+    /* Footer */
+    .app-footer { padding: 20px 15px; }
+    .logo-box { padding: 5px 12px; }
+    .footer-logo { height: 40px; }
+    .copyright { font-size: 0.75rem; }
 }
