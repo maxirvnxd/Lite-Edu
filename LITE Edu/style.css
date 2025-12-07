@@ -248,7 +248,29 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
 /* =========================================
    5. SIMULASI & INTERAKSI
    ========================================= */
-.sim-wrapper { background: white; border-radius: 20px; padding: 20px; height: 100%; display: flex; flex-direction: column; }
+.sim-wrapper { 
+    background: white; 
+    border-radius: 20px; 
+    padding: 20px; 
+    height: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    
+    /* --- NON-AKTIFKAN COPY-PASTE & BLOK TEKS --- */
+    -webkit-user-select: none; /* Safari, Chrome & Android / iOS */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Standar Browser Modern */
+    
+    /* Mencegah highlight warna biru saat disentuh di HP */
+    -webkit-tap-highlight-color: transparent; 
+}
+
+/* Pastikan elemen draggable juga tidak bisa diselect */
+.draggable-tool, .gamete, .box, .dot {
+    -webkit-user-select: none;
+    user-select: none;
+}
 .sim-wrapper.scroll-content { overflow-y: auto; justify-content: flex-start; }
 .info-bubble { background: #fff8e1; padding: 15px; border-radius: 12px; border: 1px dashed #ffd54f; text-align: center; margin-bottom: 15px; }
 
@@ -667,6 +689,7 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     .track { margin-top: 15px; height: 60px; min-height: 60px; }
     .box { width: 50px; height: 50px; font-size: 0.8rem; }
 }
+
 
 
 
