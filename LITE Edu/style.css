@@ -584,19 +584,16 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
         min-height: 300px; 
     }
 
-    /* Wadah: Grid 3 Kolom dengan Jarak Lebih Lebar */
+/* Update Grid untuk HP (Agar tetap rapih 3 kolom tapi kecil) */
     .beaker-group {
-        display: grid; 
-        grid-template-columns: repeat(3, 1fr); /* Pakai 1fr agar rata */
-        gap: 30px 20px; /* Jarak Atas-Bawah 30px, Kiri-Kanan 20px (Agar teks aman) */
-        justify-items: center; /* Pusatkan item di kolom masing-masing */
-        padding-bottom: 25px;
-        width: 100%;
+        grid-template-columns: repeat(3, 1fr); /* Tetap 3 kolom */
+        gap: 35px 15px; /* Jarak Kiri-Kanan lebih rapat dibanding PC */
+        justify-items: center;
     }
-
-    .beaker { 
-        width: 50px; 
-        height: 70px; 
+    
+    .beaker {
+        width: 50px;
+        height: 70px;
     }
     
     .beaker-lbl {
@@ -670,5 +667,6 @@ main { flex: 1; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; }
     .track { margin-top: 15px; height: 60px; min-height: 60px; }
     .box { width: 50px; height: 50px; font-size: 0.8rem; }
 }
+
 
 
