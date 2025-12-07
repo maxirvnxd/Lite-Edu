@@ -46,7 +46,7 @@
             </div>
         </section>
 
-        <section id="kimia-view" class="view hidden">
+<section id="kimia-view" class="view hidden">
             <div class="split-layout">
                 <div class="panel-left glass-panel">
                     <div class="panel-header">📝 Materi Kimia</div>
@@ -103,21 +103,12 @@
                             </table>
 
                             <h4>3. Contoh Struktur</h4>
-                            
                             <div class="modern-box">
                                 <h5>A. Alkohol (2-Butanol)</h5>
                                 <div class="chem-struct">
                                     CH<sub>3</sub> — CH<sub>2</sub> — CH(OH) — CH<sub>3</sub>
                                 </div>
                                 <p>Gugus -OH berada di atom C nomor 2.</p>
-                            </div>
-
-                            <div class="modern-box">
-                                <h5>B. Ester (Etil Etanoat)</h5>
-                                <div class="chem-struct">
-                                    CH<sub>3</sub> — COO — CH<sub>2</sub>CH<sub>3</sub>
-                                </div>
-                                <p>Bagian depan (CH<sub>3</sub>) adalah Etanoat, bagian belakang (CH<sub>2</sub>CH<sub>3</sub>) adalah Etil.</p>
                             </div>
                         </div>
                     </div>
@@ -126,7 +117,17 @@
                 <div class="panel-right glass-panel">
                     <div class="panel-header">🧪 Simulasi</div>
                     
-                   <div id="kimia-sim" class="content-container hidden">
+                    <div id="kimia-sim-menu" class="menu-container">
+                        <div class="menu-card sim-card" onclick="openContent('kimia-sim', 'kimia-sim-menu')">
+                            <div class="icon-box">💧</div>
+                            <div class="menu-text">
+                                <h4>Praktikum pH</h4>
+                                <p>Ukur tingkat keasaman berbagai larutan.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="kimia-sim" class="content-container hidden">
                         <button class="btn-back" onclick="closeContent('kimia-sim', 'kimia-sim-menu')">⬅ Kembali</button>
                         
                         <div class="sim-wrapper">
@@ -185,6 +186,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
         </section>
 
         <section id="fisika-view" class="view hidden">
@@ -534,6 +537,7 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
